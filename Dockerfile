@@ -24,4 +24,4 @@ COPY . /usr/src/bot
 ENV PM2_PUBLIC_KEY 32xd4fdwk2u30zn
 ENV PM2_SECRET_KEY 12yrtm3fusokync
 
-CMD ["pm2-runtime", "index.js"]
+CMD ["pm2 start", "index.js"]
