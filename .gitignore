@@ -1,2 +1,28 @@
-node_modules/
+# Logs
+logs
+*.log
+npm-debug.log*
 
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Configuration
+config.js
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variables file
+.env
+.env.test
+
+# Etc
+dev-config.js
+a.js
