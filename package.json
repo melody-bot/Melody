@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@puyodead1/discord.js-redis": "^0.1.0",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-static": "^4.2.7",
     "discord-mongodb-prefix": "^1.1.2",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
