@@ -11,32 +11,27 @@ module.exports = {
 
     run: async function (client, message, args) {
               
-        let channel = message.member.voice.channel;
-
+        const channel = message.member.voice.channel;
         if (!channel) return sendError("I'm sorry but you need to be in a voice channel!", message.channel);
-            
+    
         try {
                 const connection = await channel.join();
             } catch (error) {
                 console.error(`I could not join the voice channel: ${error}`);
                 message.client.queue.delete(message.guild.id);
-                await channel.leave();
+                await chSannel.leave();
                 return sendError(`I could not join the voice channel: ${error}`, message.channel);
             }
-  
 
-const NewEmbed = new MessageEmbed()
-           .setColor("RED")
-           .setDescription("Please join a voice channel first!")
+        const queue = message.client.queue.get(message.guild.id);
+        if (queue) return sendError("I am already in a voice channel!",message.channel)
 
-      if (!message.member.voice.channel) {
-        return message.reply(NewEmbed);
-    }
-        const Embed = new MessageEmbed()
+
+        const YOYO = new MessageEmbed()
             .setAuthor("")
             .setColor("GREEN")
-            .setDescription("Joined the voice channel!")
+            .setDescription("Joined the voice channel!") 
 
-        return message.channel.send(Embed).catch(() => message.channel.send(""))
-    },
+        return message.channel.send(YOYO).catch(() => message.channel.send(""))
+}
 };
