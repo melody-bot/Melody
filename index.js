@@ -4,7 +4,9 @@ const { Collection, Client} = require("discord.js");
 const { RedisClient } = require("@puyodead1/discord.js-redis")
 const client = new Client();//Making a discord bot client
 const redis = new RedisClient(client, {
-  host: '152.67.1.117'
+  host: 'redis-14538.c251.east-us-mz.azure.cloud.redislabs.com',
+  port: '14538',
+  password: 'KcATrhsN3qExQW8q2WcZYgrlWluqismr'
 });
 
 redis.on('ready', () => console.log('Redis ready!'));

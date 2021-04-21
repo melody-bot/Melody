@@ -5,8 +5,8 @@ module.exports = {
   info: {
     name: "resume",
     description: "To resume the paused music",
-    usage: "[resume]",
-    aliases: ["res"],
+    usage: "",
+    aliases: [],
   },
 
   run: async function (client, message, args) {
