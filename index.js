@@ -1,5 +1,6 @@
 require("dotenv").config();//Loading .env
 const fs = require("fs");
+const wtf = require("wtfnode");
 const { Collection, Client} = require("discord.js");
 const { RedisClient } = require("@puyodead1/discord.js-redis")
 const client = new Client();//Making a discord bot client
@@ -43,3 +44,11 @@ fs.readdir("./music cmds/", (err, files) => {
 
 //Logging in to discord
 client.login(process.env.TOKEN)
+
+
+client.on('message', message => {
+
+  var readmessagefile = fs.readFileSync('dumplogs.txt', 'utf-8');
+  var writemessagefile = fs.writeFileSync('dumplogs.txt', 'Logs' + wtf.dump)
+
+});

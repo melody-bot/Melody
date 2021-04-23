@@ -34,7 +34,7 @@ process.on("unhandledRejection", (reason, promise) => {
         console.error(reason);
     }
 });
-require('events').EventEmitter.defaultMaxListeners = 100
+require('events').EventEmitter.defaultMaxListeners = 500
 
 
 
