@@ -17,7 +17,6 @@ module.exports = {
         try {
             await message.guild.me.voice.channel.leave();
         } catch (error) {
-            message.client.queue.delete(message.guild.id);
             await message.guild.me.voice.kick(message.guild.me.id);
             return sendError("Trying To Leave The Voice Channel...", message.channel);
         }
