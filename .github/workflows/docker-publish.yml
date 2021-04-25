@@ -74,11 +74,4 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-       
-      - name: executing remote ssh commands
-        uses: appleboy/ssh-action@master
-        with:
-           host: ${{ secrets.LINUXLAB }}
-           key: ${{ secrets.LINUXLAB_KEY }}
-           username: ${{ secrets.USERNAME }}
-           script: bash /home/ubuntu/update-melody.sh
+     
