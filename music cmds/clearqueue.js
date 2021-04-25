@@ -17,7 +17,7 @@ module.exports = {
         
         const serverQueue = message.client.queue.get(message.guild.id);
 
-        if (!message.member.hasPermission(["MANAGE_GUILD"]))
+        if (!message.member.hasPermission(["MANAGE_MESSAGES"]))
         return sendError("Oops!, looks like you don'have permission to clear the queue, ask a moderator to do this!",message.channel);
 
         else serverQueue.connection.dispatcher.end()
