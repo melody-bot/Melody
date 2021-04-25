@@ -14,10 +14,13 @@ module.exports = {
         if (!channel) return sendError("I'm sorry but you need to be in a voice channel!", message.channel);
         if (!message.guild.me.voice.channel) return sendError("I am not in any voice channel!", message.channel);
 
+        const queue = message.client.queue.get(message.guild.id);
+
         try {
             await message.guild.me.voice.channel.leave();
         } catch (error) {
             await message.guild.me.voice.kick(message.guild.me.id);
+            message.client.queue.delete(message.guild.id);
             return sendError("Trying To Leave The Voice Channel...", message.channel);
         }
 
