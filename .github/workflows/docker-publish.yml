@@ -74,6 +74,9 @@ jobs:
      
       - name: Configure SSH
         run: |
+          echo $SSH_USER
+          echo $SSH_KEY
+          echo $SSH_HOST
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/deploy.key
           chmod 600 ~/.ssh/deploy.key
