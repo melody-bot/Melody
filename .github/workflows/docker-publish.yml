@@ -52,7 +52,7 @@ jobs:
 
       - name: Push image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository }}/$IMAGE_NAME
+          IMAGE_ID=ghcr.io/$IMAGE_NAME
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
@@ -71,4 +71,4 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:latest
-          docker push $IMAGE_ID
+          docker push $IMAGE_ID --all-tags
