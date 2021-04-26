@@ -69,6 +69,6 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker tag $IMAGE_NAME $IMAGE_ID:latest
-          docker push $IMAGE_ID --all-tags
+          docker image tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker image tag $IMAGE_NAME $IMAGE_ID:latest
+          docker image push --all-tags $IMAGE_ID
