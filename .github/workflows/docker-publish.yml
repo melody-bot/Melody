@@ -2,9 +2,6 @@ name: Docker
 
 on:
   push:
-    # Publish `main` as Docker `latest` image.
-    branches:
-      - main
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -73,4 +70,5 @@ jobs:
           echo VERSION=$VERSION
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:latest
           docker push $IMAGE_ID:$VERSION
