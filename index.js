@@ -8,7 +8,8 @@ const redis = new RedisClient(client, {
   port: '14538',
   password: 'KcATrhsN3qExQW8q2WcZYgrlWluqismr'
 });
-
+const AutoPoster = require('topgg-autoposter')
+const ap = AutoPoster('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwOTI4Mzk3MjUxMzI2Nzc1MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE4MzA2OTQyfQ.ZlY-mB3KV5P3huX2sPew6IlGDXcBJId3_J6bODa9aQg', client)
 redis.on('ready', () => console.log('Redis ready!'));
 client.commands = new Collection();//Making client.commands as a Discord.js Collection
 client.queue = new Map()
@@ -43,3 +44,7 @@ fs.readdir("./music cmds/", (err, files) => {
 
 //Logging in to discord
 client.login(process.env.TOKEN)
+
+ap.on('posted', () => { // ran when succesfully posted
+  console.log('Posted stats to top.gg')
+})
