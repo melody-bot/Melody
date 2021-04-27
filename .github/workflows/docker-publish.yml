@@ -93,5 +93,4 @@ jobs:
           SSH_HOST: ${{ secrets.LINUXLAB }}
       - name: Apply Rolling Update
         run: |
-         RUN='docker pull '$IMAGE_ID:$VERSION' && docker service update --image '$IMAGE_ID:$VERSION' bot_melody-main'
-         ssh deploy $RUN
+         ssh deploy whoami
