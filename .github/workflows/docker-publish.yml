@@ -111,4 +111,5 @@ jobs:
           echo VERSION=$VERSION
           RUN='docker pull '$IMAGE_ID:$VERSION' && docker service update --image '$IMAGE_ID:$VERSION' bot_melody-main'
           echo $RUN
+          ssh deploy $RUN
           
