@@ -25,9 +25,6 @@ module.exports = {
         if (!permissions.has("CONNECT")) return sendError("I cannot connect to your voice channel, make sure I have the proper permissions!", message.channel);
         if (!permissions.has("SPEAK")) return sendError("I cannot speak in this voice channel, make sure I have the proper permissions!", message.channel);
 
-        if(message.guild.me.voice.channel != message.member.voice.channel) 
-        return sendError(`I am sorry but you need to be in the same voice channel as me to play songs!`, message.channel)
-
         var searchString = args.join(" ");
         if (!searchString) return sendError("You didn't provide what you want me to play", message.channel);
         const url = args[0] ? args[0].replace(/<(.+)>/g, "$1") : "";
