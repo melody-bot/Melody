@@ -1,8 +1,7 @@
 module.exports = {
     apps : [{
-      name        : "Melody",
+      name        : "Main",
       script      : "./index.js",
-      watch       : true,
-      max_memory_restart	: "800M"    
+      max_memory_restart	: "600M"    
     }]
   }
