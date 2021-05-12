@@ -17,9 +17,21 @@ module.exports = {
         
         const serverQueue = message.client.queue.get(message.guild.id);
 
-        if (!message.member.roles.cache.some(role => role.name === 'DJ') || (!message.member.hasPermission(["MANAGE_MESSAGES"]))) {
-            return sendError("I am sorry but you cannot skip songs, ask a DJ to skip it for you!\nYou need to have a role named **DJ** or `MANAGE_MESSAGES` permission to use\ncommands like skip and clearqueue.", message.channel)
-          }
+        function isPermitted() {
+        if (message.member.hasPermission(["MANAGE_MESSAGES"])) {
+            return true;
+        } else if (message.member.roles.cache.some(role => role.name === 'DJ')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    var permission = isPermitted();
+
+    if (permission == false) {
+        return sendError("I am sorry but you clear the queue, ask a DJ to do it for you!\nYou need to have a role named **DJ** or `MANAGE_MESSAGES` permission to use\ncommands like skip and clearqueue.", message.channel)
+      }
 
         if(message.guild.me.voice.channel != message.member.voice.channel) 
         return sendError(`I am sorry but you need to be in the same voice channel to use this command!`, message.channel)
