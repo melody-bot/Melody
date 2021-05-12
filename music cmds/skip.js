@@ -14,7 +14,19 @@ module.exports = {
     const channel = message.member.voice.channel
     if (!channel)return sendError("I'm sorry but you need to be in a voice channel to play music!", message.channel);
 
-    if (!message.member.roles.cache.some(role => role.name === 'DJ') ||(!message.member.hasPermission(["MANAGE_MESSAGES"]))) {
+    function isPermitted() {
+        if (message.member.hasPermission(["MANAGE_MESSAGES"])) {
+            return true;
+        } else if (message.member.roles.cache.some(role => role.name === 'DJ')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    var permission = isPermitted();
+
+    if (permission == false) {
         return sendError("I am sorry but you cannot skip songs, ask a DJ to skip it for you!\nYou need to have a role named **DJ** or `MANAGE_MESSAGES` permission to use\ncommands like skip and clearqueue.", message.channel)
       }
 
