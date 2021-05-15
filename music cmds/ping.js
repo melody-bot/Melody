@@ -7,7 +7,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     message.reply("Calculating ping...").then((resultMessage) => {
       const ping = resultMessage.createdTimestamp - message.createdTimestamp;
 

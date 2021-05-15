@@ -14,7 +14,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     let channel = message.member.voice.channel;
     if (!channel)
       return sendError(

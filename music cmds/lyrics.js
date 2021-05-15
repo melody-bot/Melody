@@ -11,7 +11,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     const queue = message.client.queue.get(message.guild.id);
     if (!queue)
       return sendError("There is nothing playing.", message.channel).catch(

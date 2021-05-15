@@ -9,7 +9,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     let embed = new MessageEmbed()
       .setAuthor(
         " " + client.user.username,

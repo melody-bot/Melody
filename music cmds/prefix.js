@@ -11,7 +11,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     const fetchprefix = await mongopref.fetch(client, message.guild.id);
     const prefixMention = new RegExp(`^<@!?${client.user.id}> `, "u");
     const prefix = message.content.match(prefixMention)

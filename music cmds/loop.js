@@ -10,7 +10,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     const serverQueue = message.client.queue.get(message.guild.id);
     if (serverQueue) {
       serverQueue.loop = !serverQueue.loop;

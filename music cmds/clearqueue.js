@@ -10,7 +10,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     const lol = new MessageEmbed().setDescription(
       "**Cleared the server song queue!\n**Use `.play` to add new songs to the queue."
     );
