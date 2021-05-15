@@ -50,11 +50,9 @@ module.exports = {
       );
 
     try {
-      
       serverQueue.connection.dispatcher.end();
       message.client.queue.delete(message.guild.id);
       message.channel.send(lol);
-      
     } catch (error) {
       return sendError(
         `An unexpected error has occurred: ${error}`,
