@@ -10,7 +10,7 @@ module.exports = {
     aliases: ["prefix"],
   },
 
-  run: async function (client, message, args) {
+  run: async function (client, message, args) { // skipcq
     const fetchprefix = await mongopref.fetch(client, message.guild.id);
     const prefixMention = new RegExp(`^<@!?${client.user.id}> `, "u");
     const prefix = message.content.match(prefixMention)

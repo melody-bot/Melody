@@ -10,7 +10,7 @@ module.exports = {
     aliases: ["ly"],
   },
 
-  run: async function (client, message, args) {
+  run: async function (client, message, args) { // skipcq
     const queue = message.client.queue.get(message.guild.id);
     if (!queue)
       return sendError("There is nothing playing.", message.channel).catch(

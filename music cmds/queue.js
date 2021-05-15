@@ -9,7 +9,7 @@ module.exports = {
     aliases: ["q", "list", "songlist", "song-list"],
   },
 
-  run: async function (client, message, args) {
+  run: async function (client, message, args) { // skipcq
     const permissions = message.channel.permissionsFor(message.client.user);
     if (!permissions.has(["MANAGE_MESSAGES", "ADD_REACTIONS"]))
       return sendError(

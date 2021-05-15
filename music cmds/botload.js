@@ -13,7 +13,7 @@ module.exports = {
     aliases: ["load"],
   },
 
-  run: async function (client, message, args) {
+  run: async function (client, message, args) { // skipcq
     if (Object.values(developers).indexOf(message.author.id) > -1) {
       var dev = true;
     }

@@ -9,7 +9,7 @@ module.exports = {
     aliases: ["np"],
   },
 
-  run: async function (client, message, args) {
+  run: async function (client, message, args) { // skipcq
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue)
       return sendError(
