@@ -9,7 +9,8 @@ module.exports = {
     aliases: [],
   },
 
-  run: async function (client, message, args) { // skipcq
+  run: async function (client, message, args) {
+    // skipcq
     const serverQueue = message.client.queue.get(message.guild.id);
     if (serverQueue && !serverQueue.playing) {
       serverQueue.playing = true;

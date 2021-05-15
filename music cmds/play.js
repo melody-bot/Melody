@@ -13,7 +13,8 @@ module.exports = {
     aliases: ["p"],
   },
 
-  run: async function (client, message, args)  { // skipcq
+  run: async function (client, message, args) {
+    // skipcq
     let channel = message.member.voice.channel;
     if (!channel)
       return sendError(

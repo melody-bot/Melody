@@ -9,7 +9,8 @@ module.exports = {
     aliases: ["rm"],
   },
 
-  run: async function (client, message, args) { // skipcq
+  run: async function (client, message, args) {
+    // skipcq
     const queue = message.client.queue.get(message.guild.id);
     if (!queue)
       return sendError("There is no queue.", message.channel).catch(
