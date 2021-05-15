@@ -21,7 +21,7 @@ module.exports = {
         "I'm sorry but you need to be in a voice channel to play music!",
         message.channel
       );
-    const url = args[0] ? args[0].replace(/<(.+)>/g, "$1") : "";
+    const url = args[0] ? args[0].replace(/<(.+)>/gu, "$1") : "";
     var searchString = args.join(" ");
     const permissions = channel.permissionsFor(message.client.user);
     if (!permissions.has("CONNECT"))
@@ -40,7 +40,7 @@ module.exports = {
         `Usage: ${message.client.config.prefix}playlist <YouTube Playlist URL | Playlist Name>`,
         message.channel
       );
-    if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+    if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/u)) {
       try {
         const playlist = await ytpl(url.split("list=")[1]);
         if (!playlist) return sendError("Playlist not found", message.channel);

@@ -15,14 +15,14 @@ module.exports = async (client, message) => {
   //Prefixes also have mention match
   const fetchprefix = await mongopref.fetch(client, message.guild.id);
 
-  const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
+  const prefixMention = new RegExp(`^<@!?${client.user.id}> `, 'u');
   const prefix = message.content.match(prefixMention)
     ? message.content.match(prefixMention)[0]
     : fetchprefix.prefix;
 
   if (message.content.indexOf(prefix) !== 0) return;
 
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(prefix.length).trim().split(/ +/gu);
   //Making the command lowerCase because our file name will be in lowerCase
   const command = args.shift().toLowerCase();
   //Searching a command

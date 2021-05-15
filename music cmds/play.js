@@ -39,13 +39,13 @@ module.exports = {
         "You didn't provide what you want me to play",
         message.channel
       );
-    const url = args[0] ? args[0].replace(/<(.+)>/g, "$1") : "";
+    const url = args[0] ? args[0].replace(/<(.+)>/gu, "$1") : "";
     var serverQueue = message.client.queue.get(message.guild.id);
 
     let songInfo = null;
     let song = null;
     if (
-      url.match(/^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi)
+      url.match(/^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/giu)
     ) {
       try {
         songInfo = await ytdl.getInfo(url);
