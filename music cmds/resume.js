@@ -15,11 +15,14 @@ module.exports = {
       serverQueue.playing = true;
       serverQueue.connection.dispatcher.resume();
       let xd = new MessageEmbed()
-      .setDescription("Resumed the music for you!")
-      .setColor("GREEN")
-      .setAuthor("")
+        .setDescription("Resumed the music for you!")
+        .setColor("GREEN")
+        .setAuthor("");
       return message.channel.send(xd);
     }
-    return sendError("There is nothing playing in this server.", message.channel);
+    return sendError(
+      "There is nothing playing in this server.",
+      message.channel
+    );
   },
 };

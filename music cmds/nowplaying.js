@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const sendError = require("../util/error")
+const sendError = require("../util/error");
 
 module.exports = {
   info: {
@@ -11,13 +11,17 @@ module.exports = {
 
   run: async function (client, message, args) {
     const serverQueue = message.client.queue.get(message.guild.id);
-    if (!serverQueue) return sendError("There is nothing playing in this server.", message.channel);
-    let song = serverQueue.songs[0]
+    if (!serverQueue)
+      return sendError(
+        "There is nothing playing in this server.",
+        message.channel
+      );
+    let song = serverQueue.songs[0];
     let thing = new MessageEmbed()
-                .setAuthor("Song being played currently")
-                .setColor("343434")
-                .setDescription(`[${song.title}](${song.url})`)
-                .setFooter(`Requested by - ${song.req.tag}`)
-    return message.channel.send(thing)
+      .setAuthor("Song being played currently")
+      .setColor("343434")
+      .setDescription(`[${song.title}](${song.url})`)
+      .setFooter(`Requested by - ${song.req.tag}`);
+    return message.channel.send(thing);
   },
 };
