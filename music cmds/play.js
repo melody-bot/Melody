@@ -45,7 +45,9 @@ module.exports = {
     let songInfo = null;
     let song = null;
     if (
-      url.match(/^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/giu)
+      url.match(
+        /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/giu
+      )
     ) {
       try {
         songInfo = await ytdl.getInfo(url);

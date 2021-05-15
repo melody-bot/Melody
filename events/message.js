@@ -15,7 +15,7 @@ module.exports = async (client, message) => {
   //Prefixes also have mention match
   const fetchprefix = await mongopref.fetch(client, message.guild.id);
 
-  const prefixMention = new RegExp(`^<@!?${client.user.id}> `, 'u');
+  const prefixMention = new RegExp(`^<@!?${client.user.id}> `, "u");
   const prefix = message.content.match(prefixMention)
     ? message.content.match(prefixMention)[0]
     : fetchprefix.prefix;

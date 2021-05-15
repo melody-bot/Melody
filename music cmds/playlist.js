@@ -40,7 +40,9 @@ module.exports = {
         `Usage: ${message.client.config.prefix}playlist <YouTube Playlist URL | Playlist Name>`,
         message.channel
       );
-    if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/u)) {
+    if (
+      url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/u)
+    ) {
       try {
         const playlist = await ytpl(url.split("list=")[1]);
         if (!playlist) return sendError("Playlist not found", message.channel);
