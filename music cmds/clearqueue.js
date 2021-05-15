@@ -42,9 +42,6 @@ module.exports = {
         `I am sorry but you need to be in the same voice channel to use this command!`,
         message.channel
       );
-    else serverQueue.connection.dispatcher.end();
-    message.client.queue.delete(message.guild.id);
-    await message.channel.send(lol);
 
     if (!serverQueue)
       return sendError(
@@ -53,6 +50,11 @@ module.exports = {
       );
 
     try {
+      
+      serverQueue.connection.dispatcher.end();
+      message.client.queue.delete(message.guild.id);
+      message.channel.send(lol);
+      
     } catch (error) {
       return sendError(
         `An unexpected error has occurred: ${error}`,
