@@ -12,7 +12,10 @@ module.exports = {
 
   run: async function (client, message, args) {
     const queue = message.client.queue.get(message.guild.id);
-    if (!queue) return sendError("There is nothing playing.",message.channel).catch(console.error);
+    if (!queue)
+      return sendError("There is nothing playing.", message.channel).catch(
+        console.error
+      );
 
     let lyrics = null;
 
@@ -24,7 +27,10 @@ module.exports = {
     }
 
     let lyricsEmbed = new MessageEmbed()
-      .setAuthor(`${queue.songs[0].title} — Lyrics`, "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png")
+      .setAuthor(
+        `${queue.songs[0].title} — Lyrics`,
+        "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png"
+      )
       .setThumbnail(queue.songs[0].img)
       .setColor("YELLOW")
       .setDescription(lyrics)
