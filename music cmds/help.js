@@ -8,7 +8,8 @@ module.exports = {
     aliases: ["commands", "help me", "pls help"],
   },
 
-  run: async function (client, message, args) { // skipcq
+  run: async function (client, message, args) {
+    // skipcq
     let embed = new MessageEmbed()
       .setAuthor(
         " " + client.user.username,

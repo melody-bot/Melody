@@ -9,7 +9,8 @@ module.exports = {
     aliases: ["st"],
   },
 
-  run: async function (client, message, args) { // skipcq
+  run: async function (client, message, args) {
+    // skipcq
     if (!args.length || isNaN(args[0]))
       return message.channel
         .send({
