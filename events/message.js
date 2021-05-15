@@ -1,6 +1,4 @@
 const mongopref = require("discord-mongodb-prefix");
-const mongoose = require("mongoose");
-const sendError = require("../util/error");
 
 module.exports = async (client, message) => {
   if (message.author.bot) return;

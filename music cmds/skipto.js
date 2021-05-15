@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js"); // skipcq
 const sendError = require("../util/error");
 
 module.exports = {

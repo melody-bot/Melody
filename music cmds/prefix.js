@@ -1,5 +1,4 @@
 const mongopref = require("discord-mongodb-prefix");
-const mongoose = require("mongoose");
 const sendError = require("../util/error");
 
 module.exports = {
@@ -14,7 +13,7 @@ module.exports = {
 
     const fetchprefix = await mongopref.fetch(client, message.guild.id);
     const prefixMention = new RegExp(`^<@!?${client.user.id}> `, "u");
-    const prefix = message.content.match(prefixMention)
+    const prefix = message.content.match(prefixMention) // skipcq
       ? message.content.match(prefixMention)[0]
       : fetchprefix.prefix;
 

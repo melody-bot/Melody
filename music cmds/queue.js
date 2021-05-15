@@ -41,7 +41,7 @@ module.exports = {
       console.error(error);
       message.channel.send(error.message).catch(console.error);
     }
-
+    // skipcq
     const filter = (reaction, user) =>
       ["⬅️", "🛑", "➡️"].includes(reaction.emoji.name) &&
       message.author.id === user.id;

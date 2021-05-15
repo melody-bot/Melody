@@ -19,7 +19,7 @@ module.exports = {
       );
 
     try {
-      const connection = await channel.join();
+      const connection = await channel.join(); // skipcq
     } catch (error) {
       console.error(`I could not join the voice channel: ${error}`);
       message.client.queue.delete(message.guild.id);

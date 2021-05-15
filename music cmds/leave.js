@@ -20,8 +20,6 @@ module.exports = {
     if (!message.guild.me.voice.channel)
       return sendError("I am not in any voice channel!", message.channel);
 
-    const queue = message.client.queue.get(message.guild.id);
-
     try {
       await message.guild.me.voice.channel.leave();
     } catch (error) {

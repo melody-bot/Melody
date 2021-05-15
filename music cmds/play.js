@@ -1,8 +1,6 @@
 const { Util, MessageEmbed } = require("discord.js");
 const ytdl = require("ytdl-core");
-const ytdlDiscord = require("ytdl-core-discord");
 const yts = require("yt-search");
-const fs = require("fs");
 const sendError = require("../util/error");
 
 module.exports = {
@@ -165,7 +163,6 @@ module.exports = {
         });
 
       dispatcher.setVolumeLogarithmic(queue.volume / 100);
-      const serverQueue = message.client.queue.get(message.guild.id);
       let thing = new MessageEmbed()
         .setAuthor("Started playing music!")
         .setColor("343434")

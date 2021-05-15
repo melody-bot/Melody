@@ -1,4 +1,4 @@
-const { Util, MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const sendError = require("../util/error");
 
 module.exports = {

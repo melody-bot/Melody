@@ -1,6 +1,5 @@
 const { MessageEmbed } = require("discord.js");
 var developers = require("../dev-config");
-var utils = require("os-utils");
 var os = require("os");
 var osu = require("node-os-utils");
 const { mem } = osu;
