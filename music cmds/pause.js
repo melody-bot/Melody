@@ -8,9 +8,9 @@ module.exports = {
     usage: "[pause]",
     aliases: ["pause"],
   },
-
+  // skipcq
   run: async function (client, message, args) {
-    // skipcq
+
     const serverQueue = message.client.queue.get(message.guild.id);
     if (serverQueue && serverQueue.playing) {
       serverQueue.playing = false;

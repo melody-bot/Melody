@@ -13,9 +13,9 @@ module.exports = {
     usage: "<YouTube Playlist URL | Playlist Name>",
     aliases: ["pl"],
   },
-
+  // skipcq
   run: async function (client, message, args) {
-    // skipcq
+
     const channel = message.member.voice.channel;
     if (!channel)
       return sendError(

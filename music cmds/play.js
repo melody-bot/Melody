@@ -12,9 +12,9 @@ module.exports = {
     usage: "<YouTube_URL> | <song_name>",
     aliases: ["p"],
   },
-
+  // skipcq
   run: async function (client, message, args) {
-    // skipcq
+
     let channel = message.member.voice.channel;
     if (!channel)
       return sendError(

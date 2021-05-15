@@ -8,9 +8,9 @@ module.exports = {
     usage: "clearqueue",
     aliases: ["cq", "clearqueue", "skipall"],
   },
-
+  // skipcq
   run: async function (client, message, args) {
-    // skipcq
+
     const lol = new MessageEmbed().setDescription(
       "**Cleared the server song queue!\n**Use `.play` to add new songs to the queue."
     );

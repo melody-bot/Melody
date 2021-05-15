@@ -8,9 +8,9 @@ module.exports = {
     usage: "loop",
     aliases: ["l"],
   },
-
+  // skipcq
   run: async function (client, message, args) {
-    // skipcq
+
     const serverQueue = message.client.queue.get(message.guild.id);
     if (serverQueue) {
       serverQueue.loop = !serverQueue.loop;

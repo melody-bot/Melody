@@ -8,9 +8,9 @@ module.exports = {
     description: "Leave The Voice Channel!",
     usage: "Leave",
   },
-
+  // skipcq
   run: async function (client, message, args) {
-    // skipcq
+
     let channel = message.member.voice.channel;
     if (!channel)
       return sendError(

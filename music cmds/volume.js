@@ -8,9 +8,9 @@ module.exports = {
     usage: "[volume]",
     aliases: ["v", "vol"],
   },
-
+  // skipcq
   run: async function (client, message, args) {
-    // skipcq
+
     const channel = message.member.voice.channel;
     if (!channel)
       return sendError(
