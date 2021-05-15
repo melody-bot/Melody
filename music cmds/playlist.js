@@ -13,7 +13,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     const channel = message.member.voice.channel;
     if (!channel)
       return sendError(

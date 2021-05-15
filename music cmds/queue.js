@@ -10,7 +10,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     const permissions = message.channel.permissionsFor(message.client.user);
     if (!permissions.has(["MANAGE_MESSAGES", "ADD_REACTIONS"]))
       return sendError(

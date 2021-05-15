@@ -13,7 +13,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-    
     if (Object.values(developers).indexOf(message.author.id) > -1) {
       var dev = true;
     }

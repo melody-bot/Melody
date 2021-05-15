@@ -10,7 +10,6 @@ module.exports = {
   },
   // skipcq
   run: async function (client, message, args) {
-
     if (!args.length || isNaN(args[0]))
       return message.channel
         .send({
