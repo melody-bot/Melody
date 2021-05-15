@@ -24,8 +24,6 @@ module.exports = {
     const memUsed = await mem.used();
     var usedMemory = memUsed.usedMemMb;
 
-    totalMemory = os.totalmem();
-
     const memUsedPercentage = (memUsed.usedMemMb / memUsed.totalMemMb) * 100;
     var usedPercentage = memUsedPercentage;
 
