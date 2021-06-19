@@ -20,6 +20,12 @@ You can support us to help us keep working on Melody, [click here to become a pa
 It takes a lot of time and effort to constantly work/maintain Melody,
 and providing all premium features for free.
 
-**In no way Melody bot should be used to do anything against discord's [community guidelines.](https://www.discord.com/guidelines)**
+## Usage and Instructions
+
+Check our [wiki](https://github.com/melody-bot/Melody/wiki) for usage instructions.
+
+## Note
+
+In no way Melody bot should be used to do anything against discord's [community guidelines.](https://www.discord.com/guidelines)
 
 **Melody owned and maintain by @melody-bot/melody-developers**
