@@ -35,7 +35,7 @@ module.exports = {
 
       .addField(
         "PATREON",
-        `You can support us to help us keep working on Melody,\n [click here to become a patreon](https://https:patreon.com/noneedofit)`,
+        `You can support us to help us keep working on Melody,\n [click here to become a patreon](https://www.patreon.com/noneedofit)`,
         false
       )
 
