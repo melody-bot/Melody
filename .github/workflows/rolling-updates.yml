@@ -25,6 +25,7 @@ jobs:
 
       - name: Run tests
         run: |
+          echo $PASSWORD
           unzip -P $PASSWORD config.zip
           if [ -f docker-compose.test.yml ]; then
             docker-compose --file docker-compose.test.yml build
