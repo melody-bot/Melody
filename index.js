@@ -1,6 +1,14 @@
+const { AutoPoster } = require('topgg-autoposter')
 const Melody = require("./src/melodyClient");
-const client = new Melody();
+const bot = new Melody();
 
-client.start();
+const poster = AutoPoster(bot.config.topgg, bot)
 
-module.exports = client;
+bot.start();
+
+poster.on('posted', (stats) => { // ran when succesfully posted
+    console.log(`Posted stats to Top.gg | ${stats.serverCount} servers`)
+  })
+
+module.exports = bot;
+

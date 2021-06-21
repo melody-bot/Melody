@@ -7,6 +7,8 @@ module.exports = {
 
   Token: "xyz...", // Bot token
 
+  topgg: "iHUienf...", //top.gg token
+
   ClientID: "1234...", // Application Client ID
 
   ClientSecret: "iq1278e...", // Application Client Secret
