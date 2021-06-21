@@ -3,7 +3,7 @@
 **Melody is a feature-rich music bot that comes with 24/7 and other premium features for free, invite Melody now!**
 
 [![Invite](https://user-images.githubusercontent.com/68998452/122642127-76fa2700-d126-11eb-8b27-f5e3af9e8c65.gif)
-](https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2218257472&scope=bot%20applications.comands)
+](https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2155338816&scope=bot%20applications.commands)
 
 ###### The image is the invite link by the way :)
 
