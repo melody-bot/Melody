@@ -1,0 +1,8 @@
+# Repository owners
+@melody-bot/melody-developers
+
+# Documentation owner
+docs/* @noneedofit
+
+# DevOps owner
+.github/* @git-kush
