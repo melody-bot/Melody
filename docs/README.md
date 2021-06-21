@@ -37,4 +37,5 @@ Check our [wiki](https://github.com/melody-bot/Melody/wiki) for usage instructio
 In no way Melody bot should be used to do anything against discord's [community guidelines](https://www.discord.com/guidelines).
 
 ###### Melody is owned and maintain by [@melody-bot/melody-developers](https://github.com/orgs/melody-bot/teams/melody-developers)
+
 ###### Copyright © Melody 2021
