@@ -29,9 +29,7 @@ module.exports = {
           client.config.ClientID
         }&permissions=${
           client.config.Permissions
-        }&scope=bot%20${client.config.Scopes.join("%20")}&redirect_url=${
-          client.config.Website
-        }${client.config.CallbackURL}&response_type=code`
+        }&scope=bot%20${client.config.Scopes.join("%20")}`
       )
       .setColor("BLUE");
     return message.channel.send(invite);
