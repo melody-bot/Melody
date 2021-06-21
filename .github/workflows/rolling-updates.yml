@@ -25,7 +25,6 @@ jobs:
 
       - name: Run tests
         run: |
-          echo $PASSWORD
           unzip -P $PASSWORD config.zip
           if [ -f docker-compose.test.yml ]; then
             docker-compose --file docker-compose.test.yml build
@@ -75,9 +74,6 @@ jobs:
      
       - name: Configure SSH
         run: |
-          echo $SSH_USER
-          echo $SSH_KEY
-          echo $SSH_HOST
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/deploy.key
           chmod 600 ~/.ssh/deploy.key
