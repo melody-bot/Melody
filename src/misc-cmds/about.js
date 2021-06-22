@@ -45,6 +45,15 @@ module.exports = {
       )
 
       .addField(
+        "**IMPORTANT**", 
+        `Those who don't find slash commands in their server is likely\n because of missing permissions. Please re-invite the bot using [this link](https://discord.com/oauth2/authorize?client_id=${
+          client.config.ClientID
+        }&permissions=${
+          client.config.Permissions
+        }&scope=bot%20${client.config.Scopes.join("%20")})`
+      )
+
+      .addField(
         "Melody Stats:",
         `Servers: **${client.guilds.cache.size}**\nUsers: **${client.users.cache.size}**\nChannels: **${client.channels.cache.size}**`,
         true
@@ -95,6 +104,15 @@ module.exports = {
         .setColor("ffefd5")
         .setDescription(
           "**__DEVELOPER INFO__**\n \nMelody bot is made and run by `noneedofit#5868` and\n `behind_the_hat_#2838`, for us Melody is our first discord.js project."
+        )
+
+        .addField(
+          "**IMPORTANT**", 
+          `Those who don't find slash commands in their server is likely\n because of missing permissions. Please re-invite the bot using [this link](https://discord.com/oauth2/authorize?client_id=${
+            client.config.ClientID
+          }&permissions=${
+            client.config.Permissions
+          }&scope=bot%20${client.config.Scopes.join("%20")})`
         )
 
         .addField(
