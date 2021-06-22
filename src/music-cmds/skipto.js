@@ -75,7 +75,7 @@ module.exports = {
           .setColor("GREEN")
       );
     } catch (e) {
-      console.log(String(e.stack).bgRed);
+      client.log(e);
       client.sendError(message.channel, "Something went wrong.");
     }
   },
@@ -162,7 +162,7 @@ module.exports = {
             .setColor("GREEN")
         );
       } catch (e) {
-        console.log(String(e.stack).bgRed);
+        client.log(e);
         client.sendError(interaction, "Something went wrong.");
       }
     },

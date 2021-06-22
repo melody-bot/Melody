@@ -43,7 +43,7 @@ module.exports = (client, guild) => {
             ", Music Command: " +
             dataStuff.name
         );
-        console.log(e);
+        client.log(e);
       }
     });
   });
@@ -77,7 +77,7 @@ module.exports = (client, guild) => {
             ", Fun Command: " +
             dataStuff.name
         );
-        console.log(e);
+        client.log(e);
       }
     });
   });
@@ -111,7 +111,7 @@ module.exports = (client, guild) => {
             ", Misc Command: " +
             dataStuff.name
         );
-        console.log(e);
+        client.log(e);
       }
     });
   });

@@ -192,7 +192,7 @@ module.exports = {
         }
       }
     } catch (e) {
-      console.log(e);
+      client.log(e);
       return sendError(
         `There was an error while playing ${SearchString}`,
         message.channel
@@ -398,7 +398,7 @@ module.exports = {
           }
         }
       } catch (e) {
-        console.log(e);
+        client.log(e);
         return sendError(
           `There was an error while playing ${SearchString}`,
           channel

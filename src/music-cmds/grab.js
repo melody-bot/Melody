@@ -61,7 +61,7 @@ module.exports = {
         );
       user.send(embed);
     } catch (e) {
-      console.log(e);
+      client.log(e);
       return sendError("Your DMs are disabled", message.channel);
     }
 
@@ -118,7 +118,7 @@ module.exports = {
           );
         user.send(embed);
       } catch (e) {
-        console.log(e);
+        client.log(e);
         return sendError("Your DMs are disabled", interaction);
       }
 

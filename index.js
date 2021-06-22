@@ -8,7 +8,7 @@ bot.start();
 
 poster.on("posted", (stats) => {
   // ran when succesfully posted
-  console.log(`Posted stats to Top.gg | ${stats.serverCount} servers`);
+  bot.log(`Posted stats to Top.gg | ${stats.serverCount} servers`);
 });
 
 module.exports = bot;

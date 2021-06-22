@@ -59,6 +59,6 @@ module.exports = async (client) => {
 
   client.user.setStatus("idle");
 
-  console.log(`[API] Logged in as ${client.user.username}
+  client.log(`[API] Logged in as ${client.user.username}
     Bot is running with ${client.guilds.cache.size} servers have ${client.users.cache.size} members and ${client.channels.cache.size} `);
 };

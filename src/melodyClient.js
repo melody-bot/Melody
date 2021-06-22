@@ -132,6 +132,8 @@ class Melody extends Client {
     const musicDir = path.join(__dirname, ".", "music-cmds");
     const funDir = path.join(__dirname, ".", "fun-cmds");
     const miscDir = path.join(__dirname, ".", "misc-cmds");
+    const devDir = path.join(__dirname, ".", "dev-cmds");
+    
     fs.readdir(musicDir, (err, files) => {
       if (err) this.log(err);
       else
@@ -178,6 +180,22 @@ class Melody extends Client {
             );
           this.commands.set(file.split(".")[0], cmd);
           this.log("Misc Command Loaded: " + file.split(".")[0]); // skipcq
+        });
+    });
+    fs.readdir(devDir, (err, files) => {
+      if (err) this.log(err);
+      else
+        files.forEach((file) => {
+          const cmd = require(devDir + "/" + file); // skipcq
+          if (!cmd.name || !cmd.description || !cmd.run)
+            // skipcq
+            return this.log(
+              "Unable to load Command: " +
+                file.split(".")[0] +
+                ", Reason: File doesn't have run/name/description property"
+            );
+          this.commands.set(file.split(".")[0], cmd);
+          this.log("Music Command Loaded: " + file.split(".")[0]); // skipcq
         });
     });
   }
