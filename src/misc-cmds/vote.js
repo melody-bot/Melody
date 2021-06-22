@@ -6,11 +6,11 @@ const FactList = [
     thumbnail: "https://cdn.discordapp.com/attachments/804258629829918740/830025962329997362/2.png" 
   },
   {
-    msg: "Melody was first called 'nnoi plays' \n(Based on the username of our *honourable* founder).",
+    msg: "Melody was first called 'nnoi plays' \n(Based on the username of our founder).",
     thumbnail: "https://cdn.discordapp.com/attachments/853976902994100224/856746348623691836/PicsArt_02-11-01.png"
   },
   {
-    msg: "There are just 2 employees at Melody, \nwhich are the founders and co-founders respectively.",
+    msg: "There are just 2 employees at Melody, \nwhich are the founder and co-founder respectively.",
     thumbnail: "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png"
   },
   {
