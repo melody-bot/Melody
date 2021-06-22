@@ -62,10 +62,7 @@ module.exports = (client, guild) => {
       const GuildAPI = ClientAPI.guilds(guild);
       // skipcq
       client.log(
-        "Slash Command: [Guild: " +
-          guild +
-          "], Fun Command: " +
-          dataStuff.name
+        "Slash Command: [Guild: " + guild + "], Fun Command: " + dataStuff.name
       );
       try {
         await GuildAPI.commands.post({ data: dataStuff });
@@ -96,10 +93,7 @@ module.exports = (client, guild) => {
       const GuildAPI = ClientAPI.guilds(guild);
       // skipcq
       client.log(
-        "Slash Command: [Guild: " +
-          guild +
-          "], Misc Command: " +
-          dataStuff.name
+        "Slash Command: [Guild: " + guild + "], Misc Command: " + dataStuff.name
       );
       try {
         await GuildAPI.commands.post({ data: dataStuff });
