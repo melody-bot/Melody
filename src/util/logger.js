@@ -1,20 +1,15 @@
-const { createLogger, format, transports } = require('winston');
+const { createLogger, format, transports } = require("winston");
 const colors = require("colors");
 const { combine, timestamp, label, printf } = format;
 
 class Logger {
   constructor(LoggingFile) {
-    
     const myFormat = printf(({ level, message, label, timestamp }) => {
       return `${timestamp} [${label}] ${level}: ${message}`;
     });
-    
-    this.logger = createLogger({  
-      format: combine(
-        label({ label: 'logs' }),
-        timestamp(),
-        myFormat
-      ),
+
+    this.logger = createLogger({
+      format: combine(label({ label: "logs" }), timestamp(), myFormat),
       transports: [new transports.File({ filename: LoggingFile })],
     });
   }

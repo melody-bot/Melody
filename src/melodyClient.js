@@ -133,7 +133,7 @@ class Melody extends Client {
     const funDir = path.join(__dirname, ".", "fun-cmds");
     const miscDir = path.join(__dirname, ".", "misc-cmds");
     const devDir = path.join(__dirname, ".", "dev-cmds");
-    
+
     fs.readdir(musicDir, (err, files) => {
       if (err) this.log(err);
       else
