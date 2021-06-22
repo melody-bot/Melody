@@ -45,7 +45,7 @@ module.exports = {
       )
 
       .addField(
-        "**IMPORTANT**", 
+        "**IMPORTANT**",
         `Those who don't find slash commands in their server is likely\n because of missing permissions. Please re-invite the bot using [this link](https://discord.com/oauth2/authorize?client_id=${
           client.config.ClientID
         }&permissions=${
@@ -107,7 +107,7 @@ module.exports = {
         )
 
         .addField(
-          "**IMPORTANT**", 
+          "**IMPORTANT**",
           `Those who don't find slash commands in their server is likely\n because of missing permissions. Please re-invite the bot using [this link](https://discord.com/oauth2/authorize?client_id=${
             client.config.ClientID
           }&permissions=${
