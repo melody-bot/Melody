@@ -28,9 +28,9 @@ module.exports = (client, guild) => {
       const GuildAPI = ClientAPI.guilds(guild);
       // skipcq
       client.log(
-        "[Slash Command]: [POST] Guild " +
+        "Slash Command: [Guild: " +
           guild +
-          ", Music Command: " +
+          "], Music Command: " +
           dataStuff.name
       );
       try {
@@ -38,9 +38,9 @@ module.exports = (client, guild) => {
       } catch (e) {
         // skipcq
         client.log(
-          "[Slash Command]: [POST-FAILED] Guild " +
+          "Slash Command: [POST-FAILED] [Guild: " +
             guild +
-            ", Music Command: " +
+            "], Music Command: " +
             dataStuff.name
         );
         client.log(e);
@@ -62,9 +62,9 @@ module.exports = (client, guild) => {
       const GuildAPI = ClientAPI.guilds(guild);
       // skipcq
       client.log(
-        "[Slash Command]: [POST] Guild " +
+        "Slash Command: [Guild: " +
           guild +
-          ", Fun Command: " +
+          "], Fun Command: " +
           dataStuff.name
       );
       try {
@@ -72,9 +72,9 @@ module.exports = (client, guild) => {
       } catch (e) {
         // skipcq
         client.log(
-          "[Slash Command]: [POST-FAILED] Guild " +
+          "Slash Command: [POST-FAILED] [Guild " +
             guild +
-            ", Fun Command: " +
+            "], Fun Command: " +
             dataStuff.name
         );
         client.log(e);
@@ -96,9 +96,9 @@ module.exports = (client, guild) => {
       const GuildAPI = ClientAPI.guilds(guild);
       // skipcq
       client.log(
-        "[Slash Command]: [POST] Guild " +
+        "Slash Command: [Guild: " +
           guild +
-          ", Misc Command: " +
+          "], Misc Command: " +
           dataStuff.name
       );
       try {
@@ -106,9 +106,9 @@ module.exports = (client, guild) => {
       } catch (e) {
         // skipcq
         client.log(
-          "[Slash Command]: [POST-FAILED] Guild " +
+          "Slash Command: [POST-FAILED] [Guild: " +
             guild +
-            ", Misc Command: " +
+            "], Misc Command: " +
             dataStuff.name
         );
         client.log(e);
