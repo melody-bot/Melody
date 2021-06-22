@@ -3,24 +3,29 @@ const { MessageEmbed } = require("discord.js");
 const FactList = [
   {
     msg: "The image in the embed was our first logo \n(attempt) Not too proud of that one.. :sweat_smile:",
-    thumbnail: "https://cdn.discordapp.com/attachments/804258629829918740/830025962329997362/2.png" 
+    thumbnail:
+      "https://cdn.discordapp.com/attachments/804258629829918740/830025962329997362/2.png",
   },
   {
     msg: "Melody was first called 'nnoi plays' \n(Based on the username of our founder).",
-    thumbnail: "https://cdn.discordapp.com/attachments/853976902994100224/856746348623691836/PicsArt_02-11-01.png"
+    thumbnail:
+      "https://cdn.discordapp.com/attachments/853976902994100224/856746348623691836/PicsArt_02-11-01.png",
   },
   {
     msg: "There are just 2 employees at Melody, \nwhich are the founder and co-founder respectively.",
-    thumbnail: "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png"
+    thumbnail:
+      "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png",
   },
   {
     msg: "We initially struggled to find a way to keep our \nNodejs app running while we closed our terminal.",
-    thumbnail: "https://melody.pages.dev/assets/img/code-1839406_1920%20(2).jpg"
+    thumbnail:
+      "https://melody.pages.dev/assets/img/code-1839406_1920%20(2).jpg",
   },
   {
     msg: "The owners of Melody are 15 year olds. \n(Seriously, not kidding)",
-    thumbnail: "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png"
-  }
+    thumbnail:
+      "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png",
+  },
 ];
 
 module.exports = {
@@ -52,10 +57,7 @@ module.exports = {
         `\n[**' VOTE NOW! '**](https://top.gg/bot/809283972513267752/vote)`,
         true
       )
-      .addField(
-        "**Fun Fact:**",
-        FactList[index].msg
-      )
+      .addField("**Fun Fact:**", FactList[index].msg)
       .setFooter("Thanks for supporting Melody :)");
     return message.channel.send(lolXD);
   },
@@ -82,10 +84,7 @@ module.exports = {
           `\n[**' VOTE NOW! '**](https://top.gg/bot/809283972513267752/vote)`,
           true
         )
-        .addField(
-          "**Fun Fact:**",
-          FactList[index].msg
-        )
+        .addField("**Fun Fact:**", FactList[index].msg)
         .setFooter("Thanks for supporting Melody :)");
       return interaction.send(lolXD);
     },
