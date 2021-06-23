@@ -57,28 +57,31 @@ module.exports = {
       });
       return;
     }
-    exec(`tail -n ${parseInt(lines)} src/client.log`, (error, stdout, stderr) => {
-      if (error) {
-        const runError = new MessageEmbed()
+    exec(
+      `tail -n ${parseInt(lines)} src/client.log`,
+      (error, stdout, stderr) => {
+        if (error) {
+          const runError = new MessageEmbed()
+            .setTitle(`Fetching log file . . .`)
+            .setDescription(`**Error**: ${error.message}`)
+            .setColor("343434");
+          return message.channel.send(runError);
+        }
+        if (stderr) {
+          const runStderr = new MessageEmbed()
+            .setTitle(`Fetching log file . . .`)
+            .setDescription(`**Stderr**: ${stderr}`)
+            .setColor("343434");
+
+          return message.channel.send(runStderr);
+        }
+        const output = new MessageEmbed()
           .setTitle(`Fetching log file . . .`)
-          .setDescription(`**Error**: ${error.message}`)
-          .setColor("343434");
-        return message.channel.send(runError);
-      }
-      if (stderr) {
-        const runStderr = new MessageEmbed()
-          .setTitle(`Fetching log file . . .`)
-          .setDescription(`**Stderr**: ${stderr}`)
+          .setDescription(`**Output**: ${stdout}`)
           .setColor("343434");
 
-        return message.channel.send(runStderr);
+        return message.channel.send(output);
       }
-      const output = new MessageEmbed()
-        .setTitle(`Fetching log file . . .`)
-        .setDescription(`**Output**: ${stdout}`)
-        .setColor("343434");
-
-      return message.channel.send(output);
-    });
+    );
   },
 };
