@@ -57,7 +57,7 @@ module.exports = {
       });
       return;
     }
-    exec(`tail -n ${lines} src/client.log`, (error, stdout, stderr) => {
+    exec(`tail -n ${parseInt(lines)} src/client.log`, (error, stdout, stderr) => {
       if (error) {
         const runError = new MessageEmbed()
           .setTitle(`Fetching log file . . .`)
