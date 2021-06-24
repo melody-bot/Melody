@@ -47,8 +47,10 @@ module.exports = {
   SlashCommand: {
     // skipcq
     run: async (client, interaction, args) => {
+      const getPrefix = await client.getPrefix(interaction.guild_id)
+
       return interaction.send(
-        `Slash Command under development, use .avatar for an alternative.`
+        `Slash Command under development, use ${getPrefix.prefix}avatar for an alternative.`
       );
       //   let user = client.users.cache.get(interaction.member.user.id);
       //   const embed = new MessageEmbed()

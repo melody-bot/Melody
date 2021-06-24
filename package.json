@@ -12,7 +12,7 @@
   "author": "noneedofit",
   "dependencies": {
     "colors": "^1.4.0",
-    "discord-mongodb-prefix": "1.1.3",
+    "discord-mongodb-prefix": "1.1.4",
     "discord.js": "^12.5.3",
     "erela.js": "^2.3.3",
     "lavasfy": "^2.3.0",

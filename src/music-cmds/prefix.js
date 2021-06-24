@@ -1,4 +1,4 @@
-const mongopref = require("discord-mongodb-prefix");
+const { constant } = require("lodash");
 
 module.exports = {
   name: "prefix",
@@ -19,17 +19,16 @@ module.exports = {
 
   // skipcq
   run: async function (client, message, args) {
-    const fetchprefix = await mongopref.fetch(client, message.guild.id);
-
+    const getPrefix = await client.getPrefix(message.guild.id)
     if (!args[0])
       return message.channel.send(
-        `This server's prefix is \`${fetchprefix.prefix}\``
+        `This server's prefix is \`${getPrefix.prefix}\``
       );
 
     const newprefix = args[0]; // the provided argument. Ex: !changeprefix <newprefix>
-    await mongopref.changeprefix(client, message.guild.id, newprefix); // this will save the new prefix in the map and in the db to prevent multipy fetches
+    await client.setPrefix(message.guild.id, newprefix); // this will save the new prefix in the map and in the db to prevent multipy fetches
     message.channel.send(
-      `**Successfully changed the prefix from "${fetchprefix.prefix}" to "${newprefix}"**`
+      `**Successfully changed the prefix from "${getPrefix.prefix}" to "${newprefix}"**`
     );
   },
 
@@ -53,21 +52,18 @@ module.exports = {
 
     // skipcq
     run: async function (client, interaction, args) {
-      // const fetchprefix = await mongopref.fetch(client, interaction.guild_id);
 
-      // if (!args)
-      //     return interaction.send(
-      //         `This server's prefix is ` + "`" + fetchprefix.prefix + "`"
-      //     );
+      const getPrefix = await client.getPrefix(interaction.guild_id)
 
-      // let newprefix = args[0]; // the provided argument. Ex: !changeprefix <newprefix>
-      // await mongopref.changeprefix(client, message.guild.id, newprefix); // this will save the new prefix in the map and in the db to prevent multipy fetches
-      // interaction.send(
-      //     `**Successfully changed the prefix from "${fetchprefix.prefix}" to "${newprefix}"**`
-      // );
+      if (!interaction.data.options)
+          return interaction.send(
+              `This server's prefix is ` + "`" + getPrefix.prefix + "`"
+          );
 
+      let newprefix = interaction.data.options[0].value; // the provided argument. Ex: !changeprefix <newprefix>
+      await client.setPrefix(interaction.guild_id, newprefix); // this will save the new prefix in the map and in the db to prevent multipy fetches
       return interaction.send(
-        `Slash command under development. Use .prefix for an alternative.`
+          `**Successfully changed the prefix from "${getPrefix.prefix}" to "${newprefix}"**`
       );
     },
   },

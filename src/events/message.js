@@ -1,5 +1,3 @@
-const mongopref = require("discord-mongodb-prefix");
-
 /**
  *
  * @param {require("../melodyClient")} client
@@ -11,17 +9,13 @@ const mongopref = require("discord-mongodb-prefix");
 module.exports = async (client, message) => {
   if (message.author.bot || message.channel.type === "dm") return;
 
-  mongopref.setURL(`${client.config.mongoURL}`);
-
-  client.defaultprefix = client.config.DefaultPrefix;
-
-  const fetchprefix = await mongopref.fetch(client, message.guild.id);
+  const GuildPrefix = await client.getPrefix(message.guild.id);
 
   //Prefixes also have mention match
   const prefixMention = new RegExp(`^<@!?${client.user.id}> `, "u");
   const prefix = message.content.match(prefixMention)
     ? message.content.match(prefixMention)[0]
-    : fetchprefix.prefix;
+    : GuildPrefix.prefix;
 
   if (message.content.indexOf(prefix) !== 0) return;
 
