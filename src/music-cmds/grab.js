@@ -23,6 +23,7 @@ module.exports = {
   run: async (client, message, args) => {
     const user = client.users.cache.get(message.member.user.id);
     const player = await client.Manager.get(message.guild.id);
+    const getPrefix = await client.getPrefix(message.guild.id);
 
     if (!player)
       return sendError(
@@ -50,7 +51,7 @@ module.exports = {
         .addField(`Author: `, `${player.queue.current.author}`, true)
         .addField(
           `Play it:`,
-          `\`${client.config.DefaultPrefix}play ${player.queue.current.uri}\``
+          `\`${getPrefix.prefix}play ${player.queue.current.uri}\``
         )
         .addField(`Used in:`, `<#${message.channel.id}>`, true)
         .setFooter(
@@ -80,6 +81,7 @@ module.exports = {
     run: async (client, interaction, args) => {
       const user = client.users.cache.get(interaction.member.user.id);
       const player = await client.Manager.get(interaction.guild_id);
+      const getPrefix = await client.getPrefix(interaction.guild_id);
 
       if (!player)
         return sendError(
@@ -107,7 +109,7 @@ module.exports = {
           .addField(`Author: `, `${player.queue.current.author}`, true)
           .addField(
             `Play it:`,
-            `\`${client.config.DefaultPrefix}play ${player.queue.current.uri}\``
+            `\`${getPrefix.prefix}play ${player.queue.current.uri}\``
           )
           .addField(`Used in:`, `<#${interaction.channel_id}>`, true)
           .setFooter(

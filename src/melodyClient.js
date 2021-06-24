@@ -2,6 +2,7 @@ const { Collection, Client, MessageEmbed } = require("discord.js");
 const { LavasfyClient } = require("lavasfy");
 const { Manager } = require("erela.js");
 const fs = require("fs");
+const mongopref = require("discord-mongodb-prefix");
 const path = require("path");
 const Logger = require("./util/logger");
 const prettyMilliseconds = require("pretty-ms");
@@ -22,6 +23,10 @@ class Melody extends Client {
 
     this.LoadCommands();
     this.LoadEvents();
+
+    mongopref.setURL(`${client.config.mongoURL}`);
+
+    mongopref.setDefaultPrefix(client.config.DefaultPrefix);
 
     //Utils
     this.ProgressBar = require("./util/progressbar");
@@ -215,6 +220,16 @@ class Melody extends Client {
 
   log(logs) {
     this.logger.log(logs);
+  }
+
+  async getPrefix(guild) {
+    const prefix = await mongopref.fetch(guild);
+    return prefix;
+  }
+
+  async setPrefix(guild, prefix) {
+    await mongopref.changeprefix(guild, prefix);
+    return;
   }
 
   sendError(Channel, Error) {
