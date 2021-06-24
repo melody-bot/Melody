@@ -23,23 +23,25 @@ module.exports = {
         `This server's prefix is \`${getPrefix.prefix}\``
       );
 
-      function isPermitted() {
-        if (message.member.hasPermission(["MANAGE_GUILD"])) {
-          return true;
-        } else if (message.member.roles.cache.some((role) => role.name === "DJ")) {
-          return true;
-        } else {
-          return false;
-        }
+    function isPermitted() {
+      if (message.member.hasPermission(["MANAGE_GUILD"])) {
+        return true;
+      } else if (
+        message.member.roles.cache.some((role) => role.name === "DJ")
+      ) {
+        return true;
+      } else {
+        return false;
       }
+    }
 
-      let permission = isPermitted();
+    let permission = isPermitted();
 
-      if (permission === false)
-        return client.sendError(
-          message.channel,
-            "Missing Permissions!\n You need the `DJ` role or `MANAGE_GUILD` permission to access this command."
-        );
+    if (permission === false)
+      return client.sendError(
+        message.channel,
+        "Missing Permissions!\n You need the `DJ` role or `MANAGE_GUILD` permission to access this command."
+      );
 
     const newprefix = args[0]; // the provided argument. Ex: !changeprefix <newprefix>
     await client.setPrefix(message.guild.id, newprefix); // this will save the new prefix in the map and in the db to prevent multipy fetches
@@ -93,7 +95,7 @@ module.exports = {
       if (permission === false)
         return client.sendError(
           interaction,
-            "Missing Permissions!\n You need the `DJ` or `MANAGE_GUILD` permission to role to access this command."
+          "Missing Permissions!\n You need the `DJ` or `MANAGE_GUILD` permission to role to access this command."
         );
 
       let newprefix = interaction.data.options[0].value; // the provided argument. Ex: !changeprefix <newprefix>
