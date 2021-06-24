@@ -1,5 +1,3 @@
-const { constant } = require("lodash");
-
 module.exports = {
   name: "prefix",
   description: "Change server prefix",

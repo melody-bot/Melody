@@ -53,8 +53,8 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const guild = client.guilds.cache.get(interaction.guild_id);
-      const member = guild.members.cache.get(interaction.member.user.id);
+      // const guild = client.guilds.cache.get(interaction.guild_id);
+      // const member = guild.members.cache.get(interaction.member.user.id);
       const sayString = interaction.data.options[0].value;
       const ping = "@everyone";
 
