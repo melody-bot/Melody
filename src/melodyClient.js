@@ -223,9 +223,9 @@ class Melody extends Client {
   }
 
   async getPrefix(guild) {
-    const prefix = await mongopref.fetch(guild)
+    const prefix = await mongopref.fetch(guild);
     return prefix;
-  } 
+  }
 
   async setPrefix(guild, prefix) {
     await mongopref.changeprefix(guild, prefix);

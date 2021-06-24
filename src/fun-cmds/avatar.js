@@ -47,7 +47,7 @@ module.exports = {
   SlashCommand: {
     // skipcq
     run: async (client, interaction, args) => {
-      const getPrefix = await client.getPrefix(interaction.guild_id)
+      const getPrefix = await client.getPrefix(interaction.guild_id);
 
       return interaction.send(
         `Slash Command under development, use ${getPrefix.prefix}avatar for an alternative.`

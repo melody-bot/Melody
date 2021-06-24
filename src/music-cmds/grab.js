@@ -81,7 +81,7 @@ module.exports = {
     run: async (client, interaction, args) => {
       const user = client.users.cache.get(interaction.member.user.id);
       const player = await client.Manager.get(interaction.guild_id);
-      const getPrefix = await client.getPrefix(interaction.guild_id)
+      const getPrefix = await client.getPrefix(interaction.guild_id);
 
       if (!player)
         return sendError(

@@ -19,7 +19,7 @@ module.exports = {
 
   // skipcq
   run: async function (client, message, args) {
-    const getPrefix = await client.getPrefix(message.guild.id)
+    const getPrefix = await client.getPrefix(message.guild.id);
     if (!args[0])
       return message.channel.send(
         `This server's prefix is \`${getPrefix.prefix}\``
@@ -52,18 +52,17 @@ module.exports = {
 
     // skipcq
     run: async function (client, interaction, args) {
-
-      const getPrefix = await client.getPrefix(interaction.guild_id)
+      const getPrefix = await client.getPrefix(interaction.guild_id);
 
       if (!interaction.data.options)
-          return interaction.send(
-              `This server's prefix is ` + "`" + getPrefix.prefix + "`"
-          );
+        return interaction.send(
+          `This server's prefix is ` + "`" + getPrefix.prefix + "`"
+        );
 
       let newprefix = interaction.data.options[0].value; // the provided argument. Ex: !changeprefix <newprefix>
       await client.setPrefix(interaction.guild_id, newprefix); // this will save the new prefix in the map and in the db to prevent multipy fetches
       return interaction.send(
-          `**Successfully changed the prefix from "${getPrefix.prefix}" to "${newprefix}"**`
+        `**Successfully changed the prefix from "${getPrefix.prefix}" to "${newprefix}"**`
       );
     },
   },
