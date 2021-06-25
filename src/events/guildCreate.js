@@ -8,7 +8,6 @@ module.exports = async (client, guild) => {
   );
 
   const channel = guild.channels.cache.find(
-    (channel) =>
       channel.type === "text" &&
       channel.permissionsFor(guild.me).has("SEND_MESSAGES" && "VIEW_CHANNEL")
   );
