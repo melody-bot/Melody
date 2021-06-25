@@ -68,7 +68,7 @@ module.exports = {
         required: false,
       },
     ],
-
+    // skipcq
     run: async (client, interaction, args) => {
       const embed = new MessageEmbed()
         .setAuthor(` ${client.user.username}`, `${client.config.IconURL}`)
