@@ -244,7 +244,7 @@ class Melody extends Client {
 
     Channel.send(embed);
   }
-  
+
   start() {
     this.login(this.config.Token);
   }

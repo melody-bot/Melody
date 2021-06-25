@@ -1,5 +1,5 @@
 const sendError = require("../util/error");
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require("discord.js");
 const levels = {
   none: 0.0,
   low: 0.2,
@@ -74,11 +74,10 @@ module.exports = {
     );
 
     const Embed = new MessageEmbed()
-        .setColor("GREEN")
-        .setDescription(`Bassboost level set to: \`${level}\``);
+      .setColor("GREEN")
+      .setDescription(`Bassboost level set to: \`${level}\``);
 
-    return message.channel.send(Embed)
-
+    return message.channel.send(Embed);
   },
   SlashCommand: {
     options: [

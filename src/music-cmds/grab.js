@@ -67,11 +67,10 @@ module.exports = {
     }
 
     const Embed = new MessageEmbed()
-        .setColor("GREEN")
-        .setDescription(`Check your DMs`);
+      .setColor("GREEN")
+      .setDescription(`Check your DMs`);
 
-    return message.channel.send(Embed)
-
+    return message.channel.send(Embed);
   },
   SlashCommand: {
     /**
@@ -133,8 +132,7 @@ module.exports = {
         .setColor("GREEN")
         .setDescription(`Check your DMs`);
 
-      return interaction.send(Embed)
-
+      return interaction.send(Embed);
     },
   },
 };
