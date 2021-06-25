@@ -7,8 +7,9 @@ module.exports = async (client, guild) => {
     "Thanks for inviting me! Use `.help` to get more info."
   );
 
-  const TxtChannel = guild.channels.cache.find((channel) =>
-    channel.type === "text" &&
+  const TxtChannel = guild.channels.cache.find(
+    (channel) =>
+      channel.type === "text" &&
       channel.permissionsFor(guild.me).has("SEND_MESSAGES" && "VIEW_CHANNEL")
   );
 
