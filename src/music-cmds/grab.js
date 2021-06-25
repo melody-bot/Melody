@@ -66,7 +66,12 @@ module.exports = {
       return sendError("Your DMs are disabled", message.channel);
     }
 
-    client.sendTime(message.channel, "**Check your DMs!**");
+    const Embed = new MessageEmbed()
+        .setColor("GREEN")
+        .setDescription(`Check your DMs`);
+
+    return message.channel.send(Embed)
+
   },
   SlashCommand: {
     /**
@@ -124,7 +129,12 @@ module.exports = {
         return sendError("Your DMs are disabled", interaction);
       }
 
-      client.sendTime(interaction, "**Check your DMs!**");
+      const Embed = new MessageEmbed()
+        .setColor("GREEN")
+        .setDescription(`Check your DMs`);
+
+      return interaction.send(Embed)
+
     },
   },
 };

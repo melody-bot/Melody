@@ -10,7 +10,7 @@ const prettyMilliseconds = require("pretty-ms");
 class Melody extends Client {
   constructor(props) {
     super(props);
-    const client = this;
+
     this.commands = new Collection();
     this.connections = new Map();
     this.prefix = new Map();
@@ -24,9 +24,9 @@ class Melody extends Client {
     this.LoadCommands();
     this.LoadEvents();
 
-    mongopref.setURL(`${client.config.mongoURL}`);
+    mongopref.setURL(`${this.config.mongoURL}`);
 
-    mongopref.setDefaultPrefix(client.config.DefaultPrefix);
+    mongopref.setDefaultPrefix(this.config.DefaultPrefix);
 
     //Utils
     this.ProgressBar = require("./util/progressbar");
@@ -57,6 +57,7 @@ class Melody extends Client {
       ]
     );
 
+    const client = this;
     this.Manager = new Manager({
       nodes: [
         {
@@ -95,13 +96,13 @@ class Melody extends Client {
           .addField("Author", `${song.author}`, true)
           .setColor("343434");
         //TODO: .setFooter("Started playing at");
-        client.channels.cache.get(player.textChannel).send(TrackStartedEmbed);
+        this.channels.cache.get(player.textChannel).send(TrackStartedEmbed);
       })
       .on("queueEnd", (player) => {
         const QueueEmbed = new MessageEmbed()
           .setAuthor("The queue has ended")
           .setColor("343434");
-        client.channels.cache.get(player.textChannel).send(QueueEmbed);
+        this.channels.cache.get(player.textChannel).send(QueueEmbed);
         if (!this.config["24/7"]) player.destroy();
       });
 
@@ -127,7 +128,7 @@ class Melody extends Client {
         return;
       };
 
-      const cmd = client.commands.get(command);
+      const cmd = this.commands.get(command);
       if (cmd.SlashCommand && cmd.SlashCommand.run)
         cmd.SlashCommand.run(this, interaction, args);
     });
@@ -243,17 +244,12 @@ class Melody extends Client {
 
     Channel.send(embed);
   }
-
-  sendTime(Channel, Error) {
-    const embed = new MessageEmbed().setColor("RANDOM").setDescription(Error);
-
-    Channel.send(embed);
-  }
+  
   start() {
     this.login(this.config.Token);
   }
 
-  RegisterSlashCommands() {
+  async RegisterSlashCommands() {
     this.guilds.cache.forEach((guild) => {
       require("./util/slashCommands")(this, guild.id);
     });
