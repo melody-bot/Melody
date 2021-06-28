@@ -59,7 +59,7 @@ module.exports = {
       .addField("Bot Uptime", `${uptime}`, true)
       .addField(
         "Bot Guide",
-        `[click here to read Melody bot wiki](https://www.github.com/noneedofit/Guides/wiki/Melody)`,
+        `[click here to read Melody bot wiki](https://www.github.com/melody-bot/Melody/wiki)`,
         false
       )
       .addField(
