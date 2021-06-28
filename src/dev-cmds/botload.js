@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-var utils = require("os-utils")
 var os = require('os')
 var osu = require('node-os-utils')
 const { mem } = osu
@@ -35,8 +34,6 @@ module.exports = {
 
     const memUsed = await mem.used()
     let usedMemory = memUsed.usedMemMb;
-     
-    totalMemory = os.totalmem();
       
     const memUsedPercentage = memUsed.usedMemMb / memUsed.totalMemMb * 100
     let usedPercentage = memUsedPercentage
