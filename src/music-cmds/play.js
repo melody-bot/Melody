@@ -37,166 +37,179 @@ module.exports = {
         message.channel
       );
 
-    const SearchString = args.join(" ");
-    if (!SearchString)
+    const search = args.join(" ");
+
+    if (!search)
       return sendError(
         "You didn't provide what you want me to play",
         message.channel
       );
-    const CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
-    if (!CheckNode || !CheckNode.connected) {
-      return sendError("Server under maintenance.", message.channel);
-    }
-    const player = client.Manager.create({
-      guild: message.guild.id,
-      voiceChannel: message.member.voice.channel.id,
-      textChannel: message.channel.id,
-      selfDeafen: false,
-    });
 
-    const SongAddedEmbed = new MessageEmbed().setColor("343434");
+    const SongArray = search.split(";; ");
 
-    if (
-      player.queue &&
-      message.channel !== client.channels.cache.get(player.textChannel)
-    )
-      return sendError(
-        `The player is already initialized in ${client.channels.cache.get(
-          player.textChannel
-        )}, use commands over there or use .leave to stop the current player.`,
-        message.channel
-      );
+    SongArray.forEach(loadSongs);
 
-    await player.connect();
-    await player.pause(false);
+    async function loadSongs(item) {
+      let SearchString = item;
 
-    try {
-      if (SearchString.match(client.Lavasfy.spotifyPattern)) {
-        await client.Lavasfy.requestToken();
-        const node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
-        const Searched = await node.load(SearchString);
-
-        if (Searched.loadType === "PLAYLIST_LOADED") {
-          const songs = [];
-          for (let i = 0; i < Searched.tracks.length; i++)
-            songs.push(TrackUtils.build(Searched.tracks[i], message.author));
-          player.queue.add(songs);
-
-          if (
-            !player.playing &&
-            !player.paused &&
-            player.queue.totalSize === Searched.tracks.length
-          ) {
-            message.channel.send(`Playlist added to queue`);
-            return player.play();
-          } else {
-            SongAddedEmbed.setAuthor(`Playlist added to queue`);
-            SongAddedEmbed.addField(
-              "Enqueued",
-              `\`${Searched.tracks.length}\` songs`,
-              false
-            );
-            //SongAddedEmbed.addField("Playlist duration", `\`${prettyMilliseconds(Searched.tracks, { colonNotation: true })}\``, false)
-            return message.channel.send(SongAddedEmbed);
-          }
-        } else if (Searched.loadType.startsWith("TRACK")) {
-          player.queue.add(
-            TrackUtils.build(Searched.tracks[0], message.author)
-          );
-
-          if (!player.playing && !player.paused && !player.queue.size) {
-            message.channel.send(`Song added to queue`);
-            return player.play();
-          } else {
-            SongAddedEmbed.setAuthor(`Song added to queue`);
-            SongAddedEmbed.setDescription(
-              `[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri})`
-            );
-            SongAddedEmbed.addField(
-              "Duration",
-              `${prettyMilliseconds(Searched.tracks[0].duration, {
-                colonNotation: true,
-              })} min`,
-              true
-            );
-            if (player.queue.totalSize > 1)
-              SongAddedEmbed.addField(
-                "Queue position",
-                `${player.queue.size - 0}`,
-                true
-              );
-            return message.channel.send(SongAddedEmbed);
-          }
-        } else {
-          return sendError(
-            `No matches found for - ${SearchString} \nNote: Podcasts are not supported`,
-            message.channel
-          );
-        }
-      } else {
-        const Searched = await player.search(SearchString, message.author);
-        if (!player)
-          return sendError("Nothing is playing right now...", message.channel);
-
-        if (Searched.loadType === "NO_MATCHES")
-          return sendError(
-            `No matches found for - ${SearchString} \nNote: Podcasts are not supported`,
-            message.channel
-          );
-        else if (Searched.loadType == "PLAYLIST_LOADED") {
-          player.queue.add(Searched.tracks);
-
-          if (
-            !player.playing &&
-            !player.paused &&
-            player.queue.totalSize === Searched.tracks.length
-          ) {
-            message.channel.send(`Playlist added to queue`);
-            return player.play();
-          } else {
-            SongAddedEmbed.setAuthor(`Playlist added to queue`);
-            SongAddedEmbed.addField(
-              "Enqueued",
-              `\`${Searched.tracks.length}\` songs`,
-              false
-            );
-            //SongAddedEmbed.setFooter(`Playlist duration \`${prettyMilliseconds(Searched.playlist.duration, { colonNotation: true })}\``);
-            return message.channel.send(SongAddedEmbed);
-          }
-        } else {
-          player.queue.add(Searched.tracks[0]);
-
-          if (!player.playing && !player.paused && !player.queue.size) {
-            message.channel.send(`Song added to queue`);
-            return player.play();
-          } else {
-            SongAddedEmbed.setAuthor(`Song added to queue`);
-            SongAddedEmbed.setDescription(
-              `[${Searched.tracks[0].title}](${Searched.tracks[0].uri})`
-            );
-            SongAddedEmbed.addField(
-              "Duration",
-              `${prettyMilliseconds(Searched.tracks[0].duration, {
-                colonNotation: true,
-              })} min`,
-              true
-            );
-            if (player.queue.totalSize > 1)
-              SongAddedEmbed.addField(
-                "Queue position",
-                `${player.queue.size - 0}`,
-                true
-              );
-            return message.channel.send(SongAddedEmbed);
-          }
-        }
+      const CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
+      if (!CheckNode || !CheckNode.connected) {
+        return sendError("Server under maintenance.", message.channel);
       }
-    } catch (e) {
-      client.log(e);
-      return sendError(
-        `There was an error while playing ${SearchString}`,
-        message.channel
-      );
+      const player = client.Manager.create({
+        guild: message.guild.id,
+        voiceChannel: message.member.voice.channel.id,
+        textChannel: message.channel.id,
+        selfDeafen: false,
+      });
+
+      const SongAddedEmbed = new MessageEmbed().setColor("343434");
+
+      if (
+        player.queue &&
+        message.channel !== client.channels.cache.get(player.textChannel)
+      )
+        return sendError(
+          `The player is already initialized in ${client.channels.cache.get(
+            player.textChannel
+          )}, use commands over there or use .leave to stop the current player.`,
+          message.channel
+        );
+
+      player.connect();
+      player.pause(false);
+
+      try {
+        if (SearchString.match(client.Lavasfy.spotifyPattern)) {
+          await client.Lavasfy.requestToken();
+          const node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+          const Searched = await node.load(SearchString);
+
+          if (Searched.loadType === "PLAYLIST_LOADED") {
+            const songs = [];
+            for (let i = 0; i < Searched.tracks.length; i++)
+              songs.push(TrackUtils.build(Searched.tracks[i], message.author));
+            player.queue.add(songs);
+
+            if (
+              !player.playing &&
+              !player.paused &&
+              player.queue.totalSize === Searched.tracks.length
+            ) {
+              message.channel.send(`Playlist added to queue`);
+              return player.play();
+            } else {
+              SongAddedEmbed.setAuthor(`Playlist added to queue`);
+              SongAddedEmbed.addField(
+                "Enqueued",
+                `\`${Searched.tracks.length}\` songs`,
+                false
+              );
+              //SongAddedEmbed.addField("Playlist duration", `\`${prettyMilliseconds(Searched.tracks, { colonNotation: true })}\``, false)
+              return message.channel.send(SongAddedEmbed);
+            }
+          } else if (Searched.loadType.startsWith("TRACK")) {
+            player.queue.add(
+              TrackUtils.build(Searched.tracks[0], message.author)
+            );
+
+            if (!player.playing && !player.paused && !player.queue.size) {
+              message.channel.send(`Song added to queue`);
+              return player.play();
+            } else {
+              SongAddedEmbed.setAuthor(`Song added to queue`);
+              SongAddedEmbed.setDescription(
+                `[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri})`
+              );
+              SongAddedEmbed.addField(
+                "Duration",
+                `${prettyMilliseconds(Searched.tracks[0].duration, {
+                  colonNotation: true,
+                })} min`,
+                true
+              );
+              if (player.queue.totalSize > 1)
+                SongAddedEmbed.addField(
+                  "Queue position",
+                  `${player.queue.size - 0}`,
+                  true
+                );
+              return message.channel.send(SongAddedEmbed);
+            }
+          } else {
+            return sendError(
+              `No matches found for - ${SearchString} \nNote: Podcasts are not supported`,
+              message.channel
+            );
+          }
+        } else {
+          const Searched = await player.search(SearchString, message.author);
+          if (!player)
+            return sendError(
+              "Nothing is playing right now...",
+              message.channel
+            );
+
+          if (Searched.loadType === "NO_MATCHES")
+            return sendError(
+              `No matches found for - ${SearchString} \nNote: Podcasts are not supported`,
+              message.channel
+            );
+          else if (Searched.loadType == "PLAYLIST_LOADED") {
+            player.queue.add(Searched.tracks);
+
+            if (
+              !player.playing &&
+              !player.paused &&
+              player.queue.totalSize === Searched.tracks.length
+            ) {
+              message.channel.send(`Playlist added to queue`);
+              return player.play();
+            } else {
+              SongAddedEmbed.setAuthor(`Playlist added to queue`);
+              SongAddedEmbed.addField(
+                "Enqueued",
+                `\`${Searched.tracks.length}\` songs`,
+                false
+              );
+              //SongAddedEmbed.setFooter(`Playlist duration \`${prettyMilliseconds(Searched.playlist.duration, { colonNotation: true })}\``);
+              return message.channel.send(SongAddedEmbed);
+            }
+          } else {
+            player.queue.add(Searched.tracks[0]);
+
+            if (!player.playing && !player.paused && !player.queue.size) {
+              message.channel.send(`Song added to queue`);
+              return player.play();
+            } else {
+              SongAddedEmbed.setAuthor(`Song added to queue`);
+              SongAddedEmbed.setDescription(
+                `[${Searched.tracks[0].title}](${Searched.tracks[0].uri})`
+              );
+              SongAddedEmbed.addField(
+                "Duration",
+                `${prettyMilliseconds(Searched.tracks[0].duration, {
+                  colonNotation: true,
+                })} min`,
+                true
+              );
+              if (player.queue.totalSize > 1)
+                SongAddedEmbed.addField(
+                  "Queue position",
+                  `${player.queue.size - 0}`,
+                  true
+                );
+              return message.channel.send(SongAddedEmbed);
+            }
+          }
+        }
+      } catch (e) {
+        client.log(e);
+        return sendError(
+          `There was an error while playing ${SearchString}`,
+          message.channel
+        );
+      }
     }
   },
 
@@ -270,140 +283,155 @@ module.exports = {
           interaction
         );
 
-      const SearchString = interaction.data.options[0].value;
-      const SongAddedEmbed = new MessageEmbed().setColor("343434");
+      const search = interaction.data.options[0].value;
 
-      interaction.send("Searching . . .");
-
-      await player.connect();
-      await player.pause(false);
-
-      try {
-        if (SearchString.match(client.Lavasfy.spotifyPattern)) {
-          await client.Lavasfy.requestToken();
-          const node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
-          const Searched = await node.load(SearchString);
-
-          if (Searched.loadType === "PLAYLIST_LOADED") {
-            const songs = [];
-            for (let i = 0; i < Searched.tracks.length; i++)
-              songs.push(TrackUtils.build(Searched.tracks[i], member.user));
-            player.queue.add(songs);
-
-            if (
-              !player.playing &&
-              !player.paused &&
-              player.queue.totalSize === Searched.tracks.length
-            ) {
-              channel.send(`Playlist added to queue`);
-              return player.play();
-            } else {
-              SongAddedEmbed.setAuthor(`Playlist added to queue`);
-              SongAddedEmbed.addField(
-                "Enqueued",
-                `\`${Searched.tracks.length}\` songs`,
-                false
-              );
-              //SongAddedEmbed.addField("Playlist duration", `\`${prettyMilliseconds(Searched.tracks, { colonNotation: true })}\``, false)
-              return channel.send(SongAddedEmbed);
-            }
-          } else if (Searched.loadType.startsWith("TRACK")) {
-            player.queue.add(TrackUtils.build(Searched.tracks[0], member.user));
-
-            if (!player.playing && !player.paused && !player.queue.size) {
-              channel.send(`Song added to queue`);
-              return player.play();
-            } else {
-              SongAddedEmbed.setAuthor(`Song added to queue`);
-              SongAddedEmbed.setDescription(
-                `[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri})`
-              );
-              SongAddedEmbed.addField(
-                "Duration",
-                `${prettyMilliseconds(Searched.tracks[0].duration, {
-                  colonNotation: true,
-                })} min`,
-                true
-              );
-              if (player.queue.totalSize > 1)
-                SongAddedEmbed.addField(
-                  "Queue position",
-                  `${player.queue.size - 0}`,
-                  true
-                );
-              return channel.send(SongAddedEmbed);
-            }
-          } else {
-            return sendError(
-              `No matches found for - ${SearchString} \nNote: Podcasts are not supported`,
-              channel
-            );
-          }
-        } else {
-          const Searched = await player.search(SearchString, member.user);
-          if (!player)
-            return sendError("Nothing is playing right now...", channel);
-
-          if (Searched.loadType === "NO_MATCHES")
-            return sendError(
-              `No matches found for - ${SearchString} \nNote: Podcasts are not supported`,
-              channel
-            );
-          else if (Searched.loadType == "PLAYLIST_LOADED") {
-            player.queue.add(Searched.tracks);
-
-            if (
-              !player.playing &&
-              !player.paused &&
-              player.queue.totalSize === Searched.tracks.length
-            ) {
-              channel.send(`Playlist added to queue`);
-              return player.play();
-            } else {
-              SongAddedEmbed.setAuthor(`Playlist added to queue`);
-              SongAddedEmbed.addField(
-                "Enqueued",
-                `\`${Searched.tracks.length}\` songs`,
-                false
-              );
-              //SongAddedEmbed.setFooter(`Playlist duration \`${prettyMilliseconds(Searched.playlist.duration, { colonNotation: true })}\``);
-              return channel.send(SongAddedEmbed);
-            }
-          } else {
-            player.queue.add(Searched.tracks[0]);
-
-            if (!player.playing && !player.paused && !player.queue.size) {
-              channel.send(`Song added to queue`);
-              return player.play();
-            } else {
-              SongAddedEmbed.setAuthor(`Song added to queue`);
-              SongAddedEmbed.setDescription(
-                `[${Searched.tracks[0].title}](${Searched.tracks[0].uri})`
-              );
-              SongAddedEmbed.addField(
-                "Duration",
-                `${prettyMilliseconds(Searched.tracks[0].duration, {
-                  colonNotation: true,
-                })} min`,
-                true
-              );
-              if (player.queue.totalSize > 1)
-                SongAddedEmbed.addField(
-                  "Queue position",
-                  `${player.queue.size - 0}`,
-                  true
-                );
-              return channel.send(SongAddedEmbed);
-            }
-          }
-        }
-      } catch (e) {
-        client.log(e);
+      if (!search)
         return sendError(
-          `There was an error while playing ${SearchString}`,
-          channel
+          "You didn't provide what you want me to play",
+          message.channel
         );
+
+      const SongArray = search.split(";; ");
+
+      async function loadSongs(item) {
+        const SearchString = item;
+        const SongAddedEmbed = new MessageEmbed().setColor("343434");
+
+        interaction.send("Searching . . .");
+
+        player.connect();
+        player.pause(false);
+
+        try {
+          if (SearchString.match(client.Lavasfy.spotifyPattern)) {
+            await client.Lavasfy.requestToken();
+            const node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+            const Searched = await node.load(SearchString);
+
+            if (Searched.loadType === "PLAYLIST_LOADED") {
+              const songs = [];
+              for (let i = 0; i < Searched.tracks.length; i++)
+                songs.push(TrackUtils.build(Searched.tracks[i], member.user));
+              player.queue.add(songs);
+
+              if (
+                !player.playing &&
+                !player.paused &&
+                player.queue.totalSize === Searched.tracks.length
+              ) {
+                channel.send(`Playlist added to queue`);
+                return player.play();
+              } else {
+                SongAddedEmbed.setAuthor(`Playlist added to queue`);
+                SongAddedEmbed.addField(
+                  "Enqueued",
+                  `\`${Searched.tracks.length}\` songs`,
+                  false
+                );
+                //SongAddedEmbed.addField("Playlist duration", `\`${prettyMilliseconds(Searched.tracks, { colonNotation: true })}\``, false)
+                return channel.send(SongAddedEmbed);
+              }
+            } else if (Searched.loadType.startsWith("TRACK")) {
+              player.queue.add(
+                TrackUtils.build(Searched.tracks[0], member.user)
+              );
+
+              if (!player.playing && !player.paused && !player.queue.size) {
+                channel.send(`Song added to queue`);
+                return player.play();
+              } else {
+                SongAddedEmbed.setAuthor(`Song added to queue`);
+                SongAddedEmbed.setDescription(
+                  `[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri})`
+                );
+                SongAddedEmbed.addField(
+                  "Duration",
+                  `${prettyMilliseconds(Searched.tracks[0].duration, {
+                    colonNotation: true,
+                  })} min`,
+                  true
+                );
+                if (player.queue.totalSize > 1)
+                  SongAddedEmbed.addField(
+                    "Queue position",
+                    `${player.queue.size - 0}`,
+                    true
+                  );
+                return channel.send(SongAddedEmbed);
+              }
+            } else {
+              return sendError(
+                `No matches found for - ${SearchString} \nNote: Podcasts are not supported`,
+                channel
+              );
+            }
+          } else {
+            const Searched = await player.search(SearchString, member.user);
+            if (!player)
+              return sendError("Nothing is playing right now...", channel);
+
+            if (Searched.loadType === "NO_MATCHES")
+              return sendError(
+                `No matches found for - ${SearchString} \nNote: Podcasts are not supported`,
+                channel
+              );
+            else if (Searched.loadType == "PLAYLIST_LOADED") {
+              player.queue.add(Searched.tracks);
+
+              if (
+                !player.playing &&
+                !player.paused &&
+                player.queue.totalSize === Searched.tracks.length
+              ) {
+                channel.send(`Playlist added to queue`);
+                return player.play();
+              } else {
+                SongAddedEmbed.setAuthor(`Playlist added to queue`);
+                SongAddedEmbed.addField(
+                  "Enqueued",
+                  `\`${Searched.tracks.length}\` songs`,
+                  false
+                );
+                //SongAddedEmbed.setFooter(`Playlist duration \`${prettyMilliseconds(Searched.playlist.duration, { colonNotation: true })}\``);
+                return channel.send(SongAddedEmbed);
+              }
+            } else {
+              player.queue.add(Searched.tracks[0]);
+
+              if (!player.playing && !player.paused && !player.queue.size) {
+                channel.send(`Song added to queue`);
+                return player.play();
+              } else {
+                SongAddedEmbed.setAuthor(`Song added to queue`);
+                SongAddedEmbed.setDescription(
+                  `[${Searched.tracks[0].title}](${Searched.tracks[0].uri})`
+                );
+                SongAddedEmbed.addField(
+                  "Duration",
+                  `${prettyMilliseconds(Searched.tracks[0].duration, {
+                    colonNotation: true,
+                  })} min`,
+                  true
+                );
+                if (player.queue.totalSize > 1)
+                  SongAddedEmbed.addField(
+                    "Queue position",
+                    `${player.queue.size - 0}`,
+                    true
+                  );
+                return channel.send(SongAddedEmbed);
+              }
+            }
+          }
+        } catch (e) {
+          client.log(e);
+          return sendError(
+            `There was an error while playing ${SearchString}`,
+            channel
+          );
+        }
       }
+      SongArray.forEach(loadSongs);
     },
   },
 };
