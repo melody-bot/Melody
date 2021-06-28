@@ -288,7 +288,7 @@ module.exports = {
       if (!search)
         return sendError(
           "You didn't provide what you want me to play",
-          message.channel
+          interaction
         );
 
       const SongArray = search.split(";; ");
