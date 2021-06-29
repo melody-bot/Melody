@@ -3,12 +3,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "resume",
   description: "Resumes the music",
-  usage: "",
+  usage: "resume",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: [],
+  aliases: ["res"],
+  example: ["resume", "res"],
   /**
    *
    * @param {import("../melodyClient")} client

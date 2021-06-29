@@ -3,12 +3,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "skip",
   description: "Skip the current song",
-  usage: "",
+  usage: "skip",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["s", "next"],
+  example: ["skip", "next"],
   /**
    *
    * @param {import("../melodyClient")} client

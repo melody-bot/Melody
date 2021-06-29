@@ -2,12 +2,13 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "avatar",
   description: "To show the avatar/profile picture of a user",
-  usage: "avatar",
+  usage: "avatar <mention>(optional)",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["av"],
+  example: ["avatar", "av @noneedofit#1010"],
   /**
    *
    * @param {import("../melodyClient")} client

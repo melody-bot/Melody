@@ -5,13 +5,14 @@ const sendError = require("../util/error");
 
 module.exports = {
   name: "play",
-  description: "Play your favorite songs",
-  usage: "[Song Name|Song URL]",
+  description: "Play your favorite songs/playlists",
+  usage: "play <song>/<url>;; <song2>/<url>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["p"],
+  example: ["play lenka everything;; faded", "p https://www.youtube.com/watch?v=eE9tV1WGTgE"],
   /**
    *
    * @param {import("../melodyClient")} client
@@ -291,13 +292,14 @@ module.exports = {
           interaction
         );
 
+      
+      interaction.send("Searching . . .");
+
       const SongArray = search.split(";; ");
 
       async function loadSongs(item) {
         const SearchString = item;
         const SongAddedEmbed = new MessageEmbed().setColor("343434");
-
-        interaction.send("Searching . . .");
 
         player.connect();
         player.pause(false);

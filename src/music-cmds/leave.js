@@ -3,13 +3,14 @@ const sendError = require("../util/error");
 
 module.exports = {
   name: "leave",
-  description: "Disconnecting the bot from the voice channel",
-  usage: "",
+  description: "Disconnecting the bot voice channel",
+  usage: "leave",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["stop", "exit", "quit", "dc", "disconnect"],
+  example: ["exit", "leave"],
   /**
    *
    * @param {import("../melodyClient")} client
@@ -22,17 +23,6 @@ module.exports = {
   run: async (client, message, args) => {
     const player = await client.Manager.get(message.guild.id);
     const channel = message.member.voice.channel;
-
-    if (
-      player.queue &&
-      message.channel !== client.channels.cache.get(player.textChannel)
-    )
-      return sendError(
-        `The player is already initialized in ${client.channels.cache.get(
-          player.textChannel
-        )}, use commands over there or use .leave to stop the current player.`,
-        message.channel
-      );
 
     if (!channel)
       return sendError(
@@ -76,18 +66,6 @@ module.exports = {
       const member = guild.members.cache.get(interaction.member.user.id);
 
       const player = await client.Manager.get(interaction.guild_id);
-
-      if (
-        player.queue &&
-        client.channels.cache.get(interaction.channel_id) !==
-          client.channels.cache.get(player.textChannel)
-      )
-        return sendError(
-          `The player is already initialized in ${client.channels.cache.get(
-            player.textChannel
-          )}, use commands over there or use .leave to stop the current player.`,
-          interaction
-        );
 
       try {
         if (!member.voice.channel)

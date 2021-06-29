@@ -5,12 +5,13 @@ const prettyMilliseconds = require("pretty-ms");
 module.exports = {
   name: "seek",
   description: "Seek to a position in the song",
-  usage: "<time s/m/h>",
+  usage: "seek <time s/m/h>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["forward"],
+  example: ["seek 45s", "forward 2m"],
   /**
    *
    * @param {import("../melodyClient")} client

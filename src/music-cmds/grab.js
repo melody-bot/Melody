@@ -4,13 +4,14 @@ const sendError = require("../util/error");
 
 module.exports = {
   name: "grab",
-  description: "Saves the current playing song to your Direct Messages",
-  usage: "",
+  description: "Grabs the current playing song in you Direct Messages",
+  usage: "grab",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["save"],
+  example: ["grab", "save"],
   /**
    *
    * @param {import("../melodyClient")} client

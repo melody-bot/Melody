@@ -4,12 +4,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "remove",
   description: `Remove a song from the queue`,
-  usage: "[number]",
+  usage: "remove <index>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["rm"],
+  example: ["remove 3", "remove 21"],
 
   /**
    *

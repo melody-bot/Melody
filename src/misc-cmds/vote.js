@@ -36,7 +36,8 @@ module.exports = {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: ["vote"],
+  aliases: ["vt"],
+  example: ["vote", "vt"],
   /**
    *
    * @param {import("../melodyClient")} client

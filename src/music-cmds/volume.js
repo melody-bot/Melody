@@ -3,12 +3,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "volume",
   description: "Changes the Volume",
-  usage: "<volume>",
+  usage: "volume <value>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["vol", "v"],
+  example: ["volume 70", "v 100"],
   /**
    *
    * @param {import("../melodyClient")} client

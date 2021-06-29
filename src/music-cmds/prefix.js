@@ -1,12 +1,13 @@
 module.exports = {
   name: "prefix",
   description: "Change server prefix",
-  usage: "",
+  usage: "prefix <newprefix>(optional)",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: ["p"],
+  aliases: ["pref"],
+  example: ["pref", "prefix >>"],
   /**
    *
    * @param {import("../melodyClient")} client

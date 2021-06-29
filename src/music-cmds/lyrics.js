@@ -6,12 +6,13 @@ const _ = require("lodash");
 module.exports = {
   name: "lyrics",
   description: "Search lyrics for any song",
-  usage: "[Song Name]",
+  usage: "lyrics <song>(optional)",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["ly"],
+  example: ["lyrics lenka everything", "ly"],
   /**
    *
    * @param {import("../melodyClient")} client

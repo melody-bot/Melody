@@ -9,6 +9,7 @@ module.exports = {
     member: [],
   },
   aliases: ["inv"],
+  example: ["inv", "invite"],
   /**
    *
    * @param {import("../melodyClient")} client

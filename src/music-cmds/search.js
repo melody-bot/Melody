@@ -7,12 +7,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "search",
   description: "Search a song/playlist",
-  usage: "[Song Name|SongURL]",
+  usage: "search <song>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["se"],
+  example: ["se lenka", "search faded"],
   /**
    *
    * @param {import("../melodyClient")} client

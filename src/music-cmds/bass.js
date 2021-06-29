@@ -8,13 +8,14 @@ const levels = {
 };
 module.exports = {
   name: "bass",
-  description: "Enables bass boosting audio effect",
-  usage: "<none|low|medium|high>",
+  description: "Adjust bass level",
+  usage: "bass <none|low|medium|high>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: ["bb", "bass"],
+  aliases: ["bb"],
+  example: ["bass low", "bb high"],
   /**
    *
    * @param {import("../melodyClient")} client

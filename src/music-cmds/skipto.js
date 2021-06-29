@@ -4,12 +4,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "skipto",
   description: `Skip to a song in the queue`,
-  usage: "<number>",
+  usage: "skipto <index>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["st"],
+  example: ["skipto 11", "st 7"],
   /**
    *
    * @param {import("../melodyClient")} client

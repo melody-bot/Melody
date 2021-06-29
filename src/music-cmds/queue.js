@@ -5,13 +5,14 @@ const sendError = require("../util/error");
 
 module.exports = {
   name: "queue",
-  description: "The server queue",
-  usage: "",
+  description: "View song queue",
+  usage: "queue",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["q"],
+  example: ["queue", "q"],
   /**
    *
    * @param {import("../melodyClient")} client

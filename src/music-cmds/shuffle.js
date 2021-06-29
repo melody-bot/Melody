@@ -3,12 +3,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "shuffle",
   description: "Shuffles the queue",
-  usage: "",
+  usage: "shuffle",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["shuff"],
+  example: ["shuff", "shuffle"],
   /**
    *
    * @param {import("../melodyClient")} client

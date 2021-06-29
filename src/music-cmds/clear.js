@@ -4,12 +4,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "clear",
   description: "Clears the server queue",
-  usage: "",
+  usage: "clear",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: ["MANAGE_MESSAGES"],
   },
   aliases: ["cl", "cq"],
+  example: ["cl", "clear"],
   /**
    *
    * @param {import("../melodyClient")} client

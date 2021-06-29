@@ -4,12 +4,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "say",
   description: "To say some message",
-  usage: "say",
+  usage: "say <message>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: ["say"],
+  aliases: ["--"],
+  example: ["say hello", "say thanks"],
   /**
    *
    * @param {import("../melodyClient")} client

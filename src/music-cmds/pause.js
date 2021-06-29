@@ -3,12 +3,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "pause",
   description: "Pauses the music",
-  usage: "",
+  usage: "pause",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: [],
+  aliases: ["ps"],
+  example: ["pause", "ps"],
   /**
    *
    * @param {import("../melodyClient")} client

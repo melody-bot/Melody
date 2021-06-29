@@ -6,7 +6,8 @@ module.exports = {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: ["ping"],
+  aliases: ["ping", "check"],
+  example: ["ping", "check"],
   /**
    *
    * @param {import("../melodyClient")} client

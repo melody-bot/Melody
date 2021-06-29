@@ -3,12 +3,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "loopqueue",
   description: "Loop the whole queue",
-  usage: "",
+  usage: "loopqueue",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["lq", "repeatqueue", "rq"],
+  example: ["loopqueue", "rq"],
   /**
    *
    * @param {import("../melodyClient")} client

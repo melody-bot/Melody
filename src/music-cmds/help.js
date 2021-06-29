@@ -2,13 +2,14 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "help",
-  description: "To know about the bot and commands",
-  usage: "[command]",
+  description: "Basic usage information of the bot",
+  usage: "help",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: ["command", "commands", "cmd"],
+  aliases: ["commands", "cmd"],
+  example: ["help", "commands"],
   /**
    *
    * @param {import("../melodyClient")} client

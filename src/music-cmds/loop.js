@@ -3,12 +3,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "loop",
   description: "Loop the current song",
-  usage: "",
+  usage: "loop",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["l", "repeat"],
+  example: ["repeat", "loop"],
   /**
    *
    * @param {import("../melodyClient")} client

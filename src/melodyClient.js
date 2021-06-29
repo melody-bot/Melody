@@ -2,7 +2,9 @@ const { Collection, Client, MessageEmbed } = require("discord.js");
 const { LavasfyClient } = require("lavasfy");
 const { Manager } = require("erela.js");
 const fs = require("fs");
+const mongoose = require("mongoose");
 const mongopref = require("discord-mongodb-prefix");
+const SongsDatabase = require("./util/songSchema");
 const path = require("path");
 const Logger = require("./util/logger");
 const prettyMilliseconds = require("pretty-ms");
@@ -24,9 +26,12 @@ class Melody extends Client {
     this.LoadCommands();
     this.LoadEvents();
 
-    mongopref.setURL(`${this.config.mongoURL}`);
+    mongopref.setURL(`${this.config.prefixesMongoURL}`);
 
     mongopref.setDefaultPrefix(this.config.DefaultPrefix);
+
+    this.database = new SongsDatabase(this);
+    const database = this.database;
 
     //Utils
     this.ProgressBar = require("./util/progressbar");
@@ -82,6 +87,19 @@ class Melody extends Client {
       )
       .on("trackStart", (player, track) => {
         const song = player.queue.current;
+        const Song = new database.model({
+          name: track.title,
+          url: track.uri,
+          duration: track.duration,
+          songAuthor: song.author,
+          userid: song.requester.id,
+          usertag: song.requester.tag,
+          guild: player.guild,
+        });
+        Song.save((err) => {
+          if (err) return client.log(err);
+        });
+
         const TrackStartedEmbed = new MessageEmbed()
           .setAuthor(`Started playing ♪`, this.config.IconURL)
           .setDescription(`[${track.title}](${track.uri})`)

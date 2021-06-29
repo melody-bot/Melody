@@ -3,13 +3,14 @@ const sendError = require("../util/error");
 
 module.exports = {
   name: "join",
-  description: "Connecting the bot to a voice channel",
-  usage: "",
+  description: "Join a voice channel",
+  usage: "join",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["jn", "come"],
+  example: ["join", "jn"],
   /**
    *
    * @param {import("../melodyClient")} client
@@ -20,6 +21,14 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
+
+    const player = client.Manager.create({
+      guild: message.guild.id,
+      voiceChannel: message.member.voice.channel.id,
+      textChannel: message.channel.id,
+      selfDeafen: false,
+    });
+    
     if (!message.member.voice.channel)
       return sendError(
         "You need to be in a voice channel to use this command!",
@@ -32,7 +41,7 @@ module.exports = {
         message.channel
       );
 
-    message.member.voice.channel.join();
+    player.connect();
 
     return message.react("✅");
   },
@@ -50,6 +59,13 @@ module.exports = {
     run: async (client, interaction, args) => {
       const guild = client.guilds.cache.get(interaction.guild_id);
       const member = guild.members.cache.get(interaction.member.user.id);
+
+      const player = client.Manager.create({
+        guild: interaction.guild_id,
+        voiceChannel: member.voice.channel.id,
+        textChannel: interaction.channel_id,
+        selfDeafen: false,
+      });
 
       try {
         if (!member.voice.channel)
@@ -70,7 +86,7 @@ module.exports = {
           interaction
         );
 
-      member.voice.channel.join();
+      player.connect();
 
       const Embed = new MessageEmbed()
         .setColor("GREEN")

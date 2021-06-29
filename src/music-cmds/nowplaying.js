@@ -5,12 +5,13 @@ const sendError = require("../util/error");
 module.exports = {
   name: "nowplaying",
   description: "See what song is currently playing",
-  usage: "",
+  usage: "nowplaying",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
   aliases: ["np", "nowplaying", "now playing"],
+  example: ["nowplaying", "np"],
   /**
    *
    * @param {import("../melodyClient")} client
