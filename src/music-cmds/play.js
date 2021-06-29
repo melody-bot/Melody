@@ -12,7 +12,10 @@ module.exports = {
     member: [],
   },
   aliases: ["p"],
-  example: ["play lenka everything;; faded", "p https://www.youtube.com/watch?v=eE9tV1WGTgE"],
+  example: [
+    "play lenka everything;; faded",
+    "p https://www.youtube.com/watch?v=eE9tV1WGTgE",
+  ],
   /**
    *
    * @param {import("../melodyClient")} client
@@ -292,7 +295,6 @@ module.exports = {
           interaction
         );
 
-      
       interaction.send("Searching . . .");
 
       const SongArray = search.split(";; ");

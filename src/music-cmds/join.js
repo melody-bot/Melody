@@ -21,14 +21,13 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-
     const player = client.Manager.create({
       guild: message.guild.id,
       voiceChannel: message.member.voice.channel.id,
       textChannel: message.channel.id,
       selfDeafen: false,
     });
-    
+
     if (!message.member.voice.channel)
       return sendError(
         "You need to be in a voice channel to use this command!",

@@ -33,7 +33,7 @@ module.exports = {
     let uptime = `${days} days, ${hours} hours, \n${minutes} mins and ${seconds} secs`;
 
     let members = [];
-    
+
     client.guilds.cache.forEach((g) => {
       members.push(g.memberCount);
     });
