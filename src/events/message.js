@@ -24,7 +24,6 @@ module.exports = async (client, message) => {
   const cmdArray = message.content.split(" && ");
 
   async function runCmd(item) {
-
     function capitalize(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -39,14 +38,17 @@ module.exports = async (client, message) => {
       client.commands.find((x) => x.aliases && x.aliases.includes(command));
 
     if (args[0] === "--help") {
-        const help = new MessageEmbed()
-          .setAuthor(`${capitalize(cmd.name)} help`)
-          .setDescription(`${cmd.description}`)
-          .addField(`Usage`, `\`${GuildPrefix.prefix}${cmd.usage}\``, true)
-          .addField(`Aliases`, `\`${cmd.aliases}\``, true)
-          .addField(`Example`, `\`${GuildPrefix.prefix}${cmd.example[0]}\`\n\`${GuildPrefix.prefix}${cmd.example[1]}\``);
-        return message.channel.send(help)
-      }
+      const help = new MessageEmbed()
+        .setAuthor(`${capitalize(cmd.name)} help`)
+        .setDescription(`${cmd.description}`)
+        .addField(`Usage`, `\`${GuildPrefix.prefix}${cmd.usage}\``, true)
+        .addField(`Aliases`, `\`${cmd.aliases}\``, true)
+        .addField(
+          `Example`,
+          `\`${GuildPrefix.prefix}${cmd.example[0]}\`\n\`${GuildPrefix.prefix}${cmd.example[1]}\``
+        );
+      return message.channel.send(help);
+    }
 
     function isDJ() {
       return message.member.roles.cache.some((role) => role.name === "DJ")

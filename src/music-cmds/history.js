@@ -11,7 +11,7 @@ module.exports = {
     member: [],
   },
   aliases: ["--"],
-  example: ["history","history personal"],
+  example: ["history", "history personal"],
   /**
    *
    * @param {import("../melodyClient")} client
