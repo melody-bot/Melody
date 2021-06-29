@@ -51,8 +51,6 @@ module.exports = {
 
     const SongArray = search.split(";; ");
 
-    SongArray.forEach(loadSongs);
-
     async function loadSongs(item) {
       let SearchString = item;
 
@@ -214,7 +212,8 @@ module.exports = {
           message.channel
         );
       }
-    }
+    }    
+    SongArray.forEach(loadSongs);
   },
 
   SlashCommand: {
