@@ -212,7 +212,7 @@ module.exports = {
           message.channel
         );
       }
-    }    
+    }
     SongArray.forEach(loadSongs);
   },
 
