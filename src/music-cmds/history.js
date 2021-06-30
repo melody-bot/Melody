@@ -27,6 +27,8 @@ module.exports = {
       .find({
         guild: message.guild.id,
       })
+      .sort([['date', -1]])
+      .limit(100)
       .exec();
 
     if (args[0] === "personal")
@@ -34,6 +36,8 @@ module.exports = {
         .find({
           userid: message.member.id,
         })
+        .sort([['date', -1]])
+        .limit(100)
         .exec();
 
     function getDate(dateStr) {
@@ -108,6 +112,8 @@ module.exports = {
         .find({
           guild: guild.id,
         })
+        .sort([['date', -1]])
+        .limit(100)
         .exec();
 
       if (
@@ -118,6 +124,8 @@ module.exports = {
           .find({
             userid: member.id,
           })
+          .sort([['date', -1]])
+          .limit(100)
           .exec();
 
       function getDate(dateStr) {
