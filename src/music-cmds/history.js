@@ -27,7 +27,7 @@ module.exports = {
       .find({
         guild: message.guild.id,
       })
-      .sort([['date', -1]])
+      .sort([["date", -1]])
       .limit(100)
       .exec();
 
@@ -36,7 +36,7 @@ module.exports = {
         .find({
           userid: message.member.id,
         })
-        .sort([['date', -1]])
+        .sort([["date", -1]])
         .limit(100)
         .exec();
 
@@ -112,7 +112,7 @@ module.exports = {
         .find({
           guild: guild.id,
         })
-        .sort([['date', -1]])
+        .sort([["date", -1]])
         .limit(100)
         .exec();
 
@@ -124,7 +124,7 @@ module.exports = {
           .find({
             userid: member.id,
           })
-          .sort([['date', -1]])
+          .sort([["date", -1]])
           .limit(100)
           .exec();
 
