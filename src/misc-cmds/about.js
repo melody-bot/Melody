@@ -50,7 +50,7 @@ module.exports = {
         )
         .setColor("ffefd5")
         .setDescription(
-          "**__DEVELOPER INFO__**\n \nMelody bot is made and run by `noneedofit#5868` and\n `behind_the_hat_#2838`, for us Melody is our first discord.js project. [Support Us](https://patreon.com/noneedofit)"
+          "**__DEVELOPER INFO__**\n \nMelody bot is made and run by [Dhruv](https://github.com/noneedofit) and\n[Kush](https://github.com/git-kush), for us Melody is our first discord.js project. [Support Us](https://patreon.com/noneedofit)"
         )
 
         .addField(
@@ -75,8 +75,7 @@ module.exports = {
         )
         .addField(
           "Change Log",
-          `- Slash commands integration and major embed changes.\n- Now you can vote Melody on top.gg, use .vote to vote, rewards coming soon!\n- You can now change the bot prefix using @Melody prefix <ur-prefix>, you can also check the server prefix by using \n<@809283972513267752> prefix\n- Now you require DJ role or few perms to
-        skip/clearqueue commands.`
+          `- The new \`history\` command shows guild history, and personal history with the \`personal\` argument.\n- Play multiple songs at a time by seperating them with \`;;\` operator.\n- Run multiple commands from a single message by seperating them with the \`&&\` operator.\n- Get information on any command using the \`--help\` flag.\nCheck Melody 3.0 [release notes](https://github.com/melody-bot/Melody/releases/tag/v3.0.0)`
         );
 
       return message.channel.send(Embed).catch(() => message.channel.send(""));
