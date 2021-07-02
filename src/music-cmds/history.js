@@ -50,6 +50,9 @@ module.exports = {
       return `${t}; ${d}/${m}/${y}`;
     }
 
+    if (results.length === 0)
+      return sendError("You have not played any songs yet!", message.channel);
+
     const songs = results.map((name, index) => {
       name.index = index;
       return name;
@@ -138,10 +141,14 @@ module.exports = {
         return `${t}; ${d}/${m}/${y}`;
       }
 
+      if (results.length === 0)
+        return sendError("You have not played any songs yet!", interaction);
+
       const songs = results.map((name, index) => {
         name.index = index;
         return name;
       });
+
       const ChunkedSongs = _.chunk(songs, 20);
 
       const Pages = ChunkedSongs.map((Songs) => {
