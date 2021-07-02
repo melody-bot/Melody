@@ -7,15 +7,21 @@ class CollectionsDatabase {
       songs: [
         { name: String, url: String, duration: Number, songAuthor: String },
       ],
-      user: Number,
+      user: { type: Number, id: Number, name: String },
       date: { type: Date, default: Date.now },
     });
-    this.collectionsdb = mongoose.createConnection(client.config.collectionsMongoURL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    this.collectionsdb = mongoose.createConnection(
+      client.config.collectionsMongoURL,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
 
-    this.collectionsdb.on("error", console.error.bind(console, "connection error:"));
+    this.collectionsdb.on(
+      "error",
+      console.error.bind(console, "connection error:")
+    );
 
     this.model = this.collectionsdb.model(`Collection`, this.collectionSchema);
   }
