@@ -50,7 +50,7 @@ module.exports = {
         )
         .setColor("ffefd5")
         .setDescription(
-          "**__DEVELOPER INFO__**\n \nMelody bot is made and run by [Dhruv](https://github.com/noneedofit) and\n[Kush](https://github.com/git-kush), for us Melody is our first discord.js project. [Support Us](https://patreon.com/noneedofit)"
+          "**__DEVELOPER INFO__**\n \nMelody bot is made and run by [Dhruv](https://github.com/noneedofit) and\n[Kush](https://github.com/git-kush), for us Melody is our first discord.js project. [Support Melody](https://patreon.com/noneedofit)"
         )
 
         .addField(
