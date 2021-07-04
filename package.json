@@ -15,7 +15,7 @@
     "discord-mongodb-prefix": "1.1.4",
     "discord.js": "^12.5.3",
     "erela.js": "^2.3.3",
-    "lavasfy": "2.1.2",
+    "lavasfy": "2.3.0",
     "lodash": "^4.17.21",
     "lyrics-finder": "^21.7.0",
     "node-fetch": "^2.6.1",
