@@ -10,16 +10,27 @@
 ## Why Choose Melody?
 
 ✔️ Personal music history
+
 ✔️ Guild music history
+
 ✔️ Supports multiple commands at once!
+
 ✔️ Open source project!
+
 ✔️ 99.9% uptime
+
 ✔️ User friendly
+
 ✔️ Slash commands
+
 ✔️ EVERYTHING is FREE!
+
 ✔️ Lots of features and controls (28 commands as of now)
+
 ✔️ Fun commands for when you feel bored ;-;
+
 ✔️ Unlike most bots, Melody doesn't require a premium subscription to stay in voice for 24/7, it's free!
+
 ✔️ [Support Server!](https://discord.gg/QfZdQynYbg) (of course)
 
 ⁉️ Sounds nice 😄
