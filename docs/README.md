@@ -25,7 +25,7 @@
 
 ✔️ EVERYTHING is FREE!
 
-✔️ Lots of features and controls (28 commands as of now)
+✔️ Lots of features and controls (29 commands as of now)
 
 ✔️ Fun commands for when you feel bored ;-;
 
