@@ -78,8 +78,7 @@ module.exports = {
           message.channel
         );
 
-      player.connect();
-      player.pause(false);
+      if (player.state != "CONNECTED") await player.connect();
 
       try {
         if (SearchString.match(client.Lavasfy.spotifyPattern)) {
@@ -213,7 +212,7 @@ module.exports = {
         );
       }
     }
-    SongArray.forEach(loadSongs);
+    SongArray.reverse().forEach(loadSongs);
   },
 
   SlashCommand: {
@@ -302,8 +301,7 @@ module.exports = {
         const SearchString = item;
         const SongAddedEmbed = new MessageEmbed().setColor("343434");
 
-        player.connect();
-        player.pause(false);
+        if (player.state != "CONNECTED") await player.connect();
 
         try {
           if (SearchString.match(client.Lavasfy.spotifyPattern)) {
@@ -434,7 +432,7 @@ module.exports = {
           );
         }
       }
-      SongArray.forEach(loadSongs);
+      SongArray.reverse().forEach(loadSongs);
     },
   },
 };
