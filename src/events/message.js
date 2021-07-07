@@ -105,5 +105,5 @@ module.exports = async (client, message) => {
     } else return;
   }
 
-  cmdArray.forEach(runCmd);
+  cmdArray.reverse().forEach(runCmd);
 };
