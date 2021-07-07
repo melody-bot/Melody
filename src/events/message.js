@@ -23,7 +23,11 @@ module.exports = async (client, message) => {
 
   const cmdArray = message.content.split(" && ");
 
-  if (cmdArray.length > 3) return sendError("I can only process a maximum of 3 commands per message.", message.channel)
+  if (cmdArray.length > 3)
+    return sendError(
+      "I can only process a maximum of 3 commands per message.",
+      message.channel
+    );
 
   async function runCmd(item) {
     function capitalize(string) {
