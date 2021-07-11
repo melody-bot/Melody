@@ -43,19 +43,10 @@ module.exports = {
     client.database.model.countDocuments({}, function (err, count) {
       if (err) return client.log(err);
       const Embed = new MessageEmbed()
-
-        .setAuthor(
-          "About Melody",
-          "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png"
-        )
         .setColor("ffefd5")
-        .setDescription(
-          "**__DEVELOPER INFO__**\n \nMelody bot is made and run by [Dhruv](https://github.com/noneedofit) and\n[Kush](https://github.com/git-kush), for us Melody is our first discord.js project. [Support Melody](https://patreon.com/noneedofit)"
-        )
-
         .addField(
-          "**IMPORTANT**",
-          `Those who don't find slash commands in their server is likely\n because of missing permissions. Please re-invite the bot using [this link](https://discord.com/oauth2/authorize?client_id=${
+          "Notice Board",
+          `Those who don't find slash commands in their server\n is likely because of missing permissions. Please\nre-invite the bot using [this link](https://discord.com/oauth2/authorize?client_id=${
             client.config.ClientID
           }&permissions=${
             client.config.Permissions
@@ -70,13 +61,22 @@ module.exports = {
         .addField("Bot Uptime", `${uptime}`, true)
         .addField(
           "Bot Guide",
-          `[Melody Wiki](https://www.github.com/melody-bot/Melody/wiki)`,
+          `[Melody Wiki](https://www.github.com/melody-bot/Melody/wiki)\n[Developer Guide](https://github.com/melody-bot/Melody/wiki/For-Developers)\n[Website](https://melody-bot.tech)`,
           true
         )
         .addField(
           "Change Log",
-          `- The new \`history\` command shows guild history, and personal history with the \`personal\` argument.\n- Play multiple songs at a time by seperating them with \`;;\` operator.\n- Run multiple commands from a single message by seperating them with the \`&&\` operator.\n- Get information on any command using the \`--help\` flag.\nCheck Melody 3.0 [release notes](https://github.com/melody-bot/Melody/releases/tag/v3.0.0)`
-        );
+          `- The new \`history\` command shows guild history, and personal history\n with the \`personal\` argument.\n- Play multiple songs at a time by seperating them with \`;;\` operator.\n- Run multiple commands from a single message by seperating them\n with the \`&&\` operator.\n- Get information on any command using the \`--help\` flag.\n*Check Melody 3.0 [release notes](https://github.com/melody-bot/Melody/releases/tag/v3.0.0)*`
+        )
+        .addField(
+          "Developers",
+          "Melody bot is maintained by [Dhruv](https://github.com/noneedofit) and [Kush](https://github.com/git-kush).\nSupport Melody by becoming a [Patreon](https://patreon.com/noneedofit)"
+        )
+        .addField(
+          "License Notice",
+          "Melody is licensed under the [Apache-2.0 License](https://www.apache.org/licenses/LICENSE-2.0.txt)"
+        )
+        .setFooter("Copyright © Melody 2021", client.config.IconURL);
 
       return message.channel.send(Embed).catch(() => message.channel.send(""));
     });
