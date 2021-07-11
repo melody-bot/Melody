@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-
+const sendError = require("../util/error");
 /**
  *
  * @param {require("../melodyClient")} client
@@ -22,6 +22,12 @@ module.exports = async (client, message) => {
   if (message.content.indexOf(prefix) !== 0) return;
 
   const cmdArray = message.content.split(" && ");
+
+  if (cmdArray.length > 3)
+    return sendError(
+      "I can only process a maximum of 3 commands per message.",
+      message.channel
+    );
 
   async function runCmd(item) {
     function capitalize(string) {
@@ -105,5 +111,5 @@ module.exports = async (client, message) => {
     } else return;
   }
 
-  cmdArray.forEach(runCmd);
+  cmdArray.reverse().forEach(runCmd);
 };

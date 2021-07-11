@@ -9,11 +9,23 @@
 
 ## Why Choose Melody?
 
-✔️ Good uptime
+✔️ Personal music history
+
+✔️ Guild music history
+
+✔️ Supports multiple commands at once!
+
+✔️ Open source project!
+
+✔️ 99.9% uptime
 
 ✔️ User friendly
 
-✔️ Lots of features and controls (28 commands as of now)
+✔️ Slash commands
+
+✔️ EVERYTHING is FREE!
+
+✔️ Lots of features and controls (29 commands as of now)
 
 ✔️ Fun commands for when you feel bored ;-;
 
@@ -26,7 +38,7 @@
 ## Patreon
 
 You can support us to help us keep working on Melody, [click here](https://patreon.com/noneedofit) to become a patron.
-It helps!
+It helps us continue developing and working on the bot!
 
 ## Usage and Instructions
 

@@ -51,6 +51,12 @@ module.exports = {
 
     const SongArray = search.split(";; ");
 
+    if (SongArray.length > 5)
+      return sendError(
+        "You can add a maximum of 5 songs per command.",
+        message.channel
+      );
+
     async function loadSongs(item) {
       let SearchString = item;
 
@@ -78,8 +84,7 @@ module.exports = {
           message.channel
         );
 
-      player.connect();
-      player.pause(false);
+      if (player.state != "CONNECTED") await player.connect();
 
       try {
         if (SearchString.match(client.Lavasfy.spotifyPattern)) {
@@ -213,7 +218,7 @@ module.exports = {
         );
       }
     }
-    SongArray.forEach(loadSongs);
+    SongArray.reverse().forEach(loadSongs);
   },
 
   SlashCommand: {
@@ -298,12 +303,17 @@ module.exports = {
 
       const SongArray = search.split(";; ");
 
+      if (SongArray.length > 5)
+        return sendError(
+          "You can add a maximum of 5 songs per command.",
+          interaction
+        );
+
       async function loadSongs(item) {
         const SearchString = item;
         const SongAddedEmbed = new MessageEmbed().setColor("343434");
 
-        player.connect();
-        player.pause(false);
+        if (player.state != "CONNECTED") await player.connect();
 
         try {
           if (SearchString.match(client.Lavasfy.spotifyPattern)) {
@@ -434,7 +444,7 @@ module.exports = {
           );
         }
       }
-      SongArray.forEach(loadSongs);
+      SongArray.reverse().forEach(loadSongs);
     },
   },
 };

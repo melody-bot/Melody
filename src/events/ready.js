@@ -48,8 +48,6 @@ module.exports = async (client) => {
 
   client.Manager.init(client.user.id);
 
-  await client.RegisterSlashCommands();
-
   setInterval(async () => {
     const index = Math.floor(Math.random() * statusList.length + 1) - 1;
     await client.user.setActivity(statusList[index].msg, {
