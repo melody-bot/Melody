@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 class CollectionsDatabase {
   constructor(client) {
-    this.client = client;
     this.collectionSchema = new mongoose.Schema({
+      name: String,
       songs: [
         { name: String, url: String, duration: Number, songAuthor: String },
       ],

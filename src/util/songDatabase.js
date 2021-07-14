@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 class SongsDatabase {
   constructor(client) {
-    this.client = client;
     this.songSchema = new mongoose.Schema({
       name: String,
       url: String,
