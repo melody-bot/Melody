@@ -28,7 +28,7 @@ module.exports = {
         if (args[1] === "guild") {
           const collections = await database.model.find({
             "user.id": message.guild.id,
-            type: 1,
+            "user.type": 1,
           });
           if (collections.length === 2)
             return sendError(
@@ -43,21 +43,22 @@ module.exports = {
           const name = args[2].replace(/[^a-z0-9]/gi, "");
           if (collections.some((collection) => collection.name === name))
             return sendError(
-                `This server already has a collection named ${name}`,
-                message.channel
-              );
-            const Collection = new database.model({
-              name: name,
-              user: { type: 1, id: message.guild.id, name: message.guild.name },
-              songs: [],
-            });
-            return Collection.save((err) => {
-              if (err) return client.log(err);
-            });
+              `This server already has a collection named \`${name}\``,
+              message.channel
+            );
+          const Collection = new database.model({
+            name: name,
+            user: { type: 1, id: message.guild.id, name: message.guild.name },
+            songs: [],
+          });
+          Collection.save((err) => {
+            if (err) return console.log(err);
+          });
+          return message.channel.send(`Created new server collection \`${name}\`.`);
         }
         const collections = await database.model.find({
           "user.id": message.author.id,
-          type: 0,
+          "user.type": 0,
         });
         if (collections.length === 5)
           return sendError(
@@ -72,7 +73,7 @@ module.exports = {
         const name = args[1].replace(/[^a-z0-9]/gi, "");
         if (collections.some((collection) => collection.name === name))
           return sendError(
-            `You already have a collection named ${name}`,
+            `You already have a collection named \`${name}\``,
             message.channel
           );
         const Collection = new database.model({
@@ -80,29 +81,30 @@ module.exports = {
           user: { type: 0, id: message.author.id, name: message.author.tag },
           songs: [],
         });
-        return Collection.save((err) => {
-          if (err) return client.log(err);
+        Collection.save((err) => {
+          if (err) return console.log(err);
         });
+        return message.channel.send(`Created new personal collection \`${name}\`.`);
       case "list":
-        if (args[1] === "all") {
-          let results = await database.model
-          .find({
-            "user.id": message.author.id,
-            type: 0,
-          })
-          .sort([["date", -1]]);          
-        }
         let results = await database.model
           .find({
             "user.id": message.author.id,
-            type: 0,
+            "user.type": 0,
           })
           .sort([["date", -1]]);
+        if (args[1] === "all") {
+          results = await database.model
+            .find({
+              "user.id": message.author.id,
+              "user.type": 0,
+            })
+            .sort([["date", -1]]);
+        }
         if (args[1] === "guild")
           results = await database.model
             .find({
               "user.id": message.guild.id,
-              type: 1,
+              "user.type": 1,
             })
             .sort([["date", -1]]);
         console.log(results);

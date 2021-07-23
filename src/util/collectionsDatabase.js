@@ -2,12 +2,21 @@ const mongoose = require("mongoose");
 
 class CollectionsDatabase {
   constructor(client) {
+    const songs = new mongoose.Schema({
+      name: String,
+      url: String,
+      duration: Number,
+      songAuthor: String,
+    });
+    const user = new mongoose.Schema({
+      type: Number,
+      id: Number,
+      name: String,
+    });
     this.collectionSchema = new mongoose.Schema({
       name: String,
-      songs: [
-        { name: String, url: String, duration: Number, songAuthor: String },
-      ],
-      user: { type: Number, id: Number, name: String },
+      songs: [songs],
+      user: user,
       date: { type: Date, default: Date.now },
     });
     this.collectionsdb = mongoose.createConnection(

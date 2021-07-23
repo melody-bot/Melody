@@ -4,7 +4,7 @@ const { Manager } = require("erela.js");
 const fs = require("fs");
 const mongopref = require("discord-mongodb-prefix");
 const SongsDatabase = require("./util/songDatabase");
-// const CollectionsDatabase = require("./util/collectionsDatabase")
+const CollectionsDatabase = require("./util/collectionsDatabase")
 const path = require("path");
 const Logger = require("./util/logger");
 const prettyMilliseconds = require("pretty-ms");
@@ -31,7 +31,7 @@ class Melody extends Client {
     mongopref.setDefaultPrefix(this.config.DefaultPrefix);
 
     this.database = new SongsDatabase(this);
-    // this.collections = new CollectionsDatabase(this);
+    this.collections = new CollectionsDatabase(this);
     const database = this.database;
 
     //Utils
@@ -72,18 +72,18 @@ class Melody extends Client {
           port: this.config.Lavalink[0].port,
           password: this.config.Lavalink[0].pass,
         },
-        {
-          identifier: this.config.Lavalink[1].id,
-          host: this.config.Lavalink[1].host,
-          port: this.config.Lavalink[1].port,
-          password: this.config.Lavalink[1].pass,
-        },
-        {
-          identifier: this.config.Lavalink[2].id,
-          host: this.config.Lavalink[2].host,
-          port: this.config.Lavalink[2].port,
-          password: this.config.Lavalink[2].pass,
-        },
+        // {
+        //   identifier: this.config.Lavalink[1].id,
+        //   host: this.config.Lavalink[1].host,
+        //   port: this.config.Lavalink[1].port,
+        //   password: this.config.Lavalink[1].pass,
+        // },
+        // {
+        //   identifier: this.config.Lavalink[2].id,
+        //   host: this.config.Lavalink[2].host,
+        //   port: this.config.Lavalink[2].port,
+        //   password: this.config.Lavalink[2].pass,
+        // },
       ],
       send(id, payload) {
         const guild = client.guilds.cache.get(id);
