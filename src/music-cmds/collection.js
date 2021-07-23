@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const prettyMilliseconds = require("pretty-ms");
 const sendError = require("../util/error");
+const _ = require("lodash");
 
 module.exports = {
   name: "collection",
@@ -54,7 +55,9 @@ module.exports = {
           Collection.save((err) => {
             if (err) return console.log(err);
           });
-          return message.channel.send(`Created new server collection \`${name}\`.`);
+          return message.channel.send(
+            `Created new server collection \`${name}\`.`
+          );
         }
         const collections = await database.model.find({
           "user.id": message.author.id,
@@ -84,7 +87,9 @@ module.exports = {
         Collection.save((err) => {
           if (err) return console.log(err);
         });
-        return message.channel.send(`Created new personal collection \`${name}\`.`);
+        return message.channel.send(
+          `Created new personal collection \`${name}\`.`
+        );
       case "list":
         let results = await database.model
           .find({
@@ -107,7 +112,25 @@ module.exports = {
               "user.type": 1,
             })
             .sort([["date", -1]]);
-        console.log(results);
+        const Collections = results.map((collection, index) => {
+          collection.index = index;
+          return collection;
+        });
+        const description = Collections.map(collection => 
+            `**${collection.name}**:  \`${collection.songs.length}\` songs`
+        ).join("\n");
+        const embed = new MessageEmbed()
+          .setColor("343434")
+          .setDescription(description)
+          .setAuthor("Collections", client.config.IconURL)
+        if (args[1] === "guild") return message.channel.send(embed);
+        const user = client.users.cache.get(message.member.user.id);
+        try {
+          await message.react("✅")
+          return user.send(embed)
+        } catch {
+          return sendError("Your DMs are disabled", message.channel)
+        }
     }
   },
 };
