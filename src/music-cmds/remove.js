@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const sendError : any = require("../util/error");
+const sendError: any = require("../util/error");
 
 module.exports = {
   name: "remove",
@@ -22,7 +22,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player : any = await client.Manager.players.get(message.guild.id);
+    const player: any = await client.Manager.players.get(message.guild.id);
     if (!player)
       return sendError(
         "There is nothing playing in this server.",
@@ -60,7 +60,7 @@ module.exports = {
         "There is nothing in the queue to remove",
         message.channel
       );
-    const rm : any = new MessageEmbed()
+    const rm: any = new MessageEmbed()
       .setDescription(`Removed \`${Number(args[0])}\` from the queue!`)
       .setColor("GREEN");
     if (isNaN(args[0])) rm.setDescription(`Tell me what to remove!`);
@@ -92,9 +92,9 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const player : any = await client.Manager.get(interaction.guild_id);
-      const guild : any = client.guilds.cache.get(interaction.guild_id);
-      const member : any = guild.members.cache.get(interaction.member.user.id);
+      const player: any = await client.Manager.get(interaction.guild_id);
+      const guild: any = client.guilds.cache.get(interaction.guild_id);
+      const member: any = guild.members.cache.get(interaction.member.user.id);
 
       if (!player)
         return sendError(
@@ -136,7 +136,7 @@ module.exports = {
           interaction
         );
 
-      const rm : any = new MessageEmbed()
+      const rm: any = new MessageEmbed()
         .setDescription(`Removed track \`${Number(args[0])}\` from the queue!`)
         .setColor("GREEN");
       if (isNaN(args[0])) rm.setDescription(`Tell me what to remove!`);

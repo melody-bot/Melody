@@ -1,8 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 const { TrackUtils } = require("erela.js");
-const _ : any = require("lodash");
-const prettyMilliseconds : any = require("pretty-ms");
-const sendError : any = require("../util/error");
+const _: any = require("lodash");
+const prettyMilliseconds: any = require("pretty-ms");
+const sendError: any = require("../util/error");
 
 module.exports = {
   name: "search",
@@ -39,14 +39,14 @@ module.exports = {
         message.channel
       );
 
-    const SearchString : any = args.join(" ");
+    const SearchString: any = args.join(" ");
     if (!SearchString)
       return sendError(`Tell me what to search!`, message.channel);
-    const CheckNode : any = client.Manager.nodes.get(client.config.Lavalink.id);
+    const CheckNode: any = client.Manager.nodes.get(client.config.Lavalink.id);
     if (!CheckNode || !CheckNode.connected) {
       return sendError("Server under maintenance.", message.channel);
     }
-    const player : any = client.Manager.create({
+    const player: any = client.Manager.create({
       guild: message.guild.id,
       voiceChannel: message.member.voice.channel.id,
       textChannel: message.channel.id,
@@ -66,7 +66,7 @@ module.exports = {
 
     if (player.state != "CONNECTED") await player.connect();
 
-    const Searched : any = await player.search(SearchString, message.author);
+    const Searched: any = await player.search(SearchString, message.author);
     if (Searched.loadType == "NO_MATCHES")
       return sendError(`No matches found for ${SearchString}`, message.channel);
     else {
@@ -74,9 +74,9 @@ module.exports = {
         s.index = i;
         return s;
       });
-      const songs : any = _.chunk(Searched.tracks, 10);
-      const Pages : any = songs.map((songz) => {
-        const MappedSongs : any = songz.map(
+      const songs: any = _.chunk(Searched.tracks, 10);
+      const Pages: any = songs.map((songz) => {
+        const MappedSongs: any = songz.map(
           (s) =>
             `${s.index + 1}. [${s.title}](${
               s.uri
@@ -85,7 +85,7 @@ module.exports = {
             })} min`
         );
 
-        const em : any = new MessageEmbed()
+        const em: any = new MessageEmbed()
           .setAuthor(`Search Results of ${SearchString}`, client.config.IconURL)
           .setColor("343434")
           .setDescription(MappedSongs.join("\n\n"));
@@ -96,14 +96,14 @@ module.exports = {
         return message.channel.send(Pages[0]);
       else client.Pagination(message, Pages);
 
-      const w : any = (a) => new Promise((r) => setInterval(r, a));
+      const w: any = (a) => new Promise((r) => setInterval(r, a));
       await w(500);
-      const msg : any = await message.channel.send(
+      const msg: any = await message.channel.send(
         "Type the serial number of the song you want to play! **Expires in 30 seconds**"
       );
 
-      let er : boolean = false;
-      const SongID : any = await message.channel
+      let er: boolean = false;
+      const SongID: any = await message.channel
         // skipcq
         .awaitMessages((msg) => message.author.id === msg.author.id, {
           max: 1,
@@ -119,7 +119,7 @@ module.exports = {
       if (er) return;
       /**@type {Message} */
 
-      const SongIDmsg : any = SongID.first();
+      const SongIDmsg: any = SongID.first();
 
       // skipcq
       if (!parseInt(SongIDmsg.content))
@@ -136,7 +136,7 @@ module.exports = {
         message.channel.send(`Song added to queue`);
         return player.play();
       } else {
-        const SongAddedEmbed : any = new MessageEmbed()
+        const SongAddedEmbed: any = new MessageEmbed()
           .setAuthor(`Song added to queue`)
           .setDescription(`[${Song.title}](${Song.uri})`)
           .addField(
@@ -175,9 +175,11 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const guild : any = client.guilds.cache.get(interaction.guild_id);
-      const member : any = guild.members.cache.get(interaction.member.user.id);
-      const awaitchannel : any = client.channels.cache.get(interaction.channel_id);
+      const guild: any = client.guilds.cache.get(interaction.guild_id);
+      const member: any = guild.members.cache.get(interaction.member.user.id);
+      const awaitchannel: any = client.channels.cache.get(
+        interaction.channel_id
+      );
       try {
         if (!member.voice.channel)
           return sendError(
@@ -199,11 +201,13 @@ module.exports = {
           interaction
         );
 
-      const CheckNode : any = client.Manager.nodes.get(client.config.Lavalink.id);
+      const CheckNode: any = client.Manager.nodes.get(
+        client.config.Lavalink.id
+      );
       if (!CheckNode || !CheckNode.connected) {
         return sendError("Server under maintenance.", interaction);
       }
-      const player : any = client.Manager.create({
+      const player: any = client.Manager.create({
         guild: interaction.guild_id,
         voiceChannel: member.voice.channel.id,
         textChannel: interaction.channel_id,
@@ -212,13 +216,13 @@ module.exports = {
 
       if (player.state != "CONNECTED") await player.connect();
 
-      const search : any = interaction.data.options[0].value;
+      const search: any = interaction.data.options[0].value;
       let res;
 
       if (search.match(client.Lavasfy.spotifyPattern)) {
         await client.Lavasfy.requestToken();
-        const node : any = client.Lavasfy.nodes.get(client.config.Lavalink.id);
-        const Searched : any = await node.load(search);
+        const node: any = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+        const Searched: any = await node.load(search);
 
         switch (Searched.loadType) {
           case "LOAD_FAILED": {
@@ -241,8 +245,8 @@ module.exports = {
           }
 
           case "PLAYLIST_LOADED": {
-            const songs : null[] = [];
-            for (let i : number = 0; i < Searched.tracks.length; i++)
+            const songs: null[] = [];
+            for (let i: number = 0; i < Searched.tracks.length; i++)
               songs.push(TrackUtils.build(Searched.tracks[i], member.user));
             player.queue.add(songs);
 
@@ -299,14 +303,14 @@ module.exports = {
           }
 
           case "SEARCH_RESULT": {
-            let max : number = 10,
+            let max: number = 10,
               collected,
-              filter : any = (m) =>
+              filter: any = (m) =>
                 m.author.id === interaction.member.user.id &&
                 /^(\d+|end)$/i.test(m.content);
             if (res.tracks.length < max) max = res.tracks.length;
 
-            const results : any = res.tracks
+            const results: any = res.tracks
               .slice(0, max)
               .map(
                 (track, index) =>
@@ -318,7 +322,7 @@ module.exports = {
               )
               .join("\n");
 
-            const resultss : any = new MessageEmbed()
+            const resultss: any = new MessageEmbed()
               .setDescription(
                 `${results}\n\t**Type the number of the song you want to play! Type cancel to cancel the search**\n`
               )
@@ -339,26 +343,26 @@ module.exports = {
               return awaitchannel.send("You didn't provide a selection!");
             }
 
-            const first : any = collected.first().content;
+            const first: any = collected.first().content;
 
             if (first.toLowerCase() === "cancel") {
               if (!player.queue.current) player.destroy();
               return awaitchannel.send("Cancelled search!");
             }
 
-            const index : any = Number(first) - 1;
+            const index: any = Number(first) - 1;
             if (index < 0 || index > max - 1)
               return awaitchannel.send(
                 `The number you provided was greater or less than the search total. Usage - \`(1-${max})\``
               );
-            const track : any = res.tracks[index];
+            const track: any = res.tracks[index];
             player.queue.add(track);
 
             if (!player.playing && !player.paused && !player.queue.length) {
               awaitchannel.send(`Song added to queue`);
               return player.play();
             } else {
-              const SongAddedEmbed : any = new MessageEmbed()
+              const SongAddedEmbed: any = new MessageEmbed()
                 .setAuthor(`Song added to queue`)
                 .setDescription(`[${track.title}](${track.uri})`)
                 .addField(

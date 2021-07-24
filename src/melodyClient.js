@@ -1,12 +1,12 @@
 const { Collection, Client, MessageEmbed } = require("discord.js");
 const { LavasfyClient } = require("lavasfy");
 const { Manager } = require("erela.js");
-const fs : any = require("fs");
-const mongopref : any = require("discord-mongodb-prefix");
-const SongsDatabase : any = require("./util/songDatabase");
-const path : any = require("path");
-const Logger : any = require("./util/logger");
-const prettyMilliseconds : any = require("pretty-ms");
+const fs: any = require("fs");
+const mongopref: any = require("discord-mongodb-prefix");
+const SongsDatabase: any = require("./util/songDatabase");
+const path: any = require("path");
+const Logger: any = require("./util/logger");
+const prettyMilliseconds: any = require("pretty-ms");
 
 class Melody extends Client {
   constructor(props) {
@@ -30,7 +30,7 @@ class Melody extends Client {
     mongopref.setDefaultPrefix(this.config.DefaultPrefix);
 
     this.database = new SongsDatabase(this);
-    const database : any = this.database;
+    const database: any = this.database;
 
     //Utils
     this.ProgressBar = require("./util/progressbar");
@@ -61,7 +61,7 @@ class Melody extends Client {
       ]
     );
 
-    const client : any = this;
+    const client: any = this;
     this.Manager = new Manager({
       nodes: [
         {
@@ -72,7 +72,7 @@ class Melody extends Client {
         },
       ],
       send(id, payload) {
-        const guild : any = client.guilds.cache.get(id);
+        const guild: any = client.guilds.cache.get(id);
         if (guild) guild.shard.send(payload);
       },
     })
@@ -85,8 +85,8 @@ class Melody extends Client {
         )
       )
       .on("trackStart", (player, track) => {
-        const song : any = player.queue.current;
-        const Song : any = new database.model({
+        const song: any = player.queue.current;
+        const Song: any = new database.model({
           name: track.title,
           url: track.uri,
           duration: track.duration,
@@ -99,7 +99,7 @@ class Melody extends Client {
           if (err) return client.log(err);
         });
 
-        const TrackStartedEmbed : any = new MessageEmbed()
+        const TrackStartedEmbed: any = new MessageEmbed()
           .setAuthor(`Started playing ♪`, this.config.IconURL)
           .setDescription(`[${track.title}](${track.uri})`)
           .setFooter(`Requested by - ${song.requester.tag}`)
@@ -116,7 +116,7 @@ class Melody extends Client {
         this.channels.cache.get(player.textChannel).send(TrackStartedEmbed);
       })
       .on("queueEnd", (player) => {
-        const QueueEmbed : any = new MessageEmbed()
+        const QueueEmbed: any = new MessageEmbed()
           .setAuthor("The queue has ended")
           .setColor("343434");
         this.channels.cache.get(player.textChannel).send(QueueEmbed);
@@ -124,8 +124,8 @@ class Melody extends Client {
       });
 
     this.ws.on("INTERACTION_CREATE", async (interaction) => {
-      const command : any = interaction.data.name.toLowerCase();
-      const args : any = interaction.data.options;
+      const command: any = interaction.data.name.toLowerCase();
+      const args: any = interaction.data.options;
 
       interaction.guild = await this.guilds.fetch(interaction.guild_id); // skipcq
       interaction.send = async (message) => {
@@ -145,17 +145,17 @@ class Melody extends Client {
         return;
       };
 
-      const cmd : any = this.commands.get(command);
+      const cmd: any = this.commands.get(command);
       if (cmd.SlashCommand && cmd.SlashCommand.run)
         cmd.SlashCommand.run(this, interaction, args);
     });
   }
 
   LoadCommands() {
-    const musicDir : any = path.join(__dirname, ".", "music-cmds");
-    const funDir : any = path.join(__dirname, ".", "fun-cmds");
-    const miscDir : any = path.join(__dirname, ".", "misc-cmds");
-    const devDir : any = path.join(__dirname, ".", "dev-cmds");
+    const musicDir: any = path.join(__dirname, ".", "music-cmds");
+    const funDir: any = path.join(__dirname, ".", "fun-cmds");
+    const miscDir: any = path.join(__dirname, ".", "misc-cmds");
+    const devDir: any = path.join(__dirname, ".", "dev-cmds");
 
     fs.readdir(musicDir, (err, files) => {
       if (err) this.log(err);
@@ -224,7 +224,7 @@ class Melody extends Client {
   }
 
   LoadEvents() {
-    const EventsDir : any = path.join(__dirname, ".", "events");
+    const EventsDir: any = path.join(__dirname, ".", "events");
     fs.readdir(EventsDir, (err, files) => {
       if (err) this.log(err);
       else
@@ -241,7 +241,7 @@ class Melody extends Client {
   }
 
   async getPrefix(guild) {
-    const prefix : any = await mongopref.fetch(guild);
+    const prefix: any = await mongopref.fetch(guild);
     return prefix;
   }
 
@@ -251,7 +251,7 @@ class Melody extends Client {
   }
 
   sendError(Channel, Error) {
-    const embed : any = new MessageEmbed()
+    const embed: any = new MessageEmbed()
       .setTitle("An error occured")
       .setColor("RED")
       .setDescription(Error)

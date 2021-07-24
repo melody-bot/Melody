@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const sendError : any = require("../util/error");
-const prettyMilliseconds : any = require("pretty-ms");
+const sendError: any = require("../util/error");
+const prettyMilliseconds: any = require("pretty-ms");
 
 module.exports = {
   name: "seek",
@@ -22,7 +22,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player : any = await client.Manager.get(message.guild.id);
+    const player: any = await client.Manager.get(message.guild.id);
 
     if (!player)
       return sendError(
@@ -58,12 +58,12 @@ module.exports = {
     if (!player.queue.current.isSeekable)
       return sendError("We can't seek in this song!", message.channel);
 
-    const SeekTo : any = client.ParseHumanTime(args.join(" "));
+    const SeekTo: any = client.ParseHumanTime(args.join(" "));
 
     if (!SeekTo)
       return sendError("Please enter a value to seek!", message.channel);
     player.seek(SeekTo * 1000);
-    const seekEmbed : any = new MessageEmbed()
+    const seekEmbed: any = new MessageEmbed()
       .setAuthor(player.queue.current.title)
       .setDescription(
         `\`${
@@ -99,9 +99,9 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const guild : any = client.guilds.cache.get(interaction.guild_id);
-      const member : any = guild.members.cache.get(interaction.member.user.id);
-      const player : any = await client.Manager.get(interaction.guild_id);
+      const guild: any = client.guilds.cache.get(interaction.guild_id);
+      const member: any = guild.members.cache.get(interaction.member.user.id);
+      const player: any = await client.Manager.get(interaction.guild_id);
 
       if (!player)
         return sendError(
@@ -145,10 +145,12 @@ module.exports = {
 
       if (!player.queue.current.isSeekable)
         return sendError("We can't seek in this song!", interaction);
-      const SeekTo : any = client.ParseHumanTime(interaction.data.options[0].value);
+      const SeekTo: any = client.ParseHumanTime(
+        interaction.data.options[0].value
+      );
       if (!SeekTo) return interaction.send("Please enter a time to seek!");
       player.seek(SeekTo * 1000);
-      const seekEmbed : any = new MessageEmbed()
+      const seekEmbed: any = new MessageEmbed()
         .setAuthor(player.queue.current.title)
         .setDescription(
           `\`${

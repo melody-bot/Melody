@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const prettyMilliseconds : any = require("pretty-ms");
-const sendError : any = require("../util/error");
+const prettyMilliseconds: any = require("pretty-ms");
+const sendError: any = require("../util/error");
 
 module.exports = {
   name: "nowplaying",
@@ -22,15 +22,15 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player : any = await client.Manager.get(message.guild.id);
+    const player: any = await client.Manager.get(message.guild.id);
     if (!player)
       return sendError(
         "There is nothing playing in this server.",
         message.channel
       );
 
-    const song : any = player.queue.current;
-    const QueueEmbed : any = new MessageEmbed()
+    const song: any = player.queue.current;
+    const QueueEmbed: any = new MessageEmbed()
       .setAuthor("Playing ♪", client.config.IconURL)
       .setColor("343434")
       .setURL(player.queue.current.uri)
@@ -63,15 +63,15 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const player : any = await client.Manager.get(interaction.guild_id);
+      const player: any = await client.Manager.get(interaction.guild_id);
       if (!player)
         return sendError(
           "There is nothing playing in this server.",
           interaction
         );
 
-      const song : any = player.queue.current;
-      const QueueEmbed : any = new MessageEmbed()
+      const song: any = player.queue.current;
+      const QueueEmbed: any = new MessageEmbed()
         .setAuthor("Playing ♪", client.config.IconURL)
         .setColor("343434")
         .setURL(player.queue.current.uri)

@@ -1,4 +1,4 @@
-const mongoose : any = require("mongoose");
+const mongoose: any = require("mongoose");
 
 class SongsDatabase {
   constructor(client) {

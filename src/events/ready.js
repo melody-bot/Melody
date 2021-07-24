@@ -2,7 +2,7 @@
 module.exports = async (client) => {
   client.Ready = true;
 
-  const statusList : any = [
+  const statusList: any = [
     {
       msg: ".help",
       type: "LISTENING",
@@ -49,7 +49,7 @@ module.exports = async (client) => {
   client.Manager.init(client.user.id);
 
   setInterval(async () => {
-    const index : any = Math.floor(Math.random() * statusList.length + 1) - 1;
+    const index: any = Math.floor(Math.random() * statusList.length + 1) - 1;
     await client.user.setActivity(statusList[index].msg, {
       type: statusList[index].type,
     });

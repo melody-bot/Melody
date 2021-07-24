@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const { TrackUtils } = require("erela.js");
-const prettyMilliseconds : any = require("pretty-ms");
-const sendError : any = require("../util/error");
+const prettyMilliseconds: any = require("pretty-ms");
+const sendError: any = require("../util/error");
 
 module.exports = {
   name: "play",
@@ -41,7 +41,7 @@ module.exports = {
         message.channel
       );
 
-    const search : any = args.join(" ");
+    const search: any = args.join(" ");
 
     if (!search)
       return sendError(
@@ -49,7 +49,7 @@ module.exports = {
         message.channel
       );
 
-    const SongArray : any = search.split(";; ");
+    const SongArray: any = search.split(";; ");
 
     if (SongArray.length > 5)
       return sendError(
@@ -58,20 +58,22 @@ module.exports = {
       );
 
     async function loadSongs(item) {
-      let SearchString : any = item;
+      let SearchString: any = item;
 
-      const CheckNode : any = client.Manager.nodes.get(client.config.Lavalink.id);
+      const CheckNode: any = client.Manager.nodes.get(
+        client.config.Lavalink.id
+      );
       if (!CheckNode || !CheckNode.connected) {
         return sendError("Server under maintenance.", message.channel);
       }
-      const player : any = client.Manager.create({
+      const player: any = client.Manager.create({
         guild: message.guild.id,
         voiceChannel: message.member.voice.channel.id,
         textChannel: message.channel.id,
         selfDeafen: false,
       });
 
-      const SongAddedEmbed : any = new MessageEmbed().setColor("343434");
+      const SongAddedEmbed: any = new MessageEmbed().setColor("343434");
 
       if (
         player.queue &&
@@ -89,12 +91,12 @@ module.exports = {
       try {
         if (SearchString.match(client.Lavasfy.spotifyPattern)) {
           await client.Lavasfy.requestToken();
-          const node : any = client.Lavasfy.nodes.get(client.config.Lavalink.id);
-          const Searched : any = await node.load(SearchString);
+          const node: any = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+          const Searched: any = await node.load(SearchString);
 
           if (Searched.loadType === "PLAYLIST_LOADED") {
-            const songs : null[] = [];
-            for (let i : number = 0; i < Searched.tracks.length; i++)
+            const songs: null[] = [];
+            for (let i: number = 0; i < Searched.tracks.length; i++)
               songs.push(TrackUtils.build(Searched.tracks[i], message.author));
             player.queue.add(songs);
 
@@ -150,7 +152,10 @@ module.exports = {
             );
           }
         } else {
-          const Searched : any = await player.search(SearchString, message.author);
+          const Searched: any = await player.search(
+            SearchString,
+            message.author
+          );
           if (!player)
             return sendError(
               "Nothing is playing right now...",
@@ -241,9 +246,9 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const guild : any = client.guilds.cache.get(interaction.guild_id);
-      const member : any = guild.members.cache.get(interaction.member.user.id);
-      const channel : any = client.channels.cache.get(interaction.channel_id);
+      const guild: any = client.guilds.cache.get(interaction.guild_id);
+      const member: any = guild.members.cache.get(interaction.member.user.id);
+      const channel: any = client.channels.cache.get(interaction.channel_id);
 
       try {
         if (!member.voice.channel)
@@ -267,12 +272,14 @@ module.exports = {
           interaction
         );
 
-      const CheckNode : any = client.Manager.nodes.get(client.config.Lavalink.id);
+      const CheckNode: any = client.Manager.nodes.get(
+        client.config.Lavalink.id
+      );
       if (!CheckNode || !CheckNode.connected) {
         return sendError("Server under maintenance.", interaction);
       }
 
-      const player : any = client.Manager.create({
+      const player: any = client.Manager.create({
         guild: interaction.guild_id,
         voiceChannel: member.voice.channel.id,
         textChannel: interaction.channel_id,
@@ -291,7 +298,7 @@ module.exports = {
           interaction
         );
 
-      const search : any = interaction.data.options[0].value;
+      const search: any = interaction.data.options[0].value;
 
       if (!search)
         return sendError(
@@ -301,7 +308,7 @@ module.exports = {
 
       interaction.send("Searching . . .");
 
-      const SongArray : any = search.split(";; ");
+      const SongArray: any = search.split(";; ");
 
       if (SongArray.length > 5)
         return sendError(
@@ -310,20 +317,22 @@ module.exports = {
         );
 
       async function loadSongs(item) {
-        const SearchString : any = item;
-        const SongAddedEmbed : any = new MessageEmbed().setColor("343434");
+        const SearchString: any = item;
+        const SongAddedEmbed: any = new MessageEmbed().setColor("343434");
 
         if (player.state != "CONNECTED") await player.connect();
 
         try {
           if (SearchString.match(client.Lavasfy.spotifyPattern)) {
             await client.Lavasfy.requestToken();
-            const node : any = client.Lavasfy.nodes.get(client.config.Lavalink.id);
-            const Searched : any = await node.load(SearchString);
+            const node: any = client.Lavasfy.nodes.get(
+              client.config.Lavalink.id
+            );
+            const Searched: any = await node.load(SearchString);
 
             if (Searched.loadType === "PLAYLIST_LOADED") {
-              const songs : null[] = [];
-              for (let i : number = 0; i < Searched.tracks.length; i++)
+              const songs: null[] = [];
+              for (let i: number = 0; i < Searched.tracks.length; i++)
                 songs.push(TrackUtils.build(Searched.tracks[i], member.user));
               player.queue.add(songs);
 
@@ -379,7 +388,10 @@ module.exports = {
               );
             }
           } else {
-            const Searched : any = await player.search(SearchString, member.user);
+            const Searched: any = await player.search(
+              SearchString,
+              member.user
+            );
             if (!player)
               return sendError("Nothing is playing right now...", channel);
 

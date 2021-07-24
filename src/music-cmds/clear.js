@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const sendError : any = require("../util/error");
+const sendError: any = require("../util/error");
 
 module.exports = {
   name: "clear",
@@ -21,7 +21,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player : any = await client.Manager.get(message.guild.id);
+    const player: any = await client.Manager.get(message.guild.id);
 
     if (!player)
       return sendError(
@@ -63,7 +63,7 @@ module.exports = {
 
     player.queue.clear();
 
-    const lol : any = new MessageEmbed().setDescription(
+    const lol: any = new MessageEmbed().setDescription(
       "**Cleared the server song queue!\n**Use `.play` to add new songs to the queue."
     );
     await message.channel.send(lol);
@@ -72,9 +72,9 @@ module.exports = {
   SlashCommand: {
     // skipcq
     run: async (client, interaction, args) => {
-      const guild : any = interaction.guild;
-      const player : any = await client.Manager.get(interaction.guild.id);
-      const member : any = guild.members.cache.get(interaction.member.user.id);
+      const guild: any = interaction.guild;
+      const player: any = await client.Manager.get(interaction.guild.id);
+      const member: any = guild.members.cache.get(interaction.member.user.id);
 
       if (!player)
         return sendError(
@@ -116,7 +116,7 @@ module.exports = {
         }
       }
 
-      let permission : any = isPermitted();
+      let permission: any = isPermitted();
 
       if (permission === false)
         return client.sendError(
@@ -141,7 +141,7 @@ module.exports = {
 
       player.queue.clear();
 
-      const lol : any = new MessageEmbed().setDescription(
+      const lol: any = new MessageEmbed().setDescription(
         "**Cleared the server song queue!\n**Use `.play` to add new songs to the queue."
       );
       await interaction.send(lol);

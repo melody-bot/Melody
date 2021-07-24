@@ -20,7 +20,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const embed : any = new MessageEmbed()
+    const embed: any = new MessageEmbed()
       .setAuthor(` ${client.user.username}`, `${client.config.IconURL}`)
       .setColor("343434")
       .setDescription(
@@ -59,7 +59,7 @@ module.exports = {
     ],
     // skipcq
     run: async (client, interaction, args) => {
-      const embed : any = new MessageEmbed()
+      const embed: any = new MessageEmbed()
         .setAuthor(` ${client.user.username}`, `${client.config.IconURL}`)
         .setColor("343434")
         .setDescription(

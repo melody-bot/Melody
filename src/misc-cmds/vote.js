@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 
-const FactList : any = [
+const FactList: any = [
   {
     msg: "The image in the embed was our first logo \n(attempt) Not too proud of that one.. :sweat_smile:",
     thumbnail:
@@ -48,8 +48,8 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const index : any = Math.floor(Math.random() * FactList.length + 1) - 1;
-    const lolXD : any = new MessageEmbed()
+    const index: any = Math.floor(Math.random() * FactList.length + 1) - 1;
+    const lolXD: any = new MessageEmbed()
       .setTitle("Vote For Melody")
       .setColor("GREEN")
       .setThumbnail(FactList[index].thumbnail)
@@ -75,8 +75,8 @@ module.exports = {
     ],
     // skipcq
     run: async (client, interaction, args) => {
-      const index : any = Math.floor(Math.random() * FactList.length + 1) - 1;
-      const lolXD : any = new MessageEmbed()
+      const index: any = Math.floor(Math.random() * FactList.length + 1) - 1;
+      const lolXD: any = new MessageEmbed()
         .setTitle("Vote For Melody")
         .setColor("GREEN")
         .setThumbnail(FactList[index].thumbnail)

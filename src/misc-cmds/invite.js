@@ -20,7 +20,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    let invite : any = new MessageEmbed()
+    let invite: any = new MessageEmbed()
       .setTitle(`Invite ${client.user.username}`)
       .setDescription(
         `Want me in your server? Invite me using the link above! \n\n`
@@ -48,7 +48,7 @@ module.exports = {
     ],
     // skipcq
     run: async (client, interaction, args) => {
-      let invite : any = new MessageEmbed()
+      let invite: any = new MessageEmbed()
         .setTitle(`Invite ${client.user.username}`)
         .setDescription(
           `Want me in your server? Invite me using the link above! \n\n`

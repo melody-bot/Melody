@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const sendError : any = require("../util/error");
+const sendError: any = require("../util/error");
 
 module.exports = {
   name: "say",
@@ -21,14 +21,14 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const sayString : any = args.join(" ");
+    const sayString: any = args.join(" ");
     if (!sayString)
       return sendError(
         "You didn't provide what you want me to say",
         message.channel
       );
 
-    const say : any = new MessageEmbed()
+    const say: any = new MessageEmbed()
       .setDescription(`**${sayString}**`)
       .setFooter(`Requested by - ${message.author.tag}`);
     return message.channel.send(say);
@@ -56,13 +56,13 @@ module.exports = {
     run: async (client, interaction, args) => {
       // const guild = client.guilds.cache.get(interaction.guild_id);
       // const member = guild.members.cache.get(interaction.member.user.id);
-      const sayString : any = interaction.data.options[0].value;
-      const ping : string = "@everyone";
+      const sayString: any = interaction.data.options[0].value;
+      const ping: string = "@everyone";
 
       if (sayString.includes(ping) === true)
         return sendError(`Hey, I don't mention everyone!`, interaction);
 
-      const say : any = new MessageEmbed().setDescription(`**${sayString}**`);
+      const say: any = new MessageEmbed().setDescription(`**${sayString}**`);
       //TODO .setFooter(`Requested by - ${member.user.tag}`)
       return interaction.send(say);
     },

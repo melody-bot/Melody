@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const sendError : any = require("../util/error");
+const sendError: any = require("../util/error");
 
 module.exports = {
   name: "leave",
@@ -21,8 +21,8 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player : any = await client.Manager.get(message.guild.id);
-    const channel : any = message.member.voice.channel;
+    const player: any = await client.Manager.get(message.guild.id);
+    const channel: any = message.member.voice.channel;
 
     if (!channel)
       return sendError(
@@ -62,10 +62,10 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const guild : any = client.guilds.cache.get(interaction.guild_id);
-      const member : any = guild.members.cache.get(interaction.member.user.id);
+      const guild: any = client.guilds.cache.get(interaction.guild_id);
+      const member: any = guild.members.cache.get(interaction.member.user.id);
 
-      const player : any = await client.Manager.get(interaction.guild_id);
+      const player: any = await client.Manager.get(interaction.guild_id);
 
       try {
         if (!member.voice.channel)
@@ -99,7 +99,7 @@ module.exports = {
         return sendError(error, interaction);
       }
 
-      const Embed : any = new MessageEmbed()
+      const Embed: any = new MessageEmbed()
         .setColor("GREEN")
         .setDescription("Left the voice channel.");
 

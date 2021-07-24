@@ -3,11 +3,11 @@ const { MessageEmbed } = require("discord.js");
 module.exports = async (client, guild) => {
   require("../util/slashCommands")(client, guild.id);
 
-  const embed : any = new MessageEmbed().setDescription(
+  const embed: any = new MessageEmbed().setDescription(
     "Thanks for inviting me! Use `.help` to get more info."
   );
 
-  const TxtChannel : any = guild.channels.cache.find(
+  const TxtChannel: any = guild.channels.cache.find(
     (channel) =>
       channel.type === "text" &&
       channel.permissionsFor(guild.me).has("SEND_MESSAGES" && "VIEW_CHANNEL")

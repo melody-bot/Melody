@@ -4,7 +4,13 @@
  * @type {Object}
  */
 
-const DEFAULT_OPTS : { hoursPerDay: number,daysPerWeek: number,weeksPerMonth: number,monthsPerYear: number,daysPerYear: number, } = {
+const DEFAULT_OPTS: {
+  hoursPerDay: number,
+  daysPerWeek: number,
+  weeksPerMonth: number,
+  monthsPerYear: number,
+  daysPerYear: number,
+} = {
   hoursPerDay: 24,
   daysPerWeek: 7,
   weeksPerMonth: 4,
@@ -18,7 +24,7 @@ const DEFAULT_OPTS : { hoursPerDay: number,daysPerWeek: number,weeksPerMonth: nu
  * @type {Object}
  */
 
-const UNIT_MAP : any = {
+const UNIT_MAP: any = {
   ms: ["ms", "milli", "millisecond", "milliseconds"],
   s: ["s", "sec", "secs", "second", "seconds"],
   m: ["m", "min", "mins", "minute", "minutes"],
@@ -80,7 +86,7 @@ function getSeconds(value, unit, unitValues) {
  */
 
 function getUnitValues(opts) {
-  const unitValues : { ms: number,s: number,m: number,h: number, } = {
+  const unitValues: { ms: number, s: number, m: number, h: number } = {
     ms: 0.001,
     s: 1,
     m: 60,
@@ -107,9 +113,9 @@ function getUnitValues(opts) {
 function parseTimestring(string, returnUnit, opts) {
   opts = Object.assign({}, DEFAULT_OPTS, opts || {});
 
-  let totalSeconds : number = 0;
-  const unitValues : any = getUnitValues(opts);
-  const groups : any = string
+  let totalSeconds: number = 0;
+  const unitValues: any = getUnitValues(opts);
+  const groups: any = string
     .toLowerCase()
     .replace(/[^.\w+-]+/g, "")
     .match(/[-+]?[0-9.]+[a-z]+/g); // skipcq
@@ -119,8 +125,8 @@ function parseTimestring(string, returnUnit, opts) {
   }
 
   groups.forEach((group) => {
-    const value : any = group.match(/[0-9.]+/g)[0];
-    const unit : any = group.match(/[a-z]+/g)[0];
+    const value: any = group.match(/[0-9.]+/g)[0];
+    const unit: any = group.match(/[a-z]+/g)[0];
 
     totalSeconds += getSeconds(value, unit, unitValues);
   });

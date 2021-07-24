@@ -22,27 +22,27 @@ module.exports = {
   run: async (client, message, args) => {
     message.react("✅");
 
-    let totalSeconds : any = client.uptime / 1000;
-    let days : any = Math.floor(totalSeconds / 86400);
+    let totalSeconds: any = client.uptime / 1000;
+    let days: any = Math.floor(totalSeconds / 86400);
     totalSeconds %= 86400;
-    let hours : any = Math.floor(totalSeconds / 3600);
+    let hours: any = Math.floor(totalSeconds / 3600);
     totalSeconds %= 3600;
-    let minutes : any = Math.floor(totalSeconds / 60);
-    let seconds : any = Math.floor(totalSeconds % 60);
+    let minutes: any = Math.floor(totalSeconds / 60);
+    let seconds: any = Math.floor(totalSeconds % 60);
 
-    let uptime : string = `${days} days, ${hours} hours, \n${minutes} mins and ${seconds} secs`;
+    let uptime: string = `${days} days, ${hours} hours, \n${minutes} mins and ${seconds} secs`;
 
-    let members : null[] = [];
+    let members: null[] = [];
 
     client.guilds.cache.forEach((g) => {
       members.push(g.memberCount);
     });
 
-    const users : any = members.reduce((a, b) => a + b, 0);
+    const users: any = members.reduce((a, b) => a + b, 0);
 
     client.database.model.countDocuments({}, function (err, count) {
       if (err) return client.log(err);
-      const Embed : any = new MessageEmbed()
+      const Embed: any = new MessageEmbed()
         .setColor("ffefd5")
         .addField(
           "Notice Board",
@@ -94,27 +94,27 @@ module.exports = {
     ],
     // skipcq
     run: async (client, interaction, args) => {
-      let totalSeconds : any = client.uptime / 1000;
-      let days : any = Math.floor(totalSeconds / 86400);
+      let totalSeconds: any = client.uptime / 1000;
+      let days: any = Math.floor(totalSeconds / 86400);
       totalSeconds %= 86400;
-      let hours : any = Math.floor(totalSeconds / 3600);
+      let hours: any = Math.floor(totalSeconds / 3600);
       totalSeconds %= 3600;
-      let minutes : any = Math.floor(totalSeconds / 60);
-      let seconds : any = Math.floor(totalSeconds % 60);
+      let minutes: any = Math.floor(totalSeconds / 60);
+      let seconds: any = Math.floor(totalSeconds % 60);
 
-      let uptime : string = `${days} days, ${hours} hours, \n${minutes} mins and ${seconds} secs`;
+      let uptime: string = `${days} days, ${hours} hours, \n${minutes} mins and ${seconds} secs`;
 
-      let members : null[] = [];
+      let members: null[] = [];
 
       client.guilds.cache.forEach((g) => {
         members.push(g.memberCount);
       });
 
-      const users : any = members.reduce((a, b) => a + b, 0);
+      const users: any = members.reduce((a, b) => a + b, 0);
 
       client.database.model.countDocuments({}, function (err, count) {
         if (err) return client.log(err);
-        const Embed : any = new MessageEmbed()
+        const Embed: any = new MessageEmbed()
           .setColor("ffefd5")
           .addField(
             "Notice Board",

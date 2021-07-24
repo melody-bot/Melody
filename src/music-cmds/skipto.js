@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const sendError : any = require("../util/error");
+const sendError: any = require("../util/error");
 
 module.exports = {
   name: "skipto",
@@ -21,7 +21,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player : any = await client.Manager.get(message.guild.id);
+    const player: any = await client.Manager.get(message.guild.id);
     if (!player)
       return sendError(
         "There is nothing playing in this server.",
@@ -100,9 +100,9 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const guild : any = interaction.guild;
-      const player : any = await client.Manager.get(interaction.guild.id);
-      const member : any = guild.members.cache.get(interaction.member.user.id);
+      const guild: any = interaction.guild;
+      const player: any = await client.Manager.get(interaction.guild.id);
+      const member: any = guild.members.cache.get(interaction.member.user.id);
 
       if (!player)
         return sendError(
