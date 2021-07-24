@@ -97,14 +97,6 @@ module.exports = {
             "user.type": 0,
           })
           .sort([["date", -1]]);
-        if (args[1] === "all") {
-          results = await database.model
-            .find({
-              "user.id": message.author.id,
-              "user.type": 0,
-            })
-            .sort([["date", -1]]);
-        }
         if (args[1] === "guild")
           results = await database.model
             .find({
@@ -116,21 +108,53 @@ module.exports = {
           collection.index = index;
           return collection;
         });
-        const description = Collections.map(collection => 
-            `**${collection.name}**:  \`${collection.songs.length}\` songs`
+        const description = Collections.map(
+          (collection) =>
+            `**${collection.name}**:  \`${collection.songs.length}\` items`
         ).join("\n");
         const embed = new MessageEmbed()
           .setColor("343434")
           .setDescription(description)
-          .setAuthor("Collections", client.config.IconURL)
+          .setAuthor("Collections", client.config.IconURL);
         if (args[1] === "guild") return message.channel.send(embed);
         const user = client.users.cache.get(message.member.user.id);
         try {
-          await message.react("✅")
-          return user.send(embed)
+          await message.react("✅");
+          return user.send(embed);
         } catch {
-          return sendError("Your DMs are disabled", message.channel)
+          return sendError("Your DMs are disabled", message.channel);
         }
+      case "delete":
+        let collection = args[1].replace(/[^a-z0-9]/gi, "");
+        if (args[1] === "guild") {
+          collection = args[2].replace(/[^a-z0-9]/gi, "");
+          await database.model.deleteOne(
+            {
+              "user.id": message.guild.id,
+              "user.type": 1,
+              name: collection,
+            },
+            (err) => {
+              if (err) return client.log(err);
+            }
+          );
+          return message.channel.send(
+            `Deleted collection \`${collection}\` successfully.`
+          );
+        }
+        await database.model.deleteOne(
+          {
+            "user.id": message.author.id,
+            "user.type": 0,
+            name: collection,
+          },
+          (err) => {
+            if (err) return client.log(err);
+          }
+        );
+        return message.channel.send(
+          `Deleted collection \`${collection}\` successfully.`
+        );
     }
   },
 };
