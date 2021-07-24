@@ -1,4 +1,4 @@
-const sendError = require("../util/error");
+const sendError : any = require("../util/error");
 
 module.exports = {
   name: "shuffle",
@@ -20,7 +20,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player = await client.Manager.get(message.guild.id);
+    const player : any = await client.Manager.get(message.guild.id);
     if (!player)
       return sendError(
         "There is nothing playing in this server.",
@@ -66,9 +66,9 @@ module.exports = {
   SlashCommand: {
     // skipcq
     run: async (client, interaction, args) => {
-      const guild = interaction.guild;
-      const player = await client.Manager.get(interaction.guild.id);
-      const member = guild.members.cache.get(interaction.member.user.id);
+      const guild : any = interaction.guild;
+      const player : any = await client.Manager.get(interaction.guild.id);
+      const member : any = guild.members.cache.get(interaction.member.user.id);
 
       if (!player)
         return sendError(

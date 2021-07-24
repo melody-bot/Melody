@@ -19,7 +19,7 @@ module.exports = {
   // skipcq
   run: async (client, message, args) => {
     message.reply("Calculating ping...").then((resultMessage) => {
-      const ping = resultMessage.createdTimestamp - message.createdTimestamp;
+      const ping : any = resultMessage.createdTimestamp - message.createdTimestamp;
 
       resultMessage.edit(
         `**PONG!**\n**Bot** Ping: ${ping} ms,\n**API Latency**: ${client.ws.ping}` +

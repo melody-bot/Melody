@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs : any = require("fs");
+const path : any = require("path");
 
 /**
  * Register slash commands for a guild
@@ -9,23 +9,23 @@ const path = require("path");
 module.exports = (client, guild) => {
   client.log(`Registering slash commands for ${guild}`);
 
-  const MusicDir = path.join(__dirname, "..", "music-cmds");
-  const FunDir = path.join(__dirname, "..", "fun-cmds");
-  const MiscDir = path.join(__dirname, "..", "misc-cmds");
+  const MusicDir : any = path.join(__dirname, "..", "music-cmds");
+  const FunDir : any = path.join(__dirname, "..", "fun-cmds");
+  const MiscDir : any = path.join(__dirname, "..", "misc-cmds");
 
   fs.readdir(MusicDir, (err, files) => {
     if (err) throw err;
     files.forEach(async (file) => {
       const cmd = require(MusicDir + "/" + file); // skipcq
       if (!cmd.SlashCommand || !cmd.SlashCommand.run) return;
-      const dataStuff = {
+      const dataStuff : any = {
         name: cmd.name,
         description: cmd.description,
         options: cmd.SlashCommand.options,
       };
 
-      const ClientAPI = client.api.applications(client.user.id);
-      const GuildAPI = ClientAPI.guilds(guild);
+      const ClientAPI : any = client.api.applications(client.user.id);
+      const GuildAPI : any = ClientAPI.guilds(guild);
       // skipcq
       client.log(
         "Slash Command: [Guild: " +
@@ -52,14 +52,14 @@ module.exports = (client, guild) => {
     files.forEach(async (file) => {
       const cmd = require(FunDir + "/" + file); // skipcq
       if (!cmd.SlashCommand || !cmd.SlashCommand.run) return;
-      const dataStuff = {
+      const dataStuff : any = {
         name: cmd.name,
         description: cmd.description,
         options: cmd.SlashCommand.options,
       };
 
-      const ClientAPI = client.api.applications(client.user.id);
-      const GuildAPI = ClientAPI.guilds(guild);
+      const ClientAPI : any = client.api.applications(client.user.id);
+      const GuildAPI : any = ClientAPI.guilds(guild);
       // skipcq
       client.log(
         "Slash Command: [Guild: " + guild + "], Fun Command: " + dataStuff.name
@@ -83,14 +83,14 @@ module.exports = (client, guild) => {
     files.forEach(async (file) => {
       const cmd = require(MiscDir + "/" + file); // skipcq
       if (!cmd.SlashCommand || !cmd.SlashCommand.run) return;
-      const dataStuff = {
+      const dataStuff : any = {
         name: cmd.name,
         description: cmd.description,
         options: cmd.SlashCommand.options,
       };
 
-      const ClientAPI = client.api.applications(client.user.id);
-      const GuildAPI = ClientAPI.guilds(guild);
+      const ClientAPI : any = client.api.applications(client.user.id);
+      const GuildAPI : any = ClientAPI.guilds(guild);
       // skipcq
       client.log(
         "Slash Command: [Guild: " + guild + "], Misc Command: " + dataStuff.name

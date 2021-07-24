@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const prettyMilliseconds = require("pretty-ms");
-const sendError = require("../util/error");
+const prettyMilliseconds : any = require("pretty-ms");
+const sendError : any = require("../util/error");
 
 module.exports = {
   name: "grab",
@@ -22,9 +22,9 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const user = client.users.cache.get(message.member.user.id);
-    const player = await client.Manager.get(message.guild.id);
-    const getPrefix = await client.getPrefix(message.guild.id);
+    const user : any = client.users.cache.get(message.member.user.id);
+    const player : any = await client.Manager.get(message.guild.id);
+    const getPrefix : any = await client.getPrefix(message.guild.id);
 
     if (!player)
       return sendError(
@@ -33,7 +33,7 @@ module.exports = {
       );
 
     try {
-      const embed = new MessageEmbed()
+      const embed : any = new MessageEmbed()
         .setAuthor(`Song`, client.user.displayAvatarURL())
         .setThumbnail(
           `https://img.youtube.com/vi/${player.queue.current.identifier}/mqdefault.jpg`
@@ -67,7 +67,7 @@ module.exports = {
       return sendError("Your DMs are disabled", message.channel);
     }
 
-    const Embed = new MessageEmbed()
+    const Embed : any = new MessageEmbed()
       .setColor("GREEN")
       .setDescription(`Check your DMs`);
 
@@ -84,9 +84,9 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const user = client.users.cache.get(interaction.member.user.id);
-      const player = await client.Manager.get(interaction.guild_id);
-      const getPrefix = await client.getPrefix(interaction.guild_id);
+      const user : any = client.users.cache.get(interaction.member.user.id);
+      const player : any = await client.Manager.get(interaction.guild_id);
+      const getPrefix : any = await client.getPrefix(interaction.guild_id);
 
       if (!player)
         return sendError(
@@ -95,7 +95,7 @@ module.exports = {
         );
 
       try {
-        const embed = new MessageEmbed()
+        const embed : any = new MessageEmbed()
           .setAuthor(`Song`, client.user.displayAvatarURL())
           .setThumbnail(
             `https://img.youtube.com/vi/${player.queue.current.identifier}/mqdefault.jpg`
@@ -129,7 +129,7 @@ module.exports = {
         return sendError("Your DMs are disabled", interaction);
       }
 
-      const Embed = new MessageEmbed()
+      const Embed : any = new MessageEmbed()
         .setColor("GREEN")
         .setDescription(`Check your DMs`);
 

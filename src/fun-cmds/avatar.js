@@ -19,7 +19,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const embed = new MessageEmbed()
+    const embed : any = new MessageEmbed()
       .setColor("343434")
       .setAuthor(`Avatar of ${message.author.tag}!`)
       .setImage(
@@ -34,8 +34,8 @@ module.exports = {
       return message.channel.send(embed);
     }
 
-    let user = message.mentions.users.first() || message.author;
-    const embed2 = new MessageEmbed()
+    let user : any = message.mentions.users.first() || message.author;
+    const embed2 : any = new MessageEmbed()
       .setColor("343434")
       .setAuthor(`Avatar of ${user.tag}!`)
       .setImage(`${user.displayAvatarURL({ dynamic: true, size: 1024 })}`)
@@ -48,7 +48,7 @@ module.exports = {
   SlashCommand: {
     // skipcq
     run: async (client, interaction, args) => {
-      const getPrefix = await client.getPrefix(interaction.guild_id);
+      const getPrefix : any = await client.getPrefix(interaction.guild_id);
 
       return interaction.send(
         `Slash Command under development, use ${getPrefix.prefix}avatar for an alternative.`

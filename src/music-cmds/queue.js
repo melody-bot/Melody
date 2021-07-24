@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
-const _ = require("lodash");
-const prettyMilliseconds = require("pretty-ms");
-const sendError = require("../util/error");
+const _ : any = require("lodash");
+const prettyMilliseconds : any = require("pretty-ms");
+const sendError : any = require("../util/error");
 
 module.exports = {
   name: "queue",
@@ -23,7 +23,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player = await client.Manager.get(message.guild.id);
+    const player : any = await client.Manager.get(message.guild.id);
     if (!player)
       return sendError(
         "There is nothing playing in this server.",
@@ -32,7 +32,7 @@ module.exports = {
 
     if (!player.queue || !player.queue.length || player.queue === 0) {
       try {
-        const QueueEmbed = new MessageEmbed()
+        const QueueEmbed : any = new MessageEmbed()
           .setAuthor("Playing", client.config.IconURL)
           .setColor("343434")
           .setDescription(
@@ -61,15 +61,15 @@ module.exports = {
       }
     }
 
-    const Songs = player.queue.map((t, index) => {
+    const Songs : any = player.queue.map((t, index) => {
       t.index = index;
       return t;
     });
 
-    const ChunkedSongs = _.chunk(Songs, 10);
+    const ChunkedSongs : any = _.chunk(Songs, 10);
 
-    const Pages = ChunkedSongs.map((Tracks) => {
-      const SongsDescription = Tracks.map(
+    const Pages : any = ChunkedSongs.map((Tracks) => {
+      const SongsDescription : any = Tracks.map(
         (t) =>
           `${t.index + 1}. [${t.title}](${t.uri}) \`${prettyMilliseconds(
             t.duration,
@@ -77,7 +77,7 @@ module.exports = {
           )}\``
       ).join("\n");
 
-      const Embed = new MessageEmbed()
+      const Embed : any = new MessageEmbed()
         .setAuthor("Queue", client.config.IconURL)
         .setColor("343434")
         .setDescription(
@@ -123,8 +123,8 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const player = await client.Manager.get(interaction.guild_id);
-      const awaitchannel = client.channels.cache.get(interaction.channel_id);
+      const player : any = await client.Manager.get(interaction.guild_id);
+      const awaitchannel : any = client.channels.cache.get(interaction.channel_id);
       if (!player)
         return sendError(
           "There is nothing playing in this server.",
@@ -132,7 +132,7 @@ module.exports = {
         );
       if (!player.queue || !player.queue.length || player.queue === 0) {
         try {
-          const QueueEmbed = new MessageEmbed()
+          const QueueEmbed : any = new MessageEmbed()
             .setAuthor("Playing", client.config.IconURL)
             .setColor("343434")
             .setDescription(
@@ -163,15 +163,15 @@ module.exports = {
 
       interaction.send(`Getting the server queue . . .`);
 
-      const Songs = player.queue.map((t, index) => {
+      const Songs : any = player.queue.map((t, index) => {
         t.index = index;
         return t;
       });
 
-      const ChunkedSongs = _.chunk(Songs, 10); //How many songs to show per-page
+      const ChunkedSongs : any = _.chunk(Songs, 10); //How many songs to show per-page
 
-      const Pages = ChunkedSongs.map((Tracks) => {
-        const SongsDescription = Tracks.map(
+      const Pages : any = ChunkedSongs.map((Tracks) => {
+        const SongsDescription : any = Tracks.map(
           (t) =>
             `${t.index + 1}. [${t.title}](${t.uri}) \`${prettyMilliseconds(
               t.duration,
@@ -179,7 +179,7 @@ module.exports = {
             )}\``
         ).join("\n");
 
-        const Embed = new MessageEmbed()
+        const Embed : any = new MessageEmbed()
           .setAuthor("Queue", client.config.IconURL)
           .setColor("343434")
           .setDescription(

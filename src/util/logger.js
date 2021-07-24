@@ -1,10 +1,10 @@
 const { createLogger, format, transports } = require("winston");
-const colors = require("colors");
+const colors : any = require("colors");
 const { combine, timestamp, label, printf } = format;
 
 class Logger {
   constructor(LoggingFile) {
-    const myFormat = printf(({ level, message, label, timestamp }) => {
+    const myFormat : any = printf(({ level, message, label, timestamp }) => {
       return `${timestamp} [${label}] ${level}: ${message}`;
     });
 
@@ -15,7 +15,7 @@ class Logger {
   }
 
   log(Text) {
-    const d = new Date();
+    const d : any = new Date();
     this.logger.log({
       level: "info",
       message: `${Text}`,

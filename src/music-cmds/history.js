@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const _ = require("lodash");
-const sendError = require("../util/error");
+const _ : any = require("lodash");
+const sendError : any = require("../util/error");
 
 module.exports = {
   name: "history",
@@ -22,8 +22,8 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const user = client.users.cache.get(message.member.user.id);
-    let results = await client.database.model
+    const user : any = client.users.cache.get(message.member.user.id);
+    let results : any = await client.database.model
       .find({
         guild: message.guild.id,
       })
@@ -41,33 +41,33 @@ module.exports = {
         .exec();
 
     function getDate(dateStr) {
-      var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      const date = new Date(dateStr);
-      var t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
-      var d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
-      var m = date.getUTCMonth();
-      var y = date.getUTCFullYear();
+      var days : string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const date : any = new Date(dateStr);
+      var t : string = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
+      var d : string = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
+      var m : any = date.getUTCMonth();
+      var y : any = date.getUTCFullYear();
       return `${t}; ${d}/${m}/${y}`;
     }
 
     if (results.length === 0)
       return sendError("You have not played any songs yet!", message.channel);
 
-    const songs = results.map((name, index) => {
+    const songs : any = results.map((name, index) => {
       name.index = index;
       return name;
     });
-    const ChunkedSongs = _.chunk(songs, 20);
+    const ChunkedSongs : any = _.chunk(songs, 20);
 
-    const Pages = ChunkedSongs.map((Songs) => {
-      const SongsDescription = Songs.map(
+    const Pages : any = ChunkedSongs.map((Songs) => {
+      const SongsDescription : any = Songs.map(
         (name) =>
           `**${name.index + 1})** \`${getDate(name.date)}\` [${name.name}](${
             name.url
           })`
       ).join("\n");
 
-      const Embed = new MessageEmbed()
+      const Embed : any = new MessageEmbed()
         .setColor("343434")
         .setDescription(SongsDescription);
       if (args[0] === "personal")
@@ -109,9 +109,9 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const guild = client.guilds.cache.get(interaction.guild_id);
-      const member = await guild.members.fetch(interaction.member.user.id);
-      let results = await client.database.model
+      const guild : any = client.guilds.cache.get(interaction.guild_id);
+      const member : any = await guild.members.fetch(interaction.member.user.id);
+      let results : any = await client.database.model
         .find({
           guild: guild.id,
         })
@@ -132,34 +132,34 @@ module.exports = {
           .exec();
 
       function getDate(dateStr) {
-        var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        const date = new Date(dateStr);
-        var t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
-        var d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
-        var m = date.getUTCMonth();
-        var y = date.getUTCFullYear();
+        var days : string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const date : any = new Date(dateStr);
+        var t : string = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
+        var d : string = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
+        var m : any = date.getUTCMonth();
+        var y : any = date.getUTCFullYear();
         return `${t}; ${d}/${m}/${y}`;
       }
 
       if (results.length === 0)
         return sendError("You have not played any songs yet!", interaction);
 
-      const songs = results.map((name, index) => {
+      const songs : any = results.map((name, index) => {
         name.index = index;
         return name;
       });
 
-      const ChunkedSongs = _.chunk(songs, 20);
+      const ChunkedSongs : any = _.chunk(songs, 20);
 
-      const Pages = ChunkedSongs.map((Songs) => {
-        const SongsDescription = Songs.map(
+      const Pages : any = ChunkedSongs.map((Songs) => {
+        const SongsDescription : any = Songs.map(
           (name) =>
             `**${name.index + 1})** \`${getDate(name.date)}\` [${name.name}](${
               name.url
             })`
         ).join("\n");
 
-        const Embed = new MessageEmbed()
+        const Embed : any = new MessageEmbed()
           .setColor("343434")
           .setDescription(SongsDescription);
         if (
@@ -176,7 +176,7 @@ module.exports = {
       ) {
         try {
           await member.user.send(Pages[0]);
-          const Sucess = new MessageEmbed()
+          const Sucess : any = new MessageEmbed()
             .setColor("GREEN")
             .setDescription(`Check your DMs`);
           return interaction.send(Sucess);

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const sendError = require("../util/error");
+const sendError : any = require("../util/error");
 /**
  *
  * @param {require("../melodyClient")} client
@@ -11,17 +11,17 @@ const sendError = require("../util/error");
 module.exports = async (client, message) => {
   if (message.author.bot || message.channel.type === "dm") return;
 
-  const GuildPrefix = await client.getPrefix(message.guild.id);
+  const GuildPrefix : any = await client.getPrefix(message.guild.id);
 
   //Prefixes also have mention match
-  const prefixMention = new RegExp(`^<@!?${client.user.id}> `, "u");
-  const prefix = message.content.match(prefixMention)
+  const prefixMention : any = new RegExp(`^<@!?${client.user.id}> `, "u");
+  const prefix : any = message.content.match(prefixMention)
     ? message.content.match(prefixMention)[0]
     : GuildPrefix.prefix;
 
   if (message.content.indexOf(prefix) !== 0) return;
 
-  const cmdArray = message.content.split(" && ");
+  const cmdArray : any = message.content.split(" && ");
 
   if (cmdArray.length > 3)
     return sendError(
@@ -34,17 +34,17 @@ module.exports = async (client, message) => {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    const args = item.slice(prefix.length).trim().split(/ +/gu);
+    const args : any = item.slice(prefix.length).trim().split(/ +/gu);
     //Making the command lowerCase because our file name will be in lowerCase
-    const command = args.shift().toLowerCase();
+    const command : any = args.shift().toLowerCase();
 
     //Searching a command
-    const cmd =
+    const cmd : any =
       client.commands.get(command) ||
       client.commands.find((x) => x.aliases && x.aliases.includes(command));
 
     if (args[0] === "--help") {
-      const help = new MessageEmbed()
+      const help : any = new MessageEmbed()
         .setAuthor(`${capitalize(cmd.name)} help`)
         .setDescription(`${cmd.description}`)
         .addField(`Usage`, `\`${GuildPrefix.prefix}${cmd.usage}\``, true)
@@ -90,10 +90,10 @@ module.exports = async (client, message) => {
 
     //Executing the codes when we get the command or aliases
     if (cmd) {
-      const channelPermission = channelPerms();
-      const admin = isAdmin();
-      const permissions = hasPermission();
-      const DJ = isDJ();
+      const channelPermission : any = channelPerms();
+      const admin : any = isAdmin();
+      const permissions : any = hasPermission();
+      const DJ : any = isDJ();
 
       if (
         channelPermission === false ||

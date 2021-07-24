@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-var os = require("os");
-var osu = require("node-os-utils");
+var os : any = require("os");
+var osu : any = require("node-os-utils");
 const { mem } = osu;
 
 module.exports = {
@@ -26,28 +26,28 @@ module.exports = {
       return client.config.Developers.includes(user_id) ? true : false;
     }
 
-    const isDeveloper = CheckDeveloper(message.author.id);
+    const isDeveloper : any = CheckDeveloper(message.author.id);
 
     if (isDeveloper == false)
       return message.channel.send("Only my developers can use this command.");
 
-    const memUsed = await mem.used();
-    let usedMemory = memUsed.usedMemMb;
+    const memUsed : any = await mem.used();
+    let usedMemory : any = memUsed.usedMemMb;
 
-    const memUsedPercentage = (memUsed.usedMemMb / memUsed.totalMemMb) * 100;
-    let usedPercentage = memUsedPercentage;
+    const memUsedPercentage : any = (memUsed.usedMemMb / memUsed.totalMemMb) * 100;
+    let usedPercentage : any = memUsedPercentage;
 
-    let totalSeconds = client.uptime / 1000;
-    const days = Math.floor(totalSeconds / 86400);
+    let totalSeconds : any = client.uptime / 1000;
+    const days : any = Math.floor(totalSeconds / 86400);
     totalSeconds %= 86400;
-    const hours = Math.floor(totalSeconds / 3600);
+    const hours : any = Math.floor(totalSeconds / 3600);
     totalSeconds %= 3600;
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = Math.floor(totalSeconds % 60);
+    const minutes : any = Math.floor(totalSeconds / 60);
+    const seconds : any = Math.floor(totalSeconds % 60);
 
-    const uptime = `${days} days, ${hours} hours, \n${minutes} mins and ${seconds} secs`;
+    const uptime : string = `${days} days, ${hours} hours, \n${minutes} mins and ${seconds} secs`;
 
-    const loadEmbed = new MessageEmbed()
+    const loadEmbed : any = new MessageEmbed()
 
       .setAuthor(
         "Melody Server Stats",

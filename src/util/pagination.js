@@ -8,15 +8,15 @@ module.exports = async (
   if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
   if (!pages) throw new Error("Pages are not given.");
 
-  let page = 0;
-  const curPage = await msg.channel.send(
+  let page : number = 0;
+  const curPage : any = await msg.channel.send(
     pages[page].setFooter(
       `Page ${page + 1}/${pages.length} `,
       msg.author.displayAvatarURL({ dynamic: true })
     )
   );
   for (const emoji of emojiList) await curPage.react(emoji); // skipcq
-  const reactionCollector = curPage.createReactionCollector(
+  const reactionCollector : any = curPage.createReactionCollector(
     (reaction, user) => emojiList.includes(reaction.emoji.name) && !user.bot,
     { time: timeout }
   );

@@ -1,4 +1,4 @@
-const sendError = require("../util/error");
+const sendError : any = require("../util/error");
 
 module.exports = {
   name: "loopqueue",
@@ -20,7 +20,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player = await client.Manager.get(message.guild.id);
+    const player : any = await client.Manager.get(message.guild.id);
     if (!player)
       return sendError(
         "There is nothing playing in this server.",
@@ -72,9 +72,9 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const player = await client.Manager.get(interaction.guild_id);
-      const guild = client.guilds.cache.get(interaction.guild_id);
-      const member = guild.members.cache.get(interaction.member.user.id);
+      const player : any = await client.Manager.get(interaction.guild_id);
+      const guild : any = client.guilds.cache.get(interaction.guild_id);
+      const member : any = guild.members.cache.get(interaction.member.user.id);
 
       if (!player)
         return sendError(

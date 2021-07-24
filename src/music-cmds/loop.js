@@ -1,4 +1,4 @@
-const sendError = require("../util/error");
+const sendError : any = require("../util/error");
 
 module.exports = {
   name: "loop",
@@ -20,7 +20,7 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    const player = await client.Manager.get(message.guild.id);
+    const player : any = await client.Manager.get(message.guild.id);
 
     if (!player)
       return sendError(
@@ -73,10 +73,10 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const guild = client.guilds.cache.get(interaction.guild_id);
-      const member = guild.members.cache.get(interaction.member.user.id);
+      const guild : any = client.guilds.cache.get(interaction.guild_id);
+      const member : any = guild.members.cache.get(interaction.member.user.id);
 
-      const player = await client.Manager.get(interaction.guild_id);
+      const player : any = await client.Manager.get(interaction.guild_id);
 
       if (!player)
         return sendError(
