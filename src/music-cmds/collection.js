@@ -62,7 +62,7 @@ module.exports = {
           const name = args[2].replace(/[^a-z0-9]/gi, "");
 
           // Send error if a collection with the same name already exists with the user
-          if (collections.some(collection => collection.name === name))
+          if (collections.some((collection) => collection.name === name))
             return sendError(
               `This server already has a collection named \`${name}\``,
               message.channel
@@ -76,7 +76,7 @@ module.exports = {
           });
 
           // Save the collection
-          newCollection.save(err => {
+          newCollection.save((err) => {
             if (err) return console.log(err);
           });
           return message.channel.send(
@@ -122,7 +122,7 @@ module.exports = {
         });
 
         // Save the collection
-        newCollection.save(err => {
+        newCollection.save((err) => {
           if (err) return console.log(err);
         });
         return message.channel.send(
@@ -163,7 +163,7 @@ module.exports = {
 
         // Map collections to make the description for embed
         const description = Collections.map(
-          collection =>
+          (collection) =>
             `**${collection.name}**:  \`${collection.songs.length}\` items`
         ).join("\n");
 
@@ -181,7 +181,7 @@ module.exports = {
           return user.send(embed);
         } catch {
           return sendError("Your DMs are disabled", message.channel);
-        } 
+        }
       }
       // Delete collections
       case "delete": {
@@ -314,12 +314,10 @@ module.exports = {
                 name: player.queue.current.title,
                 url: player.queue.current.uri,
               });
-              collection.save(err => {
+              collection.save((err) => {
                 if (err) return console.log(err);
               });
-              return message.channel.send(
-                `Added item to \`${name}\``
-              );
+              return message.channel.send(`Added item to \`${name}\``);
             }
 
             // Get the requested song
@@ -327,7 +325,7 @@ module.exports = {
 
             // Save the song to collection
             await collection.songs.push(item);
-            collection.save(err => {
+            collection.save((err) => {
               if (err) return console.log(err);
             });
             return message.channel.send(`Added item to \`${name}\``);
@@ -351,10 +349,10 @@ module.exports = {
             const ChunkedSongs = _.chunk(songs, 20);
 
             // Create pages
-            const Pages = ChunkedSongs.map(Songs => {
+            const Pages = ChunkedSongs.map((Songs) => {
               // Map songs to create embed description
               const SongsDescription = Songs.map(
-                song => `**${song.index + 1})**  [${song.name}](${song.url})`
+                (song) => `**${song.index + 1})**  [${song.name}](${song.url})`
               ).join("\n");
               const Embed = new MessageEmbed()
                 .setAuthor(`${name}`, client.config.IconURL)
@@ -378,7 +376,7 @@ module.exports = {
 
             // Remove the song
             await collection.songs.splice(deleteIndex - 1, 1);
-            collection.save(err => {
+            collection.save((err) => {
               if (err) return console.log(err);
             });
             return message.channel.send(
@@ -420,7 +418,7 @@ module.exports = {
             // If all items to be played
             if (args[2] === "all") {
               // Add song/playlists to queue
-              await collection.songs.forEach(async song => {
+              await collection.songs.forEach(async (song) => {
                 if (song.url.match(client.Lavasfy.spotifyPattern)) {
                   await client.Lavasfy.requestToken();
                   const node = client.Lavasfy.nodes.get(

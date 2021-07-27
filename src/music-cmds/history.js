@@ -40,7 +40,7 @@ module.exports = {
         .limit(100)
         .exec();
 
-    const getDate = dateStr => {
+    const getDate = (dateStr) => {
       const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const date = new Date(dateStr);
       const t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
@@ -131,7 +131,7 @@ module.exports = {
           .limit(100)
           .exec();
 
-      const getDate = dateStr => {
+      const getDate = (dateStr) => {
         const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const date = new Date(dateStr);
         const t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
