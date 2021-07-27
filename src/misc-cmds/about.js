@@ -40,7 +40,7 @@ module.exports = {
 
     const users = members.reduce((a, b) => a + b, 0);
 
-    client.database.model.countDocuments({}, function (err, count) {
+    client.database.model.countDocuments({}, (err, count) => {
       if (err) return client.log(err);
       const Embed = new MessageEmbed()
         .setColor("ffefd5")
@@ -112,7 +112,7 @@ module.exports = {
 
       const users = members.reduce((a, b) => a + b, 0);
 
-      client.database.model.countDocuments({}, function (err, count) {
+      client.database.model.countDocuments({}, (err, count) => {
         if (err) return client.log(err);
         const Embed = new MessageEmbed()
           .setColor("ffefd5")

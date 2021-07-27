@@ -57,10 +57,10 @@ module.exports = {
         message.channel
       );
 
-    async function loadSongs(item) {
+    const loadSongs = async (item) => {
       let SearchString = item;
 
-      const CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
+      const CheckNode = client.Manager.nodes.get(client.config.Lavalink[0].id);
       if (!CheckNode || !CheckNode.connected) {
         return sendError("Server under maintenance.", message.channel);
       }
@@ -89,7 +89,7 @@ module.exports = {
       try {
         if (SearchString.match(client.Lavasfy.spotifyPattern)) {
           await client.Lavasfy.requestToken();
-          const node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+          const node = client.Lavasfy.nodes.get(client.config.Lavalink[0].id);
           const Searched = await node.load(SearchString);
 
           if (Searched.loadType === "PLAYLIST_LOADED") {
@@ -217,7 +217,7 @@ module.exports = {
           message.channel
         );
       }
-    }
+    };
     SongArray.reverse().forEach(loadSongs);
   },
 
@@ -267,7 +267,7 @@ module.exports = {
           interaction
         );
 
-      const CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
+      const CheckNode = client.Manager.nodes.get(client.config.Lavalink[0].id);
       if (!CheckNode || !CheckNode.connected) {
         return sendError("Server under maintenance.", interaction);
       }
@@ -309,7 +309,7 @@ module.exports = {
           interaction
         );
 
-      async function loadSongs(item) {
+      const loadSongs = async (item) => {
         const SearchString = item;
         const SongAddedEmbed = new MessageEmbed().setColor("343434");
 
@@ -318,7 +318,7 @@ module.exports = {
         try {
           if (SearchString.match(client.Lavasfy.spotifyPattern)) {
             await client.Lavasfy.requestToken();
-            const node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+            const node = client.Lavasfy.nodes.get(client.config.Lavalink[0].id);
             const Searched = await node.load(SearchString);
 
             if (Searched.loadType === "PLAYLIST_LOADED") {
@@ -443,7 +443,7 @@ module.exports = {
             channel
           );
         }
-      }
+      };
       SongArray.reverse().forEach(loadSongs);
     },
   },

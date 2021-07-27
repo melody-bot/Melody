@@ -17,14 +17,14 @@ module.exports = {
    */
 
   // skipcq
-  run: async function (client, message, args) {
+  run: async (client, message, args) => {
     const getPrefix = await client.getPrefix(message.guild.id);
     if (!args[0])
       return message.channel.send(
         `This server's prefix is \`${getPrefix.prefix}\``
       );
 
-    function isPermitted() {
+    const isPermitted = () => {
       if (message.member.hasPermission(["MANAGE_GUILD"])) {
         return true;
       } else if (
@@ -34,7 +34,7 @@ module.exports = {
       } else {
         return false;
       }
-    }
+    };
 
     let permission = isPermitted();
 
@@ -70,11 +70,11 @@ module.exports = {
      */
 
     // skipcq
-    run: async function (client, interaction, args) {
+    run: async (client, interaction, args) => {
       const guild = client.guilds.cache.get(interaction.guild_id);
       const member = await guild.members.fetch(interaction.member.user.id);
 
-      function isPermitted() {
+      const isPermitted = () => {
         if (member.hasPermission(["MANAGE_GUILD"])) {
           return true;
         } else if (member.roles.cache.some((role) => role.name === "DJ")) {
@@ -82,7 +82,7 @@ module.exports = {
         } else {
           return false;
         }
-      }
+      };
 
       const getPrefix = await client.getPrefix(interaction.guild_id);
 

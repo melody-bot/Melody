@@ -42,7 +42,7 @@ module.exports = {
     const SearchString = args.join(" ");
     if (!SearchString)
       return sendError(`Tell me what to search!`, message.channel);
-    const CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
+    const CheckNode = client.Manager.nodes.get(client.config.Lavalink[0].id);
     if (!CheckNode || !CheckNode.connected) {
       return sendError("Server under maintenance.", message.channel);
     }
@@ -199,7 +199,7 @@ module.exports = {
           interaction
         );
 
-      const CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
+      const CheckNode = client.Manager.nodes.get(client.config.Lavalink[0].id);
       if (!CheckNode || !CheckNode.connected) {
         return sendError("Server under maintenance.", interaction);
       }
@@ -217,7 +217,7 @@ module.exports = {
 
       if (search.match(client.Lavasfy.spotifyPattern)) {
         await client.Lavasfy.requestToken();
-        const node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+        const node = client.Lavasfy.nodes.get(client.config.Lavalink[0].id);
         const Searched = await node.load(search);
 
         switch (Searched.loadType) {

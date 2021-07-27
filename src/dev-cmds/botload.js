@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-var os = require("os");
-var osu = require("node-os-utils");
+const os = require("os");
+const osu = require("node-os-utils");
 const { mem } = osu;
 
 module.exports = {
@@ -37,6 +37,38 @@ module.exports = {
     const memUsedPercentage = (memUsed.usedMemMb / memUsed.totalMemMb) * 100;
     let usedPercentage = memUsedPercentage;
 
+    function formatBytes(bytes, decimals = 2) {
+      if (bytes === 0) return "0 Bytes";
+
+      const k = 1024;
+      const dm = decimals < 0 ? 0 : decimals;
+      const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+    }
+
+    function dhm(t) {
+      let cd = 24 * 60 * 60 * 1000,
+        ch = 60 * 60 * 1000,
+        d = Math.floor(t / cd),
+        h = Math.floor((t - d * cd) / ch),
+        m = Math.round((t - d * cd - h * ch) / 60000),
+        pad = function (n) {
+          return n < 10 ? "0" + n : n;
+        };
+      if (m === 60) {
+        h++;
+        m = 0;
+      }
+      if (h === 24) {
+        d++;
+        h = 0;
+      }
+      return [d, pad(h), pad(m)].join(":");
+    }
+
     let totalSeconds = client.uptime / 1000;
     const days = Math.floor(totalSeconds / 86400);
     totalSeconds %= 86400;
@@ -44,6 +76,10 @@ module.exports = {
     totalSeconds %= 3600;
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = Math.floor(totalSeconds % 60);
+
+    const node1 = await client.Manager.nodes.get(client.config.Lavalink[0].id);
+    const node2 = await client.Manager.nodes.get(client.config.Lavalink[1].id);
+    const node3 = await client.Manager.nodes.get(client.config.Lavalink[2].id);
 
     const uptime = `${days} days, ${hours} hours, \n${minutes} mins and ${seconds} secs`;
 
@@ -54,9 +90,6 @@ module.exports = {
         `https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png`
       )
       .setColor("PINK")
-      .setDescription(
-        "This is a **developer only** command, Shows the memory usage and other server-side stuff."
-      )
       .addField("Memory Used", `${usedMemory} MB`, true)
       .addField(
         "Free Memory",
@@ -81,7 +114,34 @@ module.exports = {
         `Running Discord.js v${require("discord.js").version.replace(" ", "")}`,
         "**Working fine**",
         true
+      )
+      .addField(
+        `Lavalink Node 1`,
+        `Memory: ${formatBytes(
+          node1.stats.memory.used
+        )}\nCPU: ${node1.stats.cpu.systemLoad.toPrecision(5)}\nPlayers: ${
+          node1.stats.players
+        }\nUptime: ${dhm(node1.stats.uptime)}`,
+        true
+      )
+      .addField(
+        `Lavalink Node 2`,
+        `Memory: ${formatBytes(
+          node2.stats.memory.used
+        )}\nCPU: ${node2.stats.cpu.systemLoad.toPrecision(5)}\nPlayers: ${
+          node2.stats.players
+        }\nUptime: ${dhm(node2.stats.uptime)}`,
+        true
+      )
+      .addField(
+        `Lavalink Node 3`,
+        `Memory: ${formatBytes(
+          node3.stats.memory.used
+        )}\nCPU: ${node3.stats.cpu.systemLoad.toPrecision(5)}\nPlayers: ${
+          node3.stats.players
+        }\nUptime: ${dhm(node3.stats.uptime)}`,
+        true
       );
-    message.channel.send(loadEmbed);
+    return message.channel.send(loadEmbed);
   },
 };

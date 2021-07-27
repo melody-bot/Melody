@@ -29,10 +29,9 @@ module.exports = async (client, message) => {
       message.channel
     );
 
-  async function runCmd(item) {
-    function capitalize(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+  const runCmd = async (item) => {
+    const capitalize = (string) =>
+      string.charAt(0).toUpperCase() + string.slice(1);
 
     const args = item.slice(prefix.length).trim().split(/ +/gu);
     //Making the command lowerCase because our file name will be in lowerCase
@@ -56,13 +55,12 @@ module.exports = async (client, message) => {
       return message.channel.send(help);
     }
 
-    function isDJ() {
-      return message.member.roles.cache.some((role) => role.name === "DJ")
+    const isDJ = () =>
+      message.member.roles.cache.some((role) => role.name === "DJ")
         ? true
         : false;
-    }
 
-    function hasPermission() {
+    const hasPermission = () => {
       return cmd.permissions &&
         cmd.permissions.member &&
         message.channel
@@ -70,35 +68,27 @@ module.exports = async (client, message) => {
           .has(cmd.permissions.member)
         ? true
         : false;
-    }
+    };
 
-    function isAdmin() {
+    const isAdmin = () => {
       return message.channel
         .permissionsFor(message.member)
         .has(["ADMINISTRATOR"])
         ? true
         : false;
-    }
+    };
 
-    function channelPerms() {
+    const channelPerms = () => {
       return cmd.permissions &&
         cmd.permissions.channel &&
         message.channel.permissionsFor(client.user).has(cmd.permissions.channel)
         ? true
         : false;
-    }
+    };
 
     //Executing the codes when we get the command or aliases
     if (cmd) {
-      const channelPermission = channelPerms();
-      const admin = isAdmin();
-      const permissions = hasPermission();
-      const DJ = isDJ();
-
-      if (
-        channelPermission === false ||
-        (permissions === false && admin === false && DJ === false)
-      )
+      if (!channelPerms() || (!hasPermission() && !isAdmin() && !isDJ()))
         return client.sendError(
           message.channel,
           `Missing Permissions!\n You need the \`DJ\` role or \`${cmd.permissions.member}\` permission to access this command.`
@@ -109,7 +99,7 @@ module.exports = async (client, message) => {
         client.log(e);
       }
     } else return;
-  }
+  };
 
   cmdArray.reverse().forEach(runCmd);
 };

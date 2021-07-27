@@ -40,15 +40,15 @@ module.exports = {
         .limit(100)
         .exec();
 
-    function getDate(dateStr) {
-      var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const getDate = (dateStr) => {
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const date = new Date(dateStr);
-      var t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
-      var d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
-      var m = date.getUTCMonth();
-      var y = date.getUTCFullYear();
+      const t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
+      const d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
+      const m = date.getUTCMonth();
+      const y = date.getUTCFullYear();
       return `${t}; ${d}/${m}/${y}`;
-    }
+    };
 
     if (results.length === 0)
       return sendError("You have not played any songs yet!", message.channel);
@@ -131,15 +131,15 @@ module.exports = {
           .limit(100)
           .exec();
 
-      function getDate(dateStr) {
-        var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const getDate = (dateStr) => {
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const date = new Date(dateStr);
-        var t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
-        var d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
-        var m = date.getUTCMonth();
-        var y = date.getUTCFullYear();
+        const t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
+        const d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
+        const m = date.getUTCMonth();
+        const y = date.getUTCFullYear();
         return `${t}; ${d}/${m}/${y}`;
-      }
+      };
 
       if (results.length === 0)
         return sendError("You have not played any songs yet!", interaction);
