@@ -36,7 +36,7 @@ const UNIT_MAP = {
  * @returns {string}
  */
 
-function getUnitKey(unit) {
+const getUnitKey = unit => {
   for (const key of Object.keys(UNIT_MAP)) {
     if (UNIT_MAP[key].indexOf(unit) > -1) {
       return key;
@@ -55,9 +55,7 @@ function getUnitKey(unit) {
  * @returns {number}
  */
 
-function convert(value, unit, unitValues) {
-  return value / unitValues[getUnitKey(unit)];
-}
+const convert = (value, unit, unitValues) =>  value / unitValues[getUnitKey(unit)];
 
 /**
  *  Get the number of seconds for a value, based on the unit
@@ -68,9 +66,7 @@ function convert(value, unit, unitValues) {
  * @returns {number}
  */
 
-function getSeconds(value, unit, unitValues) {
-  return value * unitValues[getUnitKey(unit)];
-}
+const getSeconds = (value, unit, unitValues) =>  value * unitValues[getUnitKey(unit)];
 
 /**
  * Get unit values based on the passed options
@@ -79,7 +75,7 @@ function getSeconds(value, unit, unitValues) {
  * @returns {Object}
  */
 
-function getUnitValues(opts) {
+const getUnitValues = opts => {
   const unitValues = {
     ms: 0.001,
     s: 1,
@@ -104,7 +100,7 @@ function getUnitValues(opts) {
  * @returns {number}
  */
 
-function parseTimestring(string, returnUnit, opts) {
+const parseTimestring = (string, returnUnit, opts) => {
   opts = Object.assign({}, DEFAULT_OPTS, opts || {});
 
   let totalSeconds = 0;

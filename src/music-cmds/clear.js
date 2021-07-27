@@ -106,7 +106,7 @@ module.exports = {
           interaction
         );
       }
-      function isPermitted() {
+      const isPermitted = () => {
         if (member.hasPermission(["MANAGE_MESSAGES"])) {
           return true;
         } else if (member.roles.cache.some((role) => role.name === "DJ")) {
@@ -116,9 +116,7 @@ module.exports = {
         }
       }
 
-      let permission = isPermitted();
-
-      if (permission === false)
+      if (!isPermitted())
         return client.sendError(
           interaction,
           "Missing Permissions!\n You need the `DJ` role to access this command."

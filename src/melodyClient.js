@@ -55,10 +55,10 @@ class Melody extends Client {
       },
       [
         {
-          id: this.config.Lavalink.id,
-          host: this.config.Lavalink.host,
-          port: this.config.Lavalink.port,
-          password: this.config.Lavalink.pass,
+          id: this.config.Lavalink[0].id,
+          host: this.config.Lavalink[0].host,
+          port: this.config.Lavalink[0].port,
+          password: this.config.Lavalink[0].pass,
         },
       ]
     );

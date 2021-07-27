@@ -5,8 +5,6 @@ class CollectionsDatabase {
     const songs = new mongoose.Schema({
       name: String,
       url: String,
-      duration: Number,
-      songAuthor: String,
     });
     const user = new mongoose.Schema({
       type: Number,
