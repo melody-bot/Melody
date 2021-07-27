@@ -60,6 +60,18 @@ class Melody extends Client {
           port: this.config.Lavalink[0].port,
           password: this.config.Lavalink[0].pass,
         },
+        {
+          id: this.config.Lavalink[1].id,
+          host: this.config.Lavalink[1].host,
+          port: this.config.Lavalink[1].port,
+          password: this.config.Lavalink[1].pass,
+        },
+        {
+          id: this.config.Lavalink[2].id,
+          host: this.config.Lavalink[2].host,
+          port: this.config.Lavalink[2].port,
+          password: this.config.Lavalink[2].pass,
+        },
       ]
     );
 
@@ -72,18 +84,18 @@ class Melody extends Client {
           port: this.config.Lavalink[0].port,
           password: this.config.Lavalink[0].pass,
         },
-        // {
-        //   identifier: this.config.Lavalink[1].id,
-        //   host: this.config.Lavalink[1].host,
-        //   port: this.config.Lavalink[1].port,
-        //   password: this.config.Lavalink[1].pass,
-        // },
-        // {
-        //   identifier: this.config.Lavalink[2].id,
-        //   host: this.config.Lavalink[2].host,
-        //   port: this.config.Lavalink[2].port,
-        //   password: this.config.Lavalink[2].pass,
-        // },
+        {
+          identifier: this.config.Lavalink[1].id,
+          host: this.config.Lavalink[1].host,
+          port: this.config.Lavalink[1].port,
+          password: this.config.Lavalink[1].pass,
+        },
+        {
+          identifier: this.config.Lavalink[2].id,
+          host: this.config.Lavalink[2].host,
+          port: this.config.Lavalink[2].port,
+          password: this.config.Lavalink[2].pass,
+        },
       ],
       send(id, payload) {
         const guild = client.guilds.cache.get(id);
@@ -136,6 +148,7 @@ class Melody extends Client {
         this.channels.cache.get(player.textChannel).send(QueueEmbed);
         if (!this.config["24/7"]) player.destroy();
       });
+      
 
     this.ws.on("INTERACTION_CREATE", async (interaction) => {
       const command = interaction.data.name.toLowerCase();
