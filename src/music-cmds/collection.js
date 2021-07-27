@@ -369,7 +369,7 @@ module.exports = {
           // Delete songs from collection
           case "delete": {
             // Get the song to delete
-            const deleteIndex = parseInt(args[2]);
+            const deleteIndex = parseInt(args[2], 10);
             if (deleteIndex < 0 || deleteIndex > collection.songs.length)
               return sendError("Invalid index", message.channel);
             const deletedSong = collection.songs[deleteIndex - 1].name;
@@ -452,7 +452,7 @@ module.exports = {
             }
 
             // If a specific song to be played
-            const songIndex = parseInt(args[2]);
+            const songIndex = parseInt(args[2], 10);
             if (songIndex < 0 || songIndex > collection.songs.length)
               return sendError("Invalid index", message.channel);
 

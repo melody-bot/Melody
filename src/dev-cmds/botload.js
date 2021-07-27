@@ -50,7 +50,7 @@ module.exports = {
     }
 
     function dhm(t) {
-      const cd = 24 * 60 * 60 * 1000,
+      let cd = 24 * 60 * 60 * 1000,
         ch = 60 * 60 * 1000,
         d = Math.floor(t / cd),
         h = Math.floor((t - d * cd) / ch),
