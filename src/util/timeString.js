@@ -36,7 +36,7 @@ const UNIT_MAP = {
  * @returns {string}
  */
 
-const getUnitKey = unit => {
+const getUnitKey = (unit) => {
   for (const key of Object.keys(UNIT_MAP)) {
     if (UNIT_MAP[key].indexOf(unit) > -1) {
       return key;
@@ -44,7 +44,7 @@ const getUnitKey = unit => {
   }
 
   throw new Error(`The unit [${unit}] is not supported by timestring`);
-}
+};
 
 /**
  * Convert a value from its existing unit to a new unit
@@ -55,7 +55,8 @@ const getUnitKey = unit => {
  * @returns {number}
  */
 
-const convert = (value, unit, unitValues) =>  value / unitValues[getUnitKey(unit)];
+const convert = (value, unit, unitValues) =>
+  value / unitValues[getUnitKey(unit)];
 
 /**
  *  Get the number of seconds for a value, based on the unit
@@ -66,7 +67,8 @@ const convert = (value, unit, unitValues) =>  value / unitValues[getUnitKey(unit
  * @returns {number}
  */
 
-const getSeconds = (value, unit, unitValues) =>  value * unitValues[getUnitKey(unit)];
+const getSeconds = (value, unit, unitValues) =>
+  value * unitValues[getUnitKey(unit)];
 
 /**
  * Get unit values based on the passed options
@@ -75,7 +77,7 @@ const getSeconds = (value, unit, unitValues) =>  value * unitValues[getUnitKey(u
  * @returns {Object}
  */
 
-const getUnitValues = opts => {
+const getUnitValues = (opts) => {
   const unitValues = {
     ms: 0.001,
     s: 1,
@@ -89,7 +91,7 @@ const getUnitValues = opts => {
   unitValues.y = opts.daysPerYear * unitValues.d;
 
   return unitValues;
-}
+};
 
 /**
  * Parse a timestring
@@ -126,6 +128,6 @@ const parseTimestring = (string, returnUnit, opts) => {
   }
 
   return totalSeconds;
-}
+};
 
 module.exports = parseTimestring;

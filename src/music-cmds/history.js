@@ -48,7 +48,7 @@ module.exports = {
       const m = date.getUTCMonth();
       const y = date.getUTCFullYear();
       return `${t}; ${d}/${m}/${y}`;
-    }
+    };
 
     if (results.length === 0)
       return sendError("You have not played any songs yet!", message.channel);
@@ -139,7 +139,7 @@ module.exports = {
         const m = date.getUTCMonth();
         const y = date.getUTCFullYear();
         return `${t}; ${d}/${m}/${y}`;
-      }
+      };
 
       if (results.length === 0)
         return sendError("You have not played any songs yet!", interaction);

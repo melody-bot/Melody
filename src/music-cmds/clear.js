@@ -114,7 +114,7 @@ module.exports = {
         } else {
           return false;
         }
-      }
+      };
 
       if (!isPermitted())
         return client.sendError(

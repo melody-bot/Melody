@@ -108,7 +108,7 @@ module.exports = {
         const name = args[1].replace(/[^a-z0-9]/gi, "");
 
         // Send error if a collection with the name already exists
-        if (collections.some(collection => collection.name === name))
+        if (collections.some((collection) => collection.name === name))
           return sendError(
             `You already have a collection named \`${name}\``,
             message.channel
@@ -197,7 +197,7 @@ module.exports = {
               "user.type": 1,
               name: name,
             },
-            err => {
+            (err) => {
               if (err) return client.log(err);
             }
           );
@@ -213,7 +213,7 @@ module.exports = {
             "user.type": 0,
             name: name,
           },
-          err => {
+          (err) => {
             if (err) return client.log(err);
           }
         );
@@ -274,7 +274,7 @@ module.exports = {
               return sendError("You didn't tell what to add!", message.channel);
 
             // Get song metadata
-            const getSongs = async SearchString => {
+            const getSongs = async (SearchString) => {
               const player = client.Manager.create({
                 guild: message.guild.id,
                 voiceChannel: null,

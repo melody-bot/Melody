@@ -57,7 +57,7 @@ module.exports = {
         message.channel
       );
 
-    const loadSongs = async item => {
+    const loadSongs = async (item) => {
       let SearchString = item;
 
       const CheckNode = client.Manager.nodes.get(client.config.Lavalink[0].id);
@@ -217,7 +217,7 @@ module.exports = {
           message.channel
         );
       }
-    }
+    };
     SongArray.reverse().forEach(loadSongs);
   },
 
@@ -309,7 +309,7 @@ module.exports = {
           interaction
         );
 
-      const loadSongs = async item => {
+      const loadSongs = async (item) => {
         const SearchString = item;
         const SongAddedEmbed = new MessageEmbed().setColor("343434");
 
@@ -443,7 +443,7 @@ module.exports = {
             channel
           );
         }
-      }
+      };
       SongArray.reverse().forEach(loadSongs);
     },
   },
