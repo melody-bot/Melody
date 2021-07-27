@@ -41,12 +41,12 @@ module.exports = {
         .exec();
 
     const getDate = dateStr => {
-      var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const date = new Date(dateStr);
-      var t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
-      var d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
-      var m = date.getUTCMonth();
-      var y = date.getUTCFullYear();
+      const t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
+      const d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
+      const m = date.getUTCMonth();
+      const y = date.getUTCFullYear();
       return `${t}; ${d}/${m}/${y}`;
     }
 
@@ -132,12 +132,12 @@ module.exports = {
           .exec();
 
       const getDate = dateStr => {
-        var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const date = new Date(dateStr);
-        var t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
-        var d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
-        var m = date.getUTCMonth();
-        var y = date.getUTCFullYear();
+        const t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
+        const d = `${days[date.getUTCDay()]} ${date.getUTCDate()}`;
+        const m = date.getUTCMonth();
+        const y = date.getUTCFullYear();
         return `${t}; ${d}/${m}/${y}`;
       }
 

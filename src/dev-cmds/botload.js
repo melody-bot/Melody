@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-var os = require("os");
-var osu = require("node-os-utils");
+const os = require("os");
+const osu = require("node-os-utils");
 const { mem } = osu;
 
 module.exports = {
@@ -50,7 +50,7 @@ module.exports = {
     }
 
     function dhm(t) {
-      var cd = 24 * 60 * 60 * 1000,
+      const cd = 24 * 60 * 60 * 1000,
         ch = 60 * 60 * 1000,
         d = Math.floor(t / cd),
         h = Math.floor((t - d * cd) / ch),
