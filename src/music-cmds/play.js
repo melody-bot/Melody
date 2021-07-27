@@ -89,7 +89,7 @@ module.exports = {
       try {
         if (SearchString.match(client.Lavasfy.spotifyPattern)) {
           await client.Lavasfy.requestToken();
-          const node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+          const node = client.Lavasfy.nodes.get(client.config.Lavalink[0].id);
           const Searched = await node.load(SearchString);
 
           if (Searched.loadType === "PLAYLIST_LOADED") {
@@ -267,7 +267,7 @@ module.exports = {
           interaction
         );
 
-      const CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
+      const CheckNode = client.Manager.nodes.get(client.config.Lavalink[0].id);
       if (!CheckNode || !CheckNode.connected) {
         return sendError("Server under maintenance.", interaction);
       }
@@ -318,7 +318,7 @@ module.exports = {
         try {
           if (SearchString.match(client.Lavasfy.spotifyPattern)) {
             await client.Lavasfy.requestToken();
-            const node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+            const node = client.Lavasfy.nodes.get(client.config.Lavalink[0].id);
             const Searched = await node.load(SearchString);
 
             if (Searched.loadType === "PLAYLIST_LOADED") {
