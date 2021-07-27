@@ -20,9 +20,9 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    
-    const CheckDeveloper = user_id => client.config.Developers.includes(user_id) ? true : false;
-    
+    const CheckDeveloper = (user_id) =>
+      client.config.Developers.includes(user_id) ? true : false;
+
     const isDeveloper = CheckDeveloper(message.author.id);
 
     if (isDeveloper == false)

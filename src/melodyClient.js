@@ -4,7 +4,7 @@ const { Manager } = require("erela.js");
 const fs = require("fs");
 const mongopref = require("discord-mongodb-prefix");
 const SongsDatabase = require("./util/songDatabase");
-const CollectionsDatabase = require("./util/collectionsDatabase")
+const CollectionsDatabase = require("./util/collectionsDatabase");
 const path = require("path");
 const Logger = require("./util/logger");
 const prettyMilliseconds = require("pretty-ms");
@@ -148,7 +148,6 @@ class Melody extends Client {
         this.channels.cache.get(player.textChannel).send(QueueEmbed);
         if (!this.config["24/7"]) player.destroy();
       });
-      
 
     this.ws.on("INTERACTION_CREATE", async (interaction) => {
       const command = interaction.data.name.toLowerCase();

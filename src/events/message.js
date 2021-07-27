@@ -88,7 +88,6 @@ module.exports = async (client, message) => {
 
     //Executing the codes when we get the command or aliases
     if (cmd) {
-
       if (!channelPerms() || (!hasPermission() && !isAdmin() && !isDJ()))
         return client.sendError(
           message.channel,

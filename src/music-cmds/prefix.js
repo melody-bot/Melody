@@ -34,7 +34,7 @@ module.exports = {
       } else {
         return false;
       }
-    }
+    };
 
     let permission = isPermitted();
 
@@ -82,7 +82,7 @@ module.exports = {
         } else {
           return false;
         }
-      }
+      };
 
       const getPrefix = await client.getPrefix(interaction.guild_id);
 

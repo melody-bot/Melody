@@ -40,7 +40,7 @@ module.exports = {
         .limit(100)
         .exec();
 
-    const getDate = dateStr => {
+    const getDate = (dateStr) => {
       var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const date = new Date(dateStr);
       var t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
@@ -48,7 +48,7 @@ module.exports = {
       var m = date.getUTCMonth();
       var y = date.getUTCFullYear();
       return `${t}; ${d}/${m}/${y}`;
-    }
+    };
 
     if (results.length === 0)
       return sendError("You have not played any songs yet!", message.channel);
@@ -131,7 +131,7 @@ module.exports = {
           .limit(100)
           .exec();
 
-      const getDate = dateStr => {
+      const getDate = (dateStr) => {
         var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const date = new Date(dateStr);
         var t = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
@@ -139,7 +139,7 @@ module.exports = {
         var m = date.getUTCMonth();
         var y = date.getUTCFullYear();
         return `${t}; ${d}/${m}/${y}`;
-      }
+      };
 
       if (results.length === 0)
         return sendError("You have not played any songs yet!", interaction);

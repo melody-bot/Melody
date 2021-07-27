@@ -108,7 +108,7 @@ module.exports = {
         const name = args[1].replace(/[^a-z0-9]/gi, "");
 
         // Send error if a collection with the name already exists
-        if (collections.some(collection => collection.name === name))
+        if (collections.some((collection) => collection.name === name))
           return sendError(
             `You already have a collection named \`${name}\``,
             message.channel
@@ -197,7 +197,7 @@ module.exports = {
               "user.type": 1,
               name: collection,
             },
-            err => {
+            (err) => {
               if (err) return client.log(err);
             }
           );
@@ -213,7 +213,7 @@ module.exports = {
             "user.type": 0,
             name: collection,
           },
-          err => {
+          (err) => {
             if (err) return client.log(err);
           }
         );
@@ -273,7 +273,7 @@ module.exports = {
               return sendError("You didn't tell what to add!", message.channel);
 
             // Get song metadata
-            const getSongs = async SearchString => {
+            const getSongs = async (SearchString) => {
               const player = client.Manager.create({
                 guild: message.guild.id,
                 voiceChannel: null,
@@ -314,7 +314,7 @@ module.exports = {
                 name: player.queue.current.title,
                 url: player.queue.current.uri,
               });
-              userCollection.save(err => {
+              userCollection.save((err) => {
                 if (err) return console.log(err);
               });
               return message.channel.send(
@@ -327,7 +327,7 @@ module.exports = {
 
             // Save the song to collection
             await userCollection.songs.push(item);
-            userCollection.save(err => {
+            userCollection.save((err) => {
               if (err) return console.log(err);
             });
             return message.channel.send(`Added item to \`${collectionName}\``);
@@ -378,7 +378,7 @@ module.exports = {
 
             // Remove the song
             await userCollection.songs.splice(deleteIndex - 1, 1);
-            userCollection.save(err => {
+            userCollection.save((err) => {
               if (err) return console.log(err);
             });
             return message.channel.send(
@@ -420,7 +420,7 @@ module.exports = {
             // If all items to be played
             if (args[2] === "all") {
               // Add song/playlists to queue
-              await userCollection.songs.forEach(async song => {
+              await userCollection.songs.forEach(async (song) => {
                 if (song.url.match(client.Lavasfy.spotifyPattern)) {
                   await client.Lavasfy.requestToken();
                   const node = client.Lavasfy.nodes.get(
