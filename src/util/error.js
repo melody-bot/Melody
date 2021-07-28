@@ -12,6 +12,6 @@ module.exports = async (text, channel) => {
       `**${text}** **|** A bug? [Report it](https://discord.gg/QfZdQynYbg)`
     );
   await channel.send(embed).catch((err) => {
-    client.log(err)
+    client.log(err);
   });
 };

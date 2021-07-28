@@ -177,7 +177,7 @@ module.exports = {
       ) {
         try {
           await member.user.send(Pages[0]);
-          return sendSuccess(`Check your DMs!`)
+          return sendSuccess(`Check your DMs!`);
         } catch (e) {
           return sendError("You DMs are disabled", interaction);
         }
