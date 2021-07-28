@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const { TrackUtils } = require("erela.js");
 const sendError = require("../util/error");
+const sendSuccess = require("../util/success");
 const _ = require("lodash");
 
 module.exports = {
@@ -79,7 +80,7 @@ module.exports = {
           newCollection.save((err) => {
             if (err) return console.log(err);
           });
-          return sendError(
+          return sendSuccess(
             `Created new server collection \`${name}\`.`,
             message.channel
           );
@@ -126,7 +127,7 @@ module.exports = {
         newCollection.save((err) => {
           if (err) return console.log(err);
         });
-        return sendError(
+        return sendSuccess(
           `Created new personal collection \`${name}\`.`,
           message.channel
         );
@@ -203,7 +204,7 @@ module.exports = {
               if (err) return client.log(err);
             }
           );
-          return sendError(
+          return sendSuccess(
             `Deleted collection \`${name}\` successfully.`,
             message.channel
           );
@@ -220,7 +221,7 @@ module.exports = {
             if (err) return client.log(err);
           }
         );
-        return sendError(
+        return sendSuccess(
           `Deleted collection \`${name}\` successfully.`,
           message.channel
         );
@@ -321,7 +322,7 @@ module.exports = {
               collection.save((err) => {
                 if (err) return console.log(err);
               });
-              return sendError(`Added item to \`${name}\``, message.channel);
+              return sendSuccess(`Added item to \`${name}\``, message.channel);
             }
 
             // Get the requested song
@@ -332,7 +333,7 @@ module.exports = {
             collection.save((err) => {
               if (err) return console.log(err);
             });
-            return sendError(`Added item to \`${name}\``, message.channel);
+            return sendSuccess(`Added item to \`${name}\``, message.channel);
           }
           // List songs in a collection
           case "list": {
@@ -383,7 +384,7 @@ module.exports = {
             collection.save((err) => {
               if (err) return console.log(err);
             });
-            return sendError(
+            return sendSuccess(
               `Deleted \`${deletedSong}\` from \`${name}\``,
               message.channel
             );

@@ -1,5 +1,6 @@
 const sendError = require("../util/error");
 const { MessageEmbed } = require("discord.js");
+const sendSuccess = require("../util/success");
 const levels = {
   none: 0.0,
   low: 0.2,
@@ -74,11 +75,7 @@ module.exports = {
         .map((_, i) => ({ band: i, gain: levels[level] }))
     );
 
-    const Embed = new MessageEmbed()
-      .setColor("GREEN")
-      .setDescription(`Bassboost level set to: \`${level}\``);
-
-    return message.channel.send(Embed);
+    return sendSuccess(`Bassboost level set to: \`${level}\``, message.channel);
   },
   SlashCommand: {
     options: [
@@ -153,11 +150,7 @@ module.exports = {
           .map((_, i) => ({ band: i, gain: levels[level] }))
       );
 
-      const Embed = new MessageEmbed()
-        .setColor("GREEN")
-        .setDescription(`Bassboost level set to: \`${level}\``);
-
-      return interaction.send(Embed);
+      return sendSuccess(`Bassboost level set to: \`${level}\``, interaction);
     },
   },
 };

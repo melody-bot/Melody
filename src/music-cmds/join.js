@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const sendError = require("../util/error");
+const sendSuccess = require("../util/success");
 
 module.exports = {
   name: "join",
@@ -87,11 +88,7 @@ module.exports = {
 
       player.connect();
 
-      const Embed = new MessageEmbed()
-        .setColor("GREEN")
-        .setDescription("Joined the voice channel.");
-
-      return interaction.send(Embed).catch(() => interaction.send(""));
+      return sendSuccess("Joined the voice channel.", interaction);
     },
   },
 };

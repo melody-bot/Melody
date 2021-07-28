@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const _ = require("lodash");
 const sendError = require("../util/error");
+const sendSuccess = require("../util/success");
 
 module.exports = {
   name: "history",
@@ -176,10 +177,7 @@ module.exports = {
       ) {
         try {
           await member.user.send(Pages[0]);
-          const Sucess = new MessageEmbed()
-            .setColor("GREEN")
-            .setDescription(`Check your DMs`);
-          return interaction.send(Sucess);
+          return sendSuccess(`Check your DMs!`)
         } catch (e) {
           return sendError("You DMs are disabled", interaction);
         }

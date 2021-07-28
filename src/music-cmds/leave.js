@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const sendError = require("../util/error");
+const sendSuccess = require("../util/success");
 
 module.exports = {
   name: "leave",
@@ -99,11 +100,7 @@ module.exports = {
         return sendError(error, interaction);
       }
 
-      const Embed = new MessageEmbed()
-        .setColor("GREEN")
-        .setDescription("Left the voice channel.");
-
-      return interaction.send(Embed).catch(() => interaction.send(""));
+      return sendSuccess("Left the voice channel", interaction);
     },
   },
 };

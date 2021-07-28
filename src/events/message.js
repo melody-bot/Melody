@@ -93,11 +93,10 @@ module.exports = async (client, message) => {
           message.channel,
           `Missing Permissions!\n You need the \`DJ\` role or \`${cmd.permissions.member}\` permission to access this command.`
         );
-      try {
-        cmd.run(client, message, args);
-      } catch (e) {
-        client.log(e);
-      }
+
+      return cmd.run(client, message, args).catch((err) => {
+        client.log(err);
+      });
     } else return;
   };
 
