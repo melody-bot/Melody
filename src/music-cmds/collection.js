@@ -80,7 +80,8 @@ module.exports = {
             if (err) return console.log(err);
           });
           return sendError(
-            `Created new server collection \`${name}\`.`, message.channel
+            `Created new server collection \`${name}\`.`,
+            message.channel
           );
         }
 
@@ -126,7 +127,8 @@ module.exports = {
           if (err) return console.log(err);
         });
         return sendError(
-          `Created new personal collection \`${name}\`.`, message.channel
+          `Created new personal collection \`${name}\`.`,
+          message.channel
         );
       }
       // List collections
@@ -202,7 +204,8 @@ module.exports = {
             }
           );
           return sendError(
-            `Deleted collection \`${name}\` successfully.`, message.channel
+            `Deleted collection \`${name}\` successfully.`,
+            message.channel
           );
         }
 
@@ -218,7 +221,8 @@ module.exports = {
           }
         );
         return sendError(
-          `Deleted collection \`${name}\` successfully.`, message.channel
+          `Deleted collection \`${name}\` successfully.`,
+          message.channel
         );
       }
       // Default argument, .i.e., collection name
@@ -380,7 +384,8 @@ module.exports = {
               if (err) return console.log(err);
             });
             return sendError(
-              `Deleted \`${deletedSong}\` from \`${name}\``, message.channel
+              `Deleted \`${deletedSong}\` from \`${name}\``,
+              message.channel
             );
           }
           // Play items from collection

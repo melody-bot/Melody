@@ -6,9 +6,8 @@ const { MessageEmbed } = require("discord.js");
  * @param {TextChannel} channel - A Channel to send error
  */
 module.exports = async (text, channel) => {
-  const embed = new MessageEmbed()
-    .setDescription(
-      `**${text}** **|** A bug? [Report it](https://discord.gg/QfZdQynYbg)`
-    );
+  const embed = new MessageEmbed().setDescription(
+    `**${text}** **|** A bug? [Report it](https://discord.gg/QfZdQynYbg)`
+  );
   await channel.send(embed);
 };
