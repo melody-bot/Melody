@@ -8,6 +8,7 @@ const CollectionsDatabase = require("./util/collectionsDatabase");
 const path = require("path");
 const Logger = require("./util/logger");
 const prettyMilliseconds = require("pretty-ms");
+const https = require("https");
 
 class Melody extends Client {
   constructor(props) {
@@ -105,11 +106,18 @@ class Melody extends Client {
       .on("nodeConnect", (node) =>
         this.log(`Lavalink: Node ${node.options.identifier} connected`)
       )
-      .on("nodeError", (node, error) =>
+      .on("nodeError", (node, error) => {
+        if (this.config.healthchecks) {
+          https
+            .get(`https://hc-ping.com/${client.config.healthchecks}/fail`)
+            .on("error", (err) => {
+              client.log("Healthchecks Ping Failed");
+            });
+        }
         this.log(
           `Lavalink: Node ${node.options.identifier} had an error: ${error.message}`
-        )
-      )
+        );
+      })
       .on("trackStart", (player, track) => {
         const song = player.queue.current;
         const Song = new database.model({
@@ -148,7 +156,7 @@ class Melody extends Client {
         this.channels.cache.get(player.textChannel).send(QueueEmbed);
         if (!this.config["24/7"]) player.destroy();
       });
-
+      
     this.ws.on("INTERACTION_CREATE", async (interaction) => {
       const command = interaction.data.name.toLowerCase();
       const args = interaction.data.options;
