@@ -7,9 +7,8 @@ const { MessageEmbed } = require("discord.js");
  */
 module.exports = async (text, channel) => {
   const embed = new MessageEmbed()
-    .setColor("RED")
     .setDescription(
-      `**${text}** \nIs it a bug? [Report to us](https://discord.gg/QfZdQynYbg)`
+      `**${text}** **|** A bug? [Report it](https://discord.gg/QfZdQynYbg)`
     );
   await channel.send(embed);
 };

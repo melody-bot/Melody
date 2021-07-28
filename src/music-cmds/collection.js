@@ -79,8 +79,8 @@ module.exports = {
           newCollection.save((err) => {
             if (err) return console.log(err);
           });
-          return message.channel.send(
-            `Created new server collection \`${name}\`.`
+          return sendError(
+            `Created new server collection \`${name}\`.`, message.channel
           );
         }
 
@@ -125,8 +125,8 @@ module.exports = {
         newCollection.save((err) => {
           if (err) return console.log(err);
         });
-        return message.channel.send(
-          `Created new personal collection \`${name}\`.`
+        return sendError(
+          `Created new personal collection \`${name}\`.`, message.channel
         );
       }
       // List collections
@@ -201,8 +201,8 @@ module.exports = {
               if (err) return client.log(err);
             }
           );
-          return message.channel.send(
-            `Deleted collection \`${name}\` successfully.`
+          return sendError(
+            `Deleted collection \`${name}\` successfully.`, message.channel
           );
         }
 
@@ -217,8 +217,8 @@ module.exports = {
             if (err) return client.log(err);
           }
         );
-        return message.channel.send(
-          `Deleted collection \`${name}\` successfully.`
+        return sendError(
+          `Deleted collection \`${name}\` successfully.`, message.channel
         );
       }
       // Default argument, .i.e., collection name
@@ -317,7 +317,7 @@ module.exports = {
               collection.save((err) => {
                 if (err) return console.log(err);
               });
-              return message.channel.send(`Added item to \`${name}\``);
+              return sendError(`Added item to \`${name}\``, message.channel);
             }
 
             // Get the requested song
@@ -328,7 +328,7 @@ module.exports = {
             collection.save((err) => {
               if (err) return console.log(err);
             });
-            return message.channel.send(`Added item to \`${name}\``);
+            return sendError(`Added item to \`${name}\``, message.channel);
           }
           // List songs in a collection
           case "list": {
@@ -379,8 +379,8 @@ module.exports = {
             collection.save((err) => {
               if (err) return console.log(err);
             });
-            return message.channel.send(
-              `Deleted \`${deletedSong}\` from \`${name}\``
+            return sendError(
+              `Deleted \`${deletedSong}\` from \`${name}\``, message.channel
             );
           }
           // Play items from collection

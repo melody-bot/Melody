@@ -66,7 +66,7 @@ module.exports = {
         )
         .addField(
           "Change Log",
-          `- The new \`history\` command shows guild history, and personal history\n with the \`personal\` argument.\n- Play multiple songs at a time by seperating them with \`;;\` operator.\n- Run multiple commands from a single message by seperating them\n with the \`&&\` operator.\n- Get information on any command using the \`--help\` flag.\n*Check Melody 3.0 [release notes](https://github.com/melody-bot/Melody/releases/tag/v3.0.0)*`
+          `- The new \`history\` command shows guild history, and personal history\n with the \`personal\` argument.\n- Play multiple songs at a time by seperating them with \`;;\` operator.\n- Create collections to store songs and playlists!\n- More on melody song collections [here](https://github.com/melody-bot/Melody/wiki/Song-Collections).\n- **Check Melody 3.3 [release notes](https://github.com/melody-bot/Melody/releases/tag/v3.3.0)**`
         )
         .addField(
           "Developers",
