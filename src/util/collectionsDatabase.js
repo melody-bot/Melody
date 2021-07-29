@@ -17,13 +17,14 @@ class CollectionsDatabase {
       user: user,
       date: { type: Date, default: Date.now },
     });
-    this.collectionsdb = mongoose.createConnection(
-      client.config.collectionsMongoURL,
-      {
+    this.collectionsdb = mongoose
+      .createConnection(client.config.collectionsMongoURL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-      }
-    );
+      })
+      .catch((err) => {
+        if (err) client.log(`util/collectionsDatabase.js` + err);
+      });
 
     this.collectionsdb.on(
       "error",

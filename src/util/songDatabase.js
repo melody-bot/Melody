@@ -12,10 +12,14 @@ class SongsDatabase {
       guild: Number,
       date: { type: Date, default: Date.now },
     });
-    this.songsdb = mongoose.createConnection(client.config.songsMongoURL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    this.songsdb = mongoose
+      .createConnection(client.config.songsMongoURL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .catch((err) => {
+        if (err) client.log(`util/songDatabase.js` + err);
+      });
 
     this.songsdb.on("error", console.error.bind(console, "connection error:"));
 
