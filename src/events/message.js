@@ -52,7 +52,9 @@ module.exports = async (client, message) => {
           `Example`,
           `\`${GuildPrefix.prefix}${cmd.example[0]}\`\n\`${GuildPrefix.prefix}${cmd.example[1]}\``
         );
-      return message.channel.send(help);
+      return message.channel.send(help).catch((err) => {
+        if (err) client.log(`events/message.js` + err);
+      });
     }
 
     const isDJ = () =>
@@ -95,7 +97,7 @@ module.exports = async (client, message) => {
         );
 
       return cmd.run(client, message, args).catch((err) => {
-        client.log(err);
+        if (err) client.log(`events/message.js` + err);
       });
     } else return;
   };

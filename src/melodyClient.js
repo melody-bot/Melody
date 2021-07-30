@@ -27,7 +27,9 @@ class Melody extends Client {
     this.LoadCommands();
     this.LoadEvents();
 
-    mongopref.setURL(`${this.config.prefixesMongoURL}`);
+    mongopref.setURL(`${this.config.prefixesMongoURL}`).catch((err) => {
+      if (err) this.log(`melodyClient.js` + err);
+    });
 
     mongopref.setDefaultPrefix(this.config.DefaultPrefix);
 
@@ -111,7 +113,7 @@ class Melody extends Client {
           https
             .get(`https://hc-ping.com/${client.config.healthchecks}/fail`)
             .on("error", (err) => {
-              client.log("Healthchecks Ping Failed");
+              this.log("Healthchecks Ping Failed");
             });
         }
         this.log(
@@ -130,7 +132,7 @@ class Melody extends Client {
           guild: player.guild,
         });
         Song.save((err) => {
-          if (err) return client.log(err);
+          if (err) return this.log(err);
         });
 
         const TrackStartedEmbed = new MessageEmbed()
@@ -147,13 +149,23 @@ class Melody extends Client {
           .addField("Author", `${song.author}`, true)
           .setColor("343434");
         //TODO: .setFooter("Started playing at");
-        this.channels.cache.get(player.textChannel).send(TrackStartedEmbed);
+        this.channels.cache
+          .get(player.textChannel)
+          .send(TrackStartedEmbed)
+          .catch((err) => {
+            if (err) this.log(`melodyClient.js` + err);
+          });
       })
       .on("queueEnd", (player) => {
         const QueueEmbed = new MessageEmbed()
           .setAuthor("The queue has ended")
           .setColor("343434");
-        this.channels.cache.get(player.textChannel).send(QueueEmbed);
+        this.channels.cache
+          .get(player.textChannel)
+          .send(QueueEmbed)
+          .catch((err) => {
+            if (err) this.log(`melodyClient.js` + err);
+          });
         if (!this.config["24/7"]) player.destroy();
       });
       
@@ -161,7 +173,11 @@ class Melody extends Client {
       const command = interaction.data.name.toLowerCase();
       const args = interaction.data.options;
 
-      interaction.guild = await this.guilds.fetch(interaction.guild_id); // skipcq
+      interaction.guild = await this.guilds
+        .fetch(interaction.guild_id) // skipcq
+        .catch((err) => {
+          if (err) this.log(`melodyClient.js` + err);
+        });
       interaction.send = async (message) => {
         await this.api
           .interactions(interaction.id, interaction.token)
@@ -181,7 +197,9 @@ class Melody extends Client {
 
       const cmd = this.commands.get(command);
       if (cmd.SlashCommand && cmd.SlashCommand.run)
-        cmd.SlashCommand.run(this, interaction, args);
+        cmd.SlashCommand.run(this, interaction, args).catch((err) => {
+          if (err) this.log(`melodyClient.js` + err);
+        });
     });
   }
 
@@ -302,7 +320,9 @@ class Melody extends Client {
 
   async RegisterSlashCommands() {
     this.guilds.cache.forEach((guild) => {
-      require("./util/slashCommands")(this, guild.id);
+      require("./util/slashCommands")(this, guild.id).catch((err) => {
+        if (err) this.log(`file` + err);
+      });
     });
   }
 }

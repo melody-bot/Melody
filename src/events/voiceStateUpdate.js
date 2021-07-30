@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const sendSuccess = require("../util/success")
+const sendSuccess = require("../util/success");
 module.exports = async (client, oldState, newState) => {
   let player = client.Manager.get(oldState.guild.id);
 
@@ -10,11 +10,10 @@ module.exports = async (client, oldState, newState) => {
     oldState.channelID !== oldState.guild.me.voice.channelID
   ) {
     player = client.Manager.get(newState.guild.id);
-    if (!player) return;
-    if (player.paused === false) return;
+    if (!player || !player.paused) return;
     player.pause(false);
     const textChannel = client.channels.cache.get(player.textChannel);
-    return sendSuccess(`Resumed the music!`, textChannel)
+    return sendSuccess(`Resumed the music!`, textChannel);
   }
   if (voiceChannel.members.size === 1) {
     player.pause(true);
@@ -22,6 +21,8 @@ module.exports = async (client, oldState, newState) => {
     const paused = new MessageEmbed().setDescription(
       "Paused the music as nobody is in the voice channel"
     );
-    textChannel.send(paused);
+    textChannel.send(paused).catch((err) => {
+      if (err) client.log(`events/voiceStateUpdate.js` + err);
+    });
   }
 };
