@@ -30,7 +30,7 @@ module.exports = {
         "You need to be in a voice channel to use this command!",
         message.channel
       );
-    
+
     if (
       message.guild.me.voice.channel &&
       message.guild.me.voice.channel != message.member.voice.channel
@@ -44,7 +44,7 @@ module.exports = {
       player.destroy();
       message.guild.me.voice.channel.leave();
     } catch (error) {
-      return client.log('leave.js ' + error)
+      return client.log("leave.js " + error);
     }
 
     message.react("✅");
@@ -92,7 +92,7 @@ module.exports = {
         player.destroy();
         guild.me.voice.channel.leave();
       } catch (error) {
-        return client.log('leave.js ' + error);
+        return client.log("leave.js " + error);
       }
 
       return sendSuccess("Left the voice channel", interaction);
