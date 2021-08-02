@@ -11,4 +11,6 @@ poster.on("posted", (stats) => {
   bot.log(`Posted stats to Top.gg | ${stats.serverCount} servers`);
 });
 
+poster.on("error", (err) => bot.log(err))
+
 export default bot;

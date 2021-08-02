@@ -7,5 +7,5 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = async (text, channel) => {
   const embed = new MessageEmbed().setColor("GREEN").setDescription(text);
-  await channel.send(embed).catch((err) => client.log(err));
+  await channel.send(embed).catch();
 };
