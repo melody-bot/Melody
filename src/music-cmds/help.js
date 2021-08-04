@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const disbut = require("discord-buttons");
 
 module.exports = {
   name: "help",
@@ -21,20 +20,6 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-
-    const site = new disbut.MessageButton()
-    .setLabel("Website")
-    .setUrl('https://melody-bot.tech')
-    .setStyle("url");
-
-    const inv = new disbut.MessageButton()
-    .setLabel('Invite')
-    .setUrl('https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands')
-    .setStyle('url');
-
-    const row = new MessageActionRow()
-   .addComponents(site, inv);
-
     const embed = new MessageEmbed()
       .setAuthor(` ${client.user.username}`, `${client.config.IconURL}`)
       .setColor("343434")
@@ -59,7 +44,7 @@ module.exports = {
 
       .setFooter(`Thanks for using Melody! `);
 
-    return message.channel.send(embed, row);
+    return message.channel.send(embed);
   },
 
   SlashCommand: {
@@ -74,20 +59,6 @@ module.exports = {
     ],
     // skipcq
     run: async (client, interaction, args) => {
-
-      const site = new disbut.MessageButton()
-      .setLabel("Website")
-      .setUrl('https://melody-bot.tech')
-      .setStyle("url");
-  
-      const inv = new disbut.MessageButton()
-      .setLabel('Invite')
-      .setUrl('https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands')
-      .setStyle('url');
-  
-      const row = new MessageActionRow()
-     .addComponents(site, inv);
-
       const embed = new MessageEmbed()
         .setAuthor(` ${client.user.username}`, `${client.config.IconURL}`)
         .setColor("343434")
@@ -112,7 +83,7 @@ module.exports = {
 
         .setFooter(`Thanks for using Melody! `);
 
-      return interaction.send(embed, row);
+      return interaction.send(embed);
     },
   },
 };

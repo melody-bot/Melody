@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const disbut = require("discord-buttons");
 
 const FactList = [
   {
@@ -8,7 +7,7 @@ const FactList = [
       "https://cdn.discordapp.com/attachments/804258629829918740/830025962329997362/2.png",
   },
   {
-    msg: "Melody was first called 'nnoi plays' \n(Based on the username of the founder).",
+    msg: "Melody was first called 'nnoi plays' \n(Based on the username of our founder).",
     thumbnail:
       "https://cdn.discordapp.com/attachments/853976902994100224/856746348623691836/PicsArt_02-11-01.png",
   },
@@ -49,14 +48,8 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    
-    const button = new disbut.MessageButton()
-    .setLabel("Vote Melody!")
-    .setUrl('https://top.gg/bot/809283972513267752/vote')
-    .setStyle("url");
-
     const index = Math.floor(Math.random() * FactList.length + 1) - 1;
-    const lolxD = new MessageEmbed()
+    const lolXD = new MessageEmbed()
       .setTitle("Vote For Melody")
       .setColor("GREEN")
       .setThumbnail(FactList[index].thumbnail)
@@ -67,7 +60,7 @@ module.exports = {
       )
       .addField("**Fun Fact:**", FactList[index].msg)
       .setFooter("Thanks for supporting Melody :)");
-    return message.channel.send(lolxD, button);
+    return message.channel.send(lolXD);
   },
 
   SlashCommand: {
@@ -82,14 +75,8 @@ module.exports = {
     ],
     // skipcq
     run: async (client, interaction, args) => {
-
-      const sbutton = new disbut.MessageButton()
-      .setLabel("Vote Melody!")
-      .setUrl('https://top.gg/bot/809283972513267752/vote')
-      .setStyle("url");
-        
       const index = Math.floor(Math.random() * FactList.length + 1) - 1;
-      const lolxD = new MessageEmbed()
+      const lolXD = new MessageEmbed()
         .setTitle("Vote For Melody")
         .setColor("GREEN")
         .setThumbnail(FactList[index].thumbnail)
@@ -100,7 +87,7 @@ module.exports = {
         )
         .addField("**Fun Fact:**", FactList[index].msg)
         .setFooter("Thanks for supporting Melody :)");
-      return interaction.send(lolxD, sbutton);
+      return interaction.send(lolXD);
     },
   },
 };
