@@ -156,7 +156,7 @@ class Melody extends Client {
         this.channels.cache.get(player.textChannel).send(QueueEmbed);
         if (!this.config["24/7"]) player.destroy();
       });
-      
+
     this.ws.on("INTERACTION_CREATE", async (interaction) => {
       const command = interaction.data.name.toLowerCase();
       const args = interaction.data.options;
