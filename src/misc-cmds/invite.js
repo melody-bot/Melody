@@ -21,11 +21,12 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-
     const button = new disbut.MessageButton()
-     .setLabel("Invite Melody!")
-     .setUrl('https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands')
-     .setStyle("url");
+      .setLabel("Invite Melody!")
+      .setUrl(
+        "https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands"
+      )
+      .setStyle("url");
 
     let invite = new MessageEmbed()
       .setTitle(`Invite ${client.user.username}`)
@@ -57,10 +58,11 @@ module.exports = {
     ],
     // skipcq
     run: async (client, interaction, args) => {
-
       const sbutton = new disbut.MessageButton()
         .setLabel("Invite Melody!")
-        .setUrl('https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands')
+        .setUrl(
+          "https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands"
+        )
         .setStyle("url");
 
       let invite = new MessageEmbed()

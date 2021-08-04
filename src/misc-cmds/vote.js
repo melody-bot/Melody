@@ -49,11 +49,10 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-    
     const button = new disbut.MessageButton()
-    .setLabel("Vote Melody!")
-    .setUrl('https://top.gg/bot/809283972513267752/vote')
-    .setStyle("url");
+      .setLabel("Vote Melody!")
+      .setUrl("https://top.gg/bot/809283972513267752/vote")
+      .setStyle("url");
 
     const index = Math.floor(Math.random() * FactList.length + 1) - 1;
     const lolxD = new MessageEmbed()
@@ -82,12 +81,11 @@ module.exports = {
     ],
     // skipcq
     run: async (client, interaction, args) => {
-
       const sbutton = new disbut.MessageButton()
-      .setLabel("Vote Melody!")
-      .setUrl('https://top.gg/bot/809283972513267752/vote')
-      .setStyle("url");
-        
+        .setLabel("Vote Melody!")
+        .setUrl("https://top.gg/bot/809283972513267752/vote")
+        .setStyle("url");
+
       const index = Math.floor(Math.random() * FactList.length + 1) - 1;
       const lolxD = new MessageEmbed()
         .setTitle("Vote For Melody")

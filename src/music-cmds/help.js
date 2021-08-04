@@ -21,19 +21,19 @@ module.exports = {
 
   // skipcq
   run: async (client, message, args) => {
-
     const site = new disbut.MessageButton()
-    .setLabel("Website")
-    .setUrl('https://melody-bot.tech')
-    .setStyle("url");
+      .setLabel("Website")
+      .setUrl("https://melody-bot.tech")
+      .setStyle("url");
 
     const inv = new disbut.MessageButton()
-    .setLabel('Invite')
-    .setUrl('https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands')
-    .setStyle('url');
+      .setLabel("Invite")
+      .setUrl(
+        "https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands"
+      )
+      .setStyle("url");
 
-    const row = new MessageActionRow()
-   .addComponents(site, inv);
+    const row = new MessageActionRow().addComponents(site, inv);
 
     const embed = new MessageEmbed()
       .setAuthor(` ${client.user.username}`, `${client.config.IconURL}`)
@@ -74,19 +74,19 @@ module.exports = {
     ],
     // skipcq
     run: async (client, interaction, args) => {
-
       const site = new disbut.MessageButton()
-      .setLabel("Website")
-      .setUrl('https://melody-bot.tech')
-      .setStyle("url");
-  
+        .setLabel("Website")
+        .setUrl("https://melody-bot.tech")
+        .setStyle("url");
+
       const inv = new disbut.MessageButton()
-      .setLabel('Invite')
-      .setUrl('https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands')
-      .setStyle('url');
-  
-      const row = new MessageActionRow()
-     .addComponents(site, inv);
+        .setLabel("Invite")
+        .setUrl(
+          "https://discord.com/oauth2/authorize?client_id=809283972513267752&permissions=2163734592&scope=bot%20applications.commands"
+        )
+        .setStyle("url");
+
+      const row = new MessageActionRow().addComponents(site, inv);
 
       const embed = new MessageEmbed()
         .setAuthor(` ${client.user.username}`, `${client.config.IconURL}`)
