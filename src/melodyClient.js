@@ -13,8 +13,6 @@ const https = require("https");
 class Melody extends Client {
   constructor(props) {
     super(props);
-    
-require("discord-buttons")(this);
 
     this.commands = new Collection();
     this.connections = new Map();
