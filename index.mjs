@@ -4,13 +4,13 @@ const bot = new Melody();
 
 const poster = AutoPoster(bot.config.topgg, bot);
 
-bot.start();
+// bot.start();
 
-poster.on("posted", (stats) => {
+// poster.on("posted", (stats) => {
   // ran when succesfully posted
-  bot.log(`Posted stats to Top.gg | ${stats.serverCount} servers`);
-});
+//  bot.log(`Posted stats to Top.gg | ${stats.serverCount} servers`);
+// });
 
-poster.on("error", (err) => bot.log(err))
+// poster.on("error", (err) => bot.log(err))
 
 export default bot;
