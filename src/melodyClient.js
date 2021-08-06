@@ -75,7 +75,15 @@ class Melody extends Client {
         },
       ]
     );
-
+    const healthchecks = setInterval(() => {
+      if (this.config.healthchecks) {
+        https
+          .get(`https://hc-ping.com/${client.config.healthchecks}`)
+          .on("error", (err) => {
+            client.log("Healthchecks Ping Failed");
+          });
+      }
+    }, 300000);
     const client = this;
     this.Manager = new Manager({
       nodes: [
@@ -108,6 +116,7 @@ class Melody extends Client {
       )
       .on("nodeError", (node, error) => {
         if (this.config.healthchecks) {
+          this.clearInterval(healthchecks);
           https
             .get(`https://hc-ping.com/${client.config.healthchecks}/fail`)
             .on("error", (err) => {
@@ -156,7 +165,7 @@ class Melody extends Client {
         this.channels.cache.get(player.textChannel).send(QueueEmbed);
         if (!this.config["24/7"]) player.destroy();
       });
-      
+
     this.ws.on("INTERACTION_CREATE", async (interaction) => {
       const command = interaction.data.name.toLowerCase();
       const args = interaction.data.options;

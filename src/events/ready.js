@@ -1,4 +1,4 @@
-const https = require('https');
+const https = require("https");
 
 // skipcq
 module.exports = async (client) => {
@@ -49,15 +49,6 @@ module.exports = async (client) => {
   ];
 
   client.Manager.init(client.user.id);
-
-  setInterval(async () => {
-    
-    if (client.config.healthchecks) https.get(`https://hc-ping.com/${client.config.healthchecks}`)
-    const index = Math.floor(Math.random() * statusList.length + 1) - 1;
-    await client.user.setActivity(statusList[index].msg, {
-      type: statusList[index].type,
-    });
-  }, 60000);
 
   client.user.setStatus("idle");
 
