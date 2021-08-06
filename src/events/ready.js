@@ -1,5 +1,3 @@
-const https = require("https");
-
 // skipcq
 module.exports = async (client) => {
   client.Ready = true;
@@ -51,6 +49,13 @@ module.exports = async (client) => {
   client.Manager.init(client.user.id);
 
   client.user.setStatus("idle");
+
+  setInterval(async () => {
+    const index = Math.floor(Math.random() * statusList.length + 1) - 1;
+    await client.user.setActivity(statusList[index].msg, {
+      type: statusList[index].type,
+    });
+  }, 60000);
 
   client.log(`[API] Logged in as ${client.user.username}
     Bot is running with ${client.guilds.cache.size} servers have ${client.users.cache.size} members and ${client.channels.cache.size} `);

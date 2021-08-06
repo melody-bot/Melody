@@ -80,7 +80,7 @@ class Melody extends Client {
         https
           .get(`https://hc-ping.com/${client.config.healthchecks}`)
           .on("error", (err) => {
-            client.log("Healthchecks Ping Failed");
+            this.log("Healthchecks Ping Failed");
           });
       }
     }, 300000);
@@ -120,7 +120,7 @@ class Melody extends Client {
           https
             .get(`https://hc-ping.com/${client.config.healthchecks}/fail`)
             .on("error", (err) => {
-              client.log("Healthchecks Ping Failed");
+              this.log("Healthchecks Ping Failed");
             });
         }
         this.log(
