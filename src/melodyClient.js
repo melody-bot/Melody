@@ -78,8 +78,8 @@ class Melody extends Client {
     const healthchecks = setInterval(() => {
       if (this.config.healthchecks) {
         https
-          .get(`https://hc-ping.com/${client.config.healthchecks}`)
-          .on("error", (err) => {
+          .get(`https://hc-ping.com/${this.config.healthchecks}`)
+          .on("error", () => {
             this.log("Healthchecks Ping Failed");
           });
       }
@@ -119,7 +119,7 @@ class Melody extends Client {
           this.clearInterval(healthchecks);
           https
             .get(`https://hc-ping.com/${client.config.healthchecks}/fail`)
-            .on("error", (err) => {
+            .on("error", () => {
               this.log("Healthchecks Ping Failed");
             });
         }

@@ -1,5 +1,4 @@
 const sendError = require("../util/error");
-const { MessageEmbed } = require("discord.js");
 const sendSuccess = require("../util/success");
 const levels = {
   none: 0.0,
