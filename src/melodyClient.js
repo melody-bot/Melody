@@ -156,13 +156,13 @@ class Melody extends Client {
           .addField("Author", `${song.author}`, true)
           .setColor("343434");
         //TODO: .setFooter("Started playing at");
-        this.channels.cache.get(player.textChannel).send(TrackStartedEmbed);
+        this.channels.cache.get(player.textChannel).send(TrackStartedEmbed).catch((e) => this.log(e));
       })
       .on("queueEnd", (player) => {
         const QueueEmbed = new MessageEmbed()
           .setAuthor("The queue has ended")
           .setColor("343434");
-        this.channels.cache.get(player.textChannel).send(QueueEmbed);
+        this.channels.cache.get(player.textChannel).send(QueueEmbed).catch((e) => this.log(e));
         if (!this.config["24/7"]) player.destroy();
       });
 
