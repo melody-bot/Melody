@@ -13,7 +13,7 @@
   "dependencies": {
     "colors": "^1.4.0",
     "discord-mongodb-prefix": "1.1.4",
-    "discord.js": "^12.5.3",
+    "discord.js": "^13.0.0",
     "erela.js": "^2.3.3",
     "genius-lyrics": "^4.2.9",
     "lavasfy": "2.1.2",
