@@ -127,7 +127,7 @@ class Melody extends Client {
           `Lavalink: Node ${node.options.identifier} had an error: ${error.message}`
         );
       })
-      .on("trackStart", (player, track) => {
+      .on("trackStart", async (player, track) => {
         const song = player.queue.current;
         const Song = new database.model({
           name: track.title,
@@ -155,20 +155,16 @@ class Melody extends Client {
           )
           .addField("Author", `${song.author}`, true)
           .setColor("343434");
+        const channel = await this.channels.fetch(player.textChannel);
         //TODO: .setFooter("Started playing at");
-        this.channels.cache
-          .get(player.textChannel)
-          .send(TrackStartedEmbed)
-          .catch((e) => this.log(e));
+        channel.send(TrackStartedEmbed).catch((e) => this.log(e));
       })
-      .on("queueEnd", (player) => {
+      .on("queueEnd", async (player) => {
         const QueueEmbed = new MessageEmbed()
           .setAuthor("The queue has ended")
           .setColor("343434");
-        this.channels.cache
-          .get(player.textChannel)
-          .send(QueueEmbed)
-          .catch((e) => this.log(e));
+        const channel = await this.channels.fetch(player.textChannel);
+        channel.send(QueueEmbed).catch((e) => this.log(e));
         if (!this.config["24/7"]) player.destroy();
       });
 
