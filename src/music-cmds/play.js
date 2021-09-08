@@ -241,9 +241,9 @@ module.exports = {
 
     // skipcq
     run: async (client, interaction, args) => {
-      const guild = client.guilds.cache.get(interaction.guild_id);
+      const guild = await client.guilds.fetch(interaction.guild_id);
       const member = guild.members.cache.get(interaction.member.user.id);
-      const channel = client.channels.cache.get(interaction.channel_id);
+      const channel = await client.channels.fetch(interaction.channel_id);
 
       try {
         if (!member.voice.channel)
