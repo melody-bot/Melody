@@ -5,7 +5,7 @@ const { combine, timestamp, label, printf } = format;
 class Logger {
   constructor(LoggingFile) {
     const myFormat = printf(
-      ({ level, message, timestamp }) => `${timestamp} ${level}: ${message}`
+      ({ level, message, time }) => `${time} ${level}: ${message}`
     );
     this.logger = createLogger({
       format: combine(label({ label: "logs" }), timestamp(), myFormat),
