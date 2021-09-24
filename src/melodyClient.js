@@ -5,6 +5,7 @@ const fs = require("fs");
 const mongopref = require("discord-mongodb-prefix");
 const SongsDatabase = require("./util/songDatabase");
 const CollectionsDatabase = require("./util/collectionsDatabase");
+const PreferenceDatabase = require("./util/preferenceDatabase");
 const path = require("path");
 const Logger = require("./util/logger");
 const prettyMilliseconds = require("pretty-ms");
@@ -33,6 +34,7 @@ class Melody extends Client {
 
     this.database = new SongsDatabase(this);
     this.collections = new CollectionsDatabase(this);
+    this.preferences = new PreferenceDatabase(this);
     const database = this.database;
 
     //Utils
