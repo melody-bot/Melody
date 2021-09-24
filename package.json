@@ -7,7 +7,7 @@
     "start": "node index.mjs"
   },
   "engines": {
-    "node": "14.x"
+    "node": "15.x"
   },
   "author": "noneedofit",
   "dependencies": {
