@@ -57,6 +57,9 @@ module.exports = async (client) => {
     });
   }, 60000);
 
-  client.log(`[API] Logged in as ${client.user.username}
-    Bot is running with ${client.guilds.cache.size} servers have ${client.users.cache.size} members and ${client.channels.cache.size} `);
+  client.log(
+    `[API] Logged in as ${client.user.username}
+    Bot is running with ${client.guilds.cache.size} servers have ${client.users.cache.size} members and ${client.channels.cache.size} `,
+    "info"
+  );
 };

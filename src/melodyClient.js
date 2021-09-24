@@ -114,7 +114,7 @@ class Melody extends Client {
       },
     })
       .on("nodeConnect", (node) =>
-        this.log(`Lavalink: Node ${node.options.identifier} connected`)
+        this.log(`Lavalink: Node ${node.options.identifier} connected`, "info")
       )
       .on("nodeError", (node, error) => {
         if (this.config.healthchecks) {
@@ -217,7 +217,7 @@ class Melody extends Client {
                 ", Reason: File doesn't have run/name/description property"
             );
           this.commands.set(file.split(".")[0], cmd);
-          this.log("Music Command Loaded: " + file.split(".")[0]); // skipcq
+          this.log("Music Command Loaded: " + file.split(".")[0], "info"); // skipcq
         });
     });
     fs.readdir(funDir, (err, files) => {
@@ -233,7 +233,7 @@ class Melody extends Client {
                 ", Reason: File doesn't have run/name/description property"
             );
           this.commands.set(file.split(".")[0], cmd);
-          this.log("Fun Command Loaded: " + file.split(".")[0]); // skipcq
+          this.log("Fun Command Loaded: " + file.split(".")[0], "info"); // skipcq
         });
     });
     fs.readdir(miscDir, (err, files) => {
@@ -249,7 +249,7 @@ class Melody extends Client {
                 ", Reason: File doesn't have run/name/description property"
             );
           this.commands.set(file.split(".")[0], cmd);
-          this.log("Misc Command Loaded: " + file.split(".")[0]); // skipcq
+          this.log("Misc Command Loaded: " + file.split(".")[0], "info"); // skipcq
         });
     });
     fs.readdir(devDir, (err, files) => {
@@ -265,7 +265,7 @@ class Melody extends Client {
                 ", Reason: File doesn't have run/name/description property"
             );
           this.commands.set(file.split(".")[0], cmd);
-          this.log("Music Command Loaded: " + file.split(".")[0]); // skipcq
+          this.log("Music Command Loaded: " + file.split(".")[0], "info"); // skipcq
         });
     });
   }
@@ -278,13 +278,13 @@ class Melody extends Client {
         files.forEach((file) => {
           const event = require(EventsDir + "/" + file); // skipcq
           this.on(file.split(".")[0], event.bind(null, this));
-          this.logger.log("Event Loaded: " + file.split(".")[0]); // skipcq
+          this.logger.log("Event Loaded: " + file.split(".")[0], "info"); // skipcq
         });
     });
   }
 
-  log(logs) {
-    this.logger.log(logs);
+  log(logs, level = "error") {
+    this.logger.log(logs, level);
   }
 
   async getPrefix(guild) {
