@@ -1,4 +1,3 @@
-const { MessageEmbed } = require("discord.js");
 const sendError = require("../util/error");
 const sendSuccess = require("../util/success");
 

@@ -29,7 +29,7 @@ module.exports = async (client, message) => {
       message.channel
     );
 
-  const runCmd = async (item) => {
+  const runCmd = (item) => {
     const capitalize = (string) =>
       string.charAt(0).toUpperCase() + string.slice(1);
 

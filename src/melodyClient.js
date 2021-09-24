@@ -313,7 +313,7 @@ class Melody extends Client {
     this.login(this.config.Token);
   }
 
-  async RegisterSlashCommands() {
+  RegisterSlashCommands() {
     this.guilds.cache.forEach((guild) => {
       require("./util/slashCommands")(this, guild.id);
     });

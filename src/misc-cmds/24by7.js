@@ -1,4 +1,3 @@
-const { MessageEmbed } = require("discord.js");
 const sendError = require("../util/error");
 module.exports = {
   name: "24by7",
@@ -65,7 +64,7 @@ module.exports = {
 
     const twentyfourSeven = newPreference === "on" ? true : false;
 
-    const newTime = parseInt(args[1]) || 300000;
+    const newTime = parseInt(args[1], 10) || 300000;
     if (args[1] && !newTime && !newTime >= 0 && !newTime <= 1800000)
       return sendError(
         "Please choose correct time in milliseconds between 0 and 1800000"

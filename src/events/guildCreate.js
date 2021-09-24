@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports = async (client, guild) => {
+module.exports = (client, guild) => {
   require("../util/slashCommands")(client, guild.id);
 
   const embed = new MessageEmbed().setDescription(
