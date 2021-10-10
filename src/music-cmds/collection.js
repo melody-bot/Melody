@@ -405,9 +405,12 @@ module.exports = {
                 `You must be in ${message.guild.me.voice.channel} to use this command.`,
                 message.channel
               );
-            const CheckNode = client.Manager.nodes.get(
-              client.config.Lavalink[0].id
-            );
+            const CheckNode = () => {
+              client.Manager.
+              client.Manager.nodes.get(
+                client.config.Lavalink[0].id
+              );
+            }
             if (!CheckNode || !CheckNode.connected) {
               return sendError("Server under maintenance.", message.channel);
             }
