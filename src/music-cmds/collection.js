@@ -406,11 +406,10 @@ module.exports = {
                 message.channel
               );
             const CheckNode = () => {
-              client.Manager.
-              client.Manager.nodes.get(
+              client.Manager.client.Manager.nodes.get(
                 client.config.Lavalink[0].id
               );
-            }
+            };
             if (!CheckNode || !CheckNode.connected) {
               return sendError("Server under maintenance.", message.channel);
             }
