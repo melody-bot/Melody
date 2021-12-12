@@ -1,40 +1,66 @@
 module.exports = {
-  Developers: ["786603297841741886", "788684047894839307"],
+  Developers: ["788684047894839307", "750304140776833065"],
 
   DefaultPrefix: ".",
 
-  SupportServer: "https://discord.gg/QfZdQynYbg",
+  SupportServer: "https://discord.gg/QfZdQynYbg", // change if you have your own
 
-  Token: "xyz...", // Bot token
+  Token: "", // your bot's auth token
+ 
+  ClientID: "", // your bot's client ID
 
-  topgg: "iHUienf...", //top.gg token
+  ClientSecret: "", // your bot's client secret
 
-  ClientID: "1234...", // Application Client ID
+  Scopes: ["applications.commands"],
 
-  ClientSecret: "iq1278e...", // Application Client Secret
+  "24/7": true, // change to false if you don't want 24/7 enabled by default
 
-  Scopes: ["identify", "guilds", "applications.commands"],
+  prefixesMongoURL:
+    "", // connection string for your prefixes database
 
-  "24/7": true, // 24/7 feature
+  songsMongoURL:
+    "", // connection string for your songs database
 
-  mongoURL:
-    "mongodb+srv://<user>:<password>@abc.xyz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", // Mongodb connection string
+  collectionsMongoURL:
+    "", // connection string for your collections database
+
+  preferenceMongoURL:
+    "", // connection string for your 24by7 database
 
   IconURL:
-    "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png", // Bot icon url
+    "https://cdn.discordapp.com/attachments/803882167193042975/812021018365394974/PINKmelody.png", // image url for your bot's icon
 
-  Permissions: 2205280576,
+  Permissions: 2163734592,
 
-  // lavalink server configuration
-  Lavalink: {
-    id: "main",
-    host: "example.com",
-    port: 8008,
-    pass: "supersecretpass",
-  },
+  healthchecks: "", // healthchecks.io token (if you have checks configured, otherwise delete the field
+
+  topgg:
+    "", // topgg token of your bot, contact us or browse the code yourself if you want to disable the stats poster
+
+// array of your lavalink nodes, contact us if you don't have exactly 3 nodes
+  Lavalink: [
+    {
+      id: "",
+      host: "",
+      port: ,
+      pass: "",
+    },
+    {
+      id: "",
+      host: "",
+      port: ,
+      pass: "",
+    },
+    {
+      id: "",
+      host: "",
+      port: ,
+      pass: "",
+    },
+  ],
 
   Spotify: {
-    ClientID: "qi3j901ie...", //Spotify Client ID
-    ClientSecret: "o2eoi2i290...", //Spotify Client Secret
+    ClientID: "", //Spotify Client ID
+    ClientSecret: "", //Spotify Client Secret
   },
 };
