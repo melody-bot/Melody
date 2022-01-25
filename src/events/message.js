@@ -47,7 +47,7 @@ module.exports = async (client, message) => {
         .setAuthor(`${capitalize(cmd.name)} help`)
         .setDescription(`${cmd.description}`)
         .addField(`Usage`, `\`${GuildPrefix.prefix}${cmd.usage}\``, true)
-        .addField(`Aliases`, `\`${cmd.aliases}\``, true)
+        .addField(`Aliases`, `\`${cmd.aliases[0] ? cmd.aliases : `--`}\``, true)
         .addField(
           `Example`,
           `\`${GuildPrefix.prefix}${cmd.example[0]}\`\n\`${GuildPrefix.prefix}${cmd.example[1]}\``
