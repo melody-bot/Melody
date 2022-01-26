@@ -8,8 +8,8 @@ module.exports = {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: ["commands", "cmd"],
-  example: ["help", "commands"],
+  aliases: ["cmd"],
+  example: ["help", "help all", "help play"],
   /**
    *
    * @param {import("../melodyClient")} client
