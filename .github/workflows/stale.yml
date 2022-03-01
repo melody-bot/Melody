@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
 
     steps:
-    - uses: actions/stale@v4
+    - uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         stale-issue-message: 'The issue is stale since a long time.'
