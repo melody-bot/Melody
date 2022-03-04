@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const Genius = require("genius-lyrics");
-const { Client, lyrics } = new Genius.Client("R5KY4vIh9j2EAidXGGWZr1wdOmWe-uzxWE_Tz3XKbAw2IW8SrUwXwrmjDpydpMru"); // Scrapes if no key is provided
+const GeniusAPIkey = require("../../config.js");  
+const { Client, lyrics } = new Genius.Client(GeniusAPIkey); // Scrapes if no key is provided
 const sendError = require("../util/error");
 const _ = require("lodash");
 
