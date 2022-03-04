@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const lyricsFinder = require("lyrics-finder");
+const Genius = require("genius-lyrics");
+const { Client, lyrics } = new Genius.Client("R5KY4vIh9j2EAidXGGWZr1wdOmWe-uzxWE_Tz3XKbAw2IW8SrUwXwrmjDpydpMru"); // Scrapes if no key is provided
 const sendError = require("../util/error");
 const _ = require("lodash");
 
@@ -35,7 +36,9 @@ module.exports = {
 
     if (!args) SongTitle = player.queue.current.title;
 
-    let lyrics = await lyricsFinder(SongTitle);
+    const searches = await Client.songs.search(SongTitle);
+    const firstSong = searches[0];
+    const lyrics = await firstSong.lyrics();
 
     if (!lyrics)
       return sendError(
@@ -98,7 +101,10 @@ module.exports = {
 
       interaction.send(`Searching . . .`);
 
-      let lyrics = await lyricsFinder(SongTitle);
+      const searches = await Client.songs.search(SongTitle);
+      const firstSong = searches[0];
+      const lyrics = await firstSong.lyrics();
+
       if (!lyrics)
         return sendError(`No lyrics found for ${SongTitle}`, channel);
       lyrics = lyrics.split("\n");
