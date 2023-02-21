@@ -1,3 +1,7 @@
+# NOTE
+### THIS PROJECT IS NO LONGER MAINTAINED
+
+
 # MELODY
 
 **Melody is a feature-rich music bot that comes with 24/7 and other premium features for free, invite Melody now!**
